@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="description" content="Blockly for arduino">
+  <meta name="keywords" content="Arduino, Blockly, Ereko, Modelos Educacionais">
+  <meta name="author" content="Ana Caroline Braz">
+  
+  <title>EREKO BLOCKLY TEST</title>
+
+  <!-- Import materialize.css  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <title>Ereko Blockly Test</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <!--blocklys-->
+  <script src="blockly/blockly_compressed.js"></script>
+  <script src="blockly/blocks_compressed.js"></script>
+  <script src="blockly/javascript_compressed.js"></script>
+  <script src="blocklyckly/msg/js/en.js"></script> 
+  <!-- <script src="blockly/tudo.js"></script> -->
+  <script src="blockly/blocos_up2.js"></script>
+  <script src="blockly/workspace.js"></script>    
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+       AOS.init();
+  </script>
+</head>
+
+<style>
+    .clearfix {
+        overflow: auto;
+    }
+</style>
+
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">EREKO BLOCKLY TEST</a>
+      <ul class="right hide-on-med-and-down">       
+        <li><a href="#"><i class="material-icons">search</i></a></li>
+        <li><a href="#"><i class="material-icons">view_module</i></a></li>
+        <li><a href="#"><i class="material-icons">play_circle_outline</i></a></li>
+        <li><a href="#"><i class="material-icons">language</i></a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="col s12" style="height: 600px">
+        <div class="row">
+            <div class="col s8" style="height: 500px">
+                <div id="blocklyDiv" style="float:left; height: 600px; width: 85%;border-style: solid; border-color: #2c7fd2;">
+                </div>
+            </div>
+            <div class="col s4">
+              <div id="codigogerado" style="font-family: 'Courier New', Courier, monospace; float:left; height: 500px; width: 100%; padding-left: 2%;background-color: #FFFFFF;
+              color: #ffffff; border-style: solid; border-color: #272a2d;" class="clearfix">
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <xml id="toolbox" style="display: none">	 
+
+        <category name="Olhos" colour="270">
+            <block type="ativar_led"></block>
+            <block type="led"></block>
+        </category>
+		
+        <category name="Funções" colour="100">
+            <block type="setup"></block>
+            <block type="loop"></block>
+            <block type="pinmode"></block>
+            <block type="digitalwrite"></block>
+            <block type="delay"></block>
+        </category> 
+    </xml>    
+
+    <script>
+          var mostrar = "nada aqui";
+          var workspace = Blockly.inject('blocklyDiv', {
+              toolbox: document.getElementById('toolbox')
+          });
+  
+          function update(event) {
+              Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+              var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
+              if (code != "") {
+                  mostrar = code;
+                  document.getElementById("codigogerado").innerHTML = mostrar;
+                  cleanThanUp()
+              }
+          }
+  
+          function cleanThanUp() {
+              var list = document.getElementById("im");
+              while (list.hasChildNodes()) {
+                  list.removeChild(list.childNodes[0]);
+              }
+              updateGraph();
+          }
+  
+          function updateGraph() {
+              if (mostrar != "nada aqui") {
+                  var viz = new Viz();
+                  viz.renderSVGElement(mostrar)
+                    .then(function(element) {
+                        document.getElementById("im").appendChild(element);
+                    })
+                    .catch(error => {
+                        // Create a new Viz instance (@see Caveats page for more info)
+                        viz = new Viz();
+
+                        // Possibly display the error
+                        console.error(error);
+                    });
+              }
+          }
+          workspace.addChangeListener(update);
+    </script>
+
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ereko Blockly Test</h5>
+          <p class="grey-text text-lighten-4">Layout criado para Versão teste do Ereko Blockly</p>
+        </div>
+  
+    <div class="footer-copyright">
+      <div class="container">
+      Made by Ana Caroline Braz - UnB 2024
+      </div>
+    </div>
+  </footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/FileSaver.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+
+  </body>
+</html>
