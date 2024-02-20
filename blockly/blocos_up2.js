@@ -95,6 +95,21 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
 
+  Blockly.Blocks['buzzer'] = {
+    init: function() {
+      this.appendValueInput("NAME")
+          .setCheck(null)
+          .appendField("buzzer")
+          .appendField(new Blockly.FieldTextInput("nome"), "nome")
+          .appendField("porta")
+          .appendField(new Blockly.FieldNumber(0), "porta");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+    }
+  }
+//----------------------------------------------------------------------------------------------------------------
 // Generator
 Blockly.JavaScript['ativar_led'] = function(block, generator) {
     // TODO: Assemble javascript into code variable.
@@ -146,5 +161,14 @@ Blockly.JavaScript['delay'] = function(block, generator) {
   var number_delay = block.getFieldValue('Delay');
   // TODO: Assemble javascript into code variable.
   var code = '<pre>&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">'+number_delay+'</font><font color="#000000">)</font><font color="#000000">;</font></pre>';
+  return code;
+};
+
+Blockly.JavaScript['buzzer'] = function(block, generator) {
+  var text_nome = block.getFieldValue('nome');
+  var number_porta = block.getFieldValue('porta');
+  var value_name = generator.valueToCode(block, 'NAME', javascript.Order.ATOMIC);
+  // TODO: Assemble javascript into code variable.
+  var code = '<pre><font color="#00979c">int </font><font color="#000000">buzzer'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font></pre>';
   return code;
 };
