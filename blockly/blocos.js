@@ -4,7 +4,8 @@ Blockly.Blocks['ativar_led'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Ativar Leds");
-      this.setNextStatement(true, null);
+          this.setPreviousStatement(true, null);
+          this.setNextStatement(true, null);
       this.setColour(135);
    this.setTooltip("");
    this.setHelpUrl("");
@@ -15,7 +16,7 @@ Blockly.Blocks['ativar_led'] = {
     init: function() {
       this.appendStatementInput("Void_setup")
           .setCheck(null)
-          .appendField("Inicializadores");
+          .appendField("SETUP");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
@@ -28,7 +29,7 @@ Blockly.Blocks['ativar_led'] = {
     init: function() {
       this.appendStatementInput("Void_loop")
           .setCheck(null)
-          .appendField("Looping");
+          .appendField("LOOP");
       this.setPreviousStatement(true, null);
       this.setColour(0);
    this.setTooltip("");
@@ -110,3 +111,68 @@ Blockly.Blocks['ativar_led'] = {
     }
   }
 
+  Blockly.Blocks['Motor'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Motor");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['SoftwareSerial'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("SoftwareSerial");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['motor'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("motor")
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['motor_attach'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("porta do motor")
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
+          .appendField(new Blockly.FieldNumber(0), "porta");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['motor_write'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("motor")
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
+          .appendField(".write")
+          .appendField(new Blockly.FieldNumber(0), "valor");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };

@@ -57,8 +57,44 @@ Blockly.JavaScript['delay'] = function(block, generator) {
 Blockly.JavaScript['buzzer'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
   var number_porta = block.getFieldValue('porta');
-  var value_name = generator.valueToCode(block, 'NAME', javascript.Order.ATOMIC);
   // TODO: Assemble javascript into code variable.
   var code = '<pre><font color="#00979c">int </font><font color="#000000">buzzer'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font></pre>';
   return code;
 };
+
+
+Blockly.JavaScript['Motor'] = function(block, generator) {
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre><font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">Servo</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font></pre>';
+    return code;
+  };
+
+  Blockly.JavaScript['SoftwareSerial'] = function(block, generator) {
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre><font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font></pre>';
+    return code;
+  };
+
+  Blockly.JavaScript['motor'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre><b><font color="#d35400">Servo</font></b> <font color="#000000">motor'+text_name+'</font><font color="#000000">;</font></pre>';
+
+    return code;
+  };
+
+  Blockly.JavaScript['motor_attach'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    var number_porta = block.getFieldValue('porta');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre>&nbsp;<font color="#000000">motor'+text_name+'</font><font color="#434f54">.</font><font color="#d35400">attach</font><font color="#000000">(</font><font color="#000000">'+number_porta+'</font><font color="#000000">)</font></pre>';
+    return code;
+  };
+
+  Blockly.JavaScript['motor_write'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    var number_valor = block.getFieldValue('valor');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre>&nbsp;<font color="#000000">motor'+text_name+'</font><font color="#434f54">.</font><font color="#d35400">write</font><font color="#000000">(</font><font color="#000000">'+number_valor+'</font><font color="#000000">)</font><font color="#000000">;</font></pre>';
+    return code;
+  };

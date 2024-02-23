@@ -65,57 +65,48 @@
     </div>
 
     <xml id="toolbox" style="display: none">	 
-        <category name="Funções" colour="100">
+        
+      <category name="Include" colour="2eff00">
+        <block type="Motor"></block>
+        <block type="SoftwareSerial"></block>         
+      </category>
+
+        <category name="Funções" colour="d6df1c">
             <block type="setup"></block>
             <block type="loop"></block>
-            <block type="pinmode"></block>
-            <block type="digitalwrite"></block>
             <block type="delay"></block>
         </category> 
-        
-        <category name="Includes" colour="270">
-            <block type="Motor"></block>
-            <block type="SoftwareSerial"></block>         
-      </category>
 
-        <category name="Erekopapa" colour="270">
+        <category name="Erekopapa" colour="00ffaa">
             <category name="Olhos" >
-              <block type="ativar_led"></block>
-              <block type="led"></block>
-            </category>
-            <category name="Boca">
-              <block type="buzzer"></block> 
-            </category>
-        </category>
-
-        <category name="Arabeko" colour="320">
-            <category name="Olhos" >
-              <block type="ativar_led"></block>
-              <block type="led"></block>
-            </category>
-            <category name="Boca">
-              <block type="buzzer"></block> 
-            </category>
-        </category>
-
-        <category name="Carrinho" colour="800">
-          <category name="Olhos" >
-            <block type="ativar_led"></block>
-            <block type="led"></block>
+              <block type="led"></block>              
+              <block type="pinmode"></block>              
+              <block type="digitalwrite"></block>
           </category>
+
           <category name="Boca">
-            <block type="buzzer"></block> 
+            <block type="buzzer"></block>                    
+            <block type="pinmode"></block>
+            <block type="digitalwrite"></block>
           </category>
+          
+          <category name="Cabeça">
+            <block type="motor"></block>                  
+            <block type="motor_attach"></block>
+            <block type="motor_write"></block>   
+          </category>
+        </category>
+
+        <category name="Arabeko" colour="ff00e0">
+
+        </category>
+
+        <category name="Carrinho" colour="ff5900">
+
       </category>
 
-      <category name="Cobra" colour="10">
-        <category name="Olhos" >
-          <block type="ativar_led"></block>
-          <block type="led"></block>
-        </category>
-        <category name="Boca">
-          <block type="buzzer"></block> 
-        </category>
+      <category name="Cobra" colour="ff0000">
+
     </category>
 
     </xml>    
