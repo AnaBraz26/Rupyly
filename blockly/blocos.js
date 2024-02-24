@@ -176,3 +176,15 @@ Blockly.Blocks['ativar_led'] = {
    this.setHelpUrl("");
     }
   };
+
+  Blockly.Blocks['notas_piano'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("notas de piano");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
