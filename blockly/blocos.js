@@ -123,18 +123,6 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
 
-  Blockly.Blocks['SoftwareSerial'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("SoftwareSerial");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-  };
-
   Blockly.Blocks['motor'] = {
     init: function() {
       this.appendDummyInput()
@@ -177,10 +165,29 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
 
-  Blockly.Blocks['notas_piano'] = {
+  Blockly.Blocks['SoftwareSerial'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("notas de piano");
+          .appendField("SoftwareSerial");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+
+  Blockly.Blocks['serialbegin2'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Serialbegin")
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
+          .appendField(":")
+          .appendField("rxPin")
+          .appendField(new Blockly.FieldNumber(0), "rxPin")
+          .appendField("txPin")
+          .appendField(new Blockly.FieldNumber(0), "txPin");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
