@@ -107,3 +107,18 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var code = '<pre><b><font color="#d35400">SoftwareSerial</font></b> <font color="#000000">'+text_name+'</font><font color="#000000">(</font><font color="#000000">'+number_rxpin+'</font><font color="#434f54">,</font> <font color="#000000">'+number_txpin+'</font><font color="#000000">)</font><font color="#000000">;</font></pre>';
     return code;
   };
+
+  Blockly.JavaScript['byte'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre><font color="#00979c">byte</font> <font color="#000000">'+text_name+'</font><font color="#000000">;</font></pre>';
+    return code;
+  };
+ 
+  Blockly.JavaScript['int'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    var number_int = block.getFieldValue('int');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre><font color="#00979c">int</font> <font color="#000000">'+text_name+'</font> <font color="#434f54">=</font> <font color="#000000">'+number_int+'</font><font color="#000000">;</font> </pre>';
+    return code;
+  };

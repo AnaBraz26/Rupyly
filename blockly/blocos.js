@@ -177,7 +177,6 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
 
-
   Blockly.Blocks['serialbegin2'] = {
     init: function() {
       this.appendDummyInput()
@@ -188,6 +187,34 @@ Blockly.Blocks['ativar_led'] = {
           .appendField(new Blockly.FieldNumber(0), "rxPin")
           .appendField("txPin")
           .appendField(new Blockly.FieldNumber(0), "txPin");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['byte'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Byte")
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['int'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Int")
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
+          .appendField("=")
+          .appendField(new Blockly.FieldNumber(0), "int");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
