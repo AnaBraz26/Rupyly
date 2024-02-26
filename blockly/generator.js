@@ -99,7 +99,7 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     return code;
   };
   
-  Blockly.JavaScript['serialbegin2'] = function(block, generator) {
+  Blockly.JavaScript['software'] = function(block, generator) {
     var text_name = block.getFieldValue('NAME');
     var number_rxpin = block.getFieldValue('rxPin');
     var number_txpin = block.getFieldValue('txPin');
@@ -120,5 +120,20 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var number_int = block.getFieldValue('int');
     // TODO: Assemble javascript into code variable.
     var code = '<pre><font color="#00979c">int</font> <font color="#000000">'+text_name+'</font> <font color="#434f54">=</font> <font color="#000000">'+number_int+'</font><font color="#000000">;</font> </pre>';
+    return code;
+  };
+
+  Blockly.JavaScript['namebegin'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    var number_begin = block.getFieldValue('begin');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre>&nbsp;<font color="#000000">'+text_name+'</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_begin+'</font><font color="#000000">)</font><font color="#000000">;</font></pre>';
+    return code;
+  };
+
+  Blockly.JavaScript['serialbegin'] = function(block, generator) {
+    var number_name = block.getFieldValue('NAME');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre>&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_name+'</font><font color="#000000">)</font><font color="#000000">;</font>   </pre>';
     return code;
   };

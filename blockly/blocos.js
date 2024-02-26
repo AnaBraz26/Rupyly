@@ -155,7 +155,7 @@ Blockly.Blocks['ativar_led'] = {
       this.appendDummyInput()
           .appendField("motor")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME")
-          .appendField(".write")
+          .appendField("write")
           .appendField(new Blockly.FieldNumber(0), "valor");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -177,10 +177,10 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
 
-  Blockly.Blocks['serialbegin2'] = {
+  Blockly.Blocks['software'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Serialbegin")
+          .appendField("SerialSoftware")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME")
           .appendField(":")
           .appendField("rxPin")
@@ -222,3 +222,32 @@ Blockly.Blocks['ativar_led'] = {
    this.setHelpUrl("");
     }
   };
+
+  Blockly.Blocks['namebegin'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
+
+          .appendField("begin")
+          .appendField(new Blockly.FieldNumber(0), "begin");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['serialbegin'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Serial.Begin")
+          .appendField(new Blockly.FieldNumber(9600), "NAME");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+  
