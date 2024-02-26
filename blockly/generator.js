@@ -10,7 +10,6 @@ Blockly.JavaScript['ativar_led'] = function(block, generator) {
 Blockly.JavaScript['setup'] = function(block, generator) {
   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_setup');
   // TODO: Assemble JavaScript into code variable.
-  var code = '<br>void setup(){<br>\n'+statements_name+'<br>}';
   var code = '<pre><br><font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font></pre>';
     return code;
 };
@@ -18,7 +17,6 @@ Blockly.JavaScript['setup'] = function(block, generator) {
 Blockly.JavaScript['loop'] = function(block, generator) {
   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_loop');
   // TODO: Assemble JavaScript into code variable.
-  var code = '<br>void loop(){<br>\n'+statements_name+'<br>}';
   var code = '<pre><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font></pre>';
     return code;
 };
@@ -135,5 +133,13 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var number_name = block.getFieldValue('NAME');
     // TODO: Assemble javascript into code variable.
     var code = '<pre>&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_name+'</font><font color="#000000">)</font><font color="#000000">;</font>   </pre>';
+    return code;
+  };
+  
+  Blockly.JavaScript['if'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'IF');
+    // TODO: Assemble javascript into code variable.
+    var code = '<pre><font color="#5e6d03">if</font><font color="#000000">(</font><font color="#000000">'+text_name+'</font><font color="#000000">)\n</font><font color="#000000">{</font>;'+statements_name+'\n<font color="#000000">}</font></pre>';
     return code;
   };

@@ -250,4 +250,17 @@ Blockly.Blocks['ativar_led'] = {
    this.setHelpUrl("");
     }
   };
-  
+
+  Blockly.Blocks['if'] = {
+    init: function() {
+      this.appendStatementInput("IF")
+          .setCheck(null)
+          .appendField("if")
+          .appendField(new Blockly.FieldTextInput("condição"), "NAME");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(0);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
