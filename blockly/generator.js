@@ -17,7 +17,7 @@ Blockly.JavaScript['setup'] = function(block, generator) {
 Blockly.JavaScript['loop'] = function(block, generator) {
   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_loop');
   // TODO: Assemble JavaScript into code variable.
-  var code = '<br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
+  var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
     return code;
 };
 
@@ -31,9 +31,9 @@ Blockly.JavaScript['led'] = function(block, generator) {
 
 Blockly.JavaScript['pinmode'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
-  var dropdown_mode = block.getFieldValue('mode');
+  var dropdown_modo = block.getFieldValue('mode');
   // TODO: Assemble javascript into code variable.
-  var code = '<br>&nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">'+text_nome+'</font><font color="#434f54">,</font> <font color="#00979c">'+dropdown_mode+'</font><font color="#000000">)</font><font color="#000000">;</font>';
+  var code = '<br>&nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">'+text_nome+'</font><font color="#434f54">,</font> <font color="#00979c">'+dropdown_modo+'</font><font color="#000000">)</font><font color="#000000">;</font>';
   return code;
 };
 
@@ -41,7 +41,7 @@ Blockly.JavaScript['digitalwrite'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
   var dropdown_modo = block.getFieldValue('modo');
   // TODO: Assemble javascript into code variable.
-  var code = '<br>&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">'+text_nome+'</font><font color="#434f54">,</font><font color="#00979c">'+text_estado+'</font><font color="#000000">)</font><font color="#000000">;</font>';
+  var code = '<br>&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">'+text_nome+'</font><font color="#434f54">,</font><font color="#00979c">'+dropdown_modo+'</font><font color="#000000">)</font><font color="#000000">;</font>';
   return code;
 };
 
@@ -63,7 +63,7 @@ Blockly.JavaScript['buzzer'] = function(block, generator) {
 
 Blockly.JavaScript['Motor'] = function(block, generator) {
     // TODO: Assemble javascript into code variable.
-    var code = '<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">Servo</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>';
+    var code = '<br><font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">Servo</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>';
     return code;
   };
 
@@ -93,7 +93,7 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
 
   Blockly.JavaScript['SoftwareSerial'] = function(block, generator) {
     // TODO: Assemble javascript into code variable.
-    var code = '<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>';
+    var code = '<br><font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>';
     return code;
   };
   
@@ -125,14 +125,14 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var text_name = block.getFieldValue('NAME');
     var number_begin = block.getFieldValue('begin');
     // TODO: Assemble javascript into code variable.
-    var code = '&nbsp;<font color="#000000">'+text_name+'</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_begin+'</font><font color="#000000">)</font><font color="#000000">;</font>';
+    var code = '<br>&nbsp;<font color="#000000">'+text_name+'</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_begin+'</font><font color="#000000">)</font><font color="#000000">;</font>';
     return code;
   };
 
   Blockly.JavaScript['serialbegin'] = function(block, generator) {
     var number_name = block.getFieldValue('NAME');
     // TODO: Assemble javascript into code variable.
-    var code = '&nbsp;<br><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_name+'</font><font color="#000000">)</font><font color="#000000">;</font>   ';
+    var code = '<br>&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">'+number_name+'</font><font color="#000000">)</font><font color="#000000">;</font>   ';
     return code;
   };
   
