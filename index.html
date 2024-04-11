@@ -42,10 +42,7 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">EREKO BLOCKLY TEST</a>
       <ul class="right hide-on-med-and-down">       
-        <li><a href="#"><i class="material-icons">search</i></a></li>
-        <li><a href="#"><i class="material-icons">view_module</i></a></li>
-        <li><a href="#"><i class="material-icons">play_circle_outline</i></a></li>
-        <li><a href="#"><i class="material-icons">language</i></a></li>
+        <button id="Download" class="btn waves-effect waves-light" type="submit" name="action">Fazer download do código (.ino)</button>
       </ul>
     </div>
   </nav>
@@ -177,6 +174,23 @@
               }
           }
           workspace.addChangeListener(update);
+
+          document.getElementById("Download").addEventListener("click", function() {
+            var fileName = "codigo_gerado.ino";
+            var fileContent = mostrar; // Conteúdo do arquivo .ino gerado
+        
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
+            element.setAttribute('download', fileName);
+        
+            element.style.display = 'none';
+            document.body.appendChild(element);
+        
+            element.click();
+        
+            document.body.removeChild(element);
+        });
+
     </script>
 
   <footer class="page-footer blue">

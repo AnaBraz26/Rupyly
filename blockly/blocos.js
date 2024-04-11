@@ -90,7 +90,7 @@ Blockly.Blocks['ativar_led'] = {
           .appendField(new Blockly.FieldNumber(200), "Delay");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(255);
+      this.setColour(0);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -106,7 +106,7 @@ Blockly.Blocks['ativar_led'] = {
           .appendField(new Blockly.FieldNumber(0), "porta");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(255);
+      this.setColour(60);
    this.setTooltip("");
     }
   };
@@ -171,7 +171,7 @@ Blockly.Blocks['ativar_led'] = {
           .appendField("SoftwareSerial");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(135);
+      this.setColour(400);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -245,7 +245,7 @@ Blockly.Blocks['ativar_led'] = {
           .appendField(new Blockly.FieldNumber(9600), "NAME");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(255);
+      this.setColour(0);
    this.setTooltip("");
    this.setHelpUrl("");
     }
