@@ -140,6 +140,6 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var text_name = block.getFieldValue('NAME');
     var statements_name = Blockly.JavaScript.statementToCode(block, 'IF');
     // TODO: Assemble javascript into code variable.
-    var code = '<br><font color="#5e6d03">if</font><font color="#000000">(</font><font color="#000000">'+text_name+'</font><font color="#000000">)\n</font><font color="#000000">{</font>;'+statements_name+'\n<font color="#000000">}</font>';
+    var code = '<br><font color="#5e6d03">if</font><font color="#000000">(</font><font color="#000000">'+text_name+'</font><font color="#000000">)\n</font><font color="#000000">{</font>;\n'+statements_name+'\n<font color="#000000"><br>}</font>';
     return code;
   };
