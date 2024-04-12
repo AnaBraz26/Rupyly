@@ -264,3 +264,32 @@ Blockly.Blocks['ativar_led'] = {
    this.setHelpUrl("");
     }
   };
+
+  
+  Blockly.Blocks['serialprint'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Serial.print")
+          .appendField(new Blockly.FieldTextInput("input"), "text");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+  
+  Blockly.Blocks['analogwrite'] = {
+    init: function() {
+      this.appendValueInput("NAME")
+          .setCheck(null)
+          .appendField("Analog Write")
+          .appendField(new Blockly.FieldTextInput("pino,valor"), "nome")
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+  
