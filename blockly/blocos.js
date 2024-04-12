@@ -39,8 +39,7 @@ Blockly.Blocks['ativar_led'] = {
   
   Blockly.Blocks['led'] = {
     init: function() {
-      this.appendValueInput("NAME")
-          .setCheck(null)
+      this.appendDummyInput()
           .appendField("led")
           .appendField(new Blockly.FieldTextInput("nome"), "nome")
           .appendField("porta")
@@ -55,8 +54,7 @@ Blockly.Blocks['ativar_led'] = {
   
   Blockly.Blocks['digitalwrite'] = {
     init: function() {
-      this.appendValueInput("NAME")
-          .setCheck(null)
+      this.appendDummyInput()
           .appendField("Digital Write")
           .appendField(new Blockly.FieldTextInput("nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["HIGH","HIGH"], ["LOW","LOW"]]), "modo");
@@ -84,8 +82,7 @@ Blockly.Blocks['ativar_led'] = {
   
   Blockly.Blocks['delay'] = {
     init: function() {
-      this.appendValueInput("NAME")
-          .setCheck(null)
+      this.appendDummyInput()
           .appendField("Delay")
           .appendField(new Blockly.FieldNumber(200), "Delay");
       this.setPreviousStatement(true, null);
@@ -98,8 +95,7 @@ Blockly.Blocks['ativar_led'] = {
 
   Blockly.Blocks['buzzer'] = {
     init: function() {
-      this.appendValueInput("NAME")
-          .setCheck(null)
+      this.appendDummyInput()
           .appendField("buzzer")
           .appendField(new Blockly.FieldTextInput("nome"), "nome")
           .appendField("porta")
@@ -281,8 +277,7 @@ Blockly.Blocks['ativar_led'] = {
   
   Blockly.Blocks['analogwrite'] = {
     init: function() {
-      this.appendValueInput("NAME")
-          .setCheck(null)
+      this.appendDummyInput()
           .appendField("Analog Write")
           .appendField(new Blockly.FieldTextInput("pino,valor"), "nome")
       this.setPreviousStatement(true, null);
@@ -293,3 +288,32 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
   
+  Blockly.Blocks['map'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("map")
+          .appendField(new Blockly.FieldTextInput("valor"), "valor")
+          .appendField(new Blockly.FieldTextInput("deMenor"), "deMenor")
+          .appendField(new Blockly.FieldTextInput("deMaior"), " deMaior")
+          .appendField(new Blockly.FieldTextInput("paraMenor"), "paraMenor")
+          .appendField(new Blockly.FieldTextInput("paraMaior"), "paraMaior");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['serialprintln'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Serial.println")
+          .appendField(new Blockly.FieldTextInput("input"), "text");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };

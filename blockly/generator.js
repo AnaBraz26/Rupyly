@@ -157,3 +157,21 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var code = '<br>&nbsp<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">'+text_nome+'</font><font color="#000000">)</font><font color="#000000">;</font>';
     return code;
   };
+
+  Blockly.JavaScript['map'] = function(block, generator) {
+    var text_valor = block.getFieldValue('valor');
+    var text_demenor = block.getFieldValue('deMenor');
+    var text__demaior = block.getFieldValue(' deMaior');
+    var text_paramenor = block.getFieldValue('paraMenor');
+    var text_paramaior = block.getFieldValue('paraMaior');
+    // TODO: Assemble javascript into code variable.
+    var code = '<br><font color="#d35400">map</font><font color="#000000">(</font><font color="#000000">'+text_valor+'</font><font color="#434f54">,</font> <font color="#000000">'+text_demenor+'</font><font color="#434f54">,</font> <font color="#000000">'+text__demaior+'</font><font color="#434f54">,</font> <font color="#000000">'+text_paramenor+'</font><font color="#434f54">,</font> <font color="#000000">'+text_paramaior+'</font><font color="#000000">)</font>';
+    return code;
+  };
+
+  Blockly.JavaScript['serialprintln'] = function(block, generator) {
+    var text_text = block.getFieldValue('text');
+    // TODO: Assemble javascript into code variable.
+    var code = '<br>&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">'+text_text+'</font><font color="#000000">)</font><font color="#000000">;</font>';
+    return code;
+  };
