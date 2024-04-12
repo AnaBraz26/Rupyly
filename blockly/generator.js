@@ -140,7 +140,7 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var text_name = block.getFieldValue('NAME');
     var statements_name = Blockly.JavaScript.statementToCode(block, 'IF');
     // TODO: Assemble javascript into code variable.
-    var code = '<br><font color="#5e6d03">if</font><font color="#000000">(</font><font color="#000000">'+text_name+'</font><font color="#000000">)\n</font><font color="#000000">{</font>;\n'+statements_name+'\n<font color="#000000"><br>}</font>';
+    var code = '<br>&nbsp<font color="#5e6d03">if</font><font color="#000000">(</font><font color="#000000">'+text_name+'</font><font color="#000000">)</font><font color="#000000">{<br></font>;&nbsp'+statements_name+'<br><font color="#000000"><br>&nbsp}</font>';
     return code;
   };
   
@@ -173,5 +173,13 @@ Blockly.JavaScript['Motor'] = function(block, generator) {
     var text_text = block.getFieldValue('text');
     // TODO: Assemble javascript into code variable.
     var code = '<br>&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">'+text_text+'</font><font color="#000000">)</font><font color="#000000">;</font>';
+    return code;
+  };
+
+  Blockly.JavaScript['igualdade'] = function(block, generator) {
+    var text_name = block.getFieldValue('NAME');
+    var text_text = block.getFieldValue('text');
+    // TODO: Assemble javascript into code variable.
+    var code = '&nbsp;<font color="#000000">'+text_name+'</font> <font color="#434f54">=</font> <font color="#000000">'+text_text+'</font><font color="#000000">;</font>';
     return code;
   };

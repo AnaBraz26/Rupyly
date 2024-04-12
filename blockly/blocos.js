@@ -317,3 +317,19 @@ Blockly.Blocks['ativar_led'] = {
    this.setHelpUrl("");
     }
   };
+
+  
+  Blockly.Blocks['igualdade'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldTextInput("variavel"), "NAME")
+          .appendField("=")
+          .appendField(new Blockly.FieldTextInput("input"), "text");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+  
