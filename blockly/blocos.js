@@ -1,22 +1,10 @@
 // Definições
-
-Blockly.Blocks['ativar_led'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Ativar Leds");
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-      this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-  };
   
   Blockly.Blocks['setup'] = {
     init: function() {
       this.appendStatementInput("Void_setup")
           .setCheck(null)
-          .appendField("SETUP");
+          .appendField("Inicializador");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
@@ -29,7 +17,7 @@ Blockly.Blocks['ativar_led'] = {
     init: function() {
       this.appendStatementInput("Void_loop")
           .setCheck(null)
-          .appendField("LOOP");
+          .appendField("Ciclo");
       this.setPreviousStatement(true, null);
       this.setColour(0);
    this.setTooltip("");
@@ -40,10 +28,10 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['led'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("led")
-          .appendField(new Blockly.FieldTextInput("nome"), "nome")
-          .appendField("porta")
-          .appendField(new Blockly.FieldNumber(0), "porta");
+          .appendField("Led")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField("Porta")
+          .appendField(new Blockly.FieldNumber(0), "Porta");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
@@ -52,12 +40,12 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
   
-  Blockly.Blocks['digitalwrite'] = {
+  Blockly.Blocks['digitalwrite_led'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Digital Write")
-          .appendField(new Blockly.FieldTextInput("nome"), "nome")
-          .appendField(new Blockly.FieldDropdown([["HIGH","HIGH"], ["LOW","LOW"]]), "modo");
+          .appendField("Acionar Led")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
@@ -65,16 +53,60 @@ Blockly.Blocks['ativar_led'] = {
    this.setHelpUrl("");
     }
   };
-  
-  Blockly.Blocks['pinmode'] = {
+
+    
+  Blockly.Blocks['pinmode_led'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("pinMode")
-          .appendField(new Blockly.FieldTextInput("nome"), "nome")
-          .appendField(new Blockly.FieldDropdown([["OUTPUT","OUTPUT"], ["INPUT","INPUT"]]), "mode");
+          .appendField("Configuração do Led")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+
+  Blockly.Blocks['buzzer'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Buzzer")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField("Porta")
+          .appendField(new Blockly.FieldNumber(0), "Porta");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(60);
+   this.setTooltip("");
+    }
+  };
+
+  Blockly.Blocks['digitalwrite_buzzer'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Acionar Buzzer")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(60);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+  
+  Blockly.Blocks['pinmode_buzzer'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Configuração do Buzzer")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(60);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -93,24 +125,10 @@ Blockly.Blocks['ativar_led'] = {
     }
   };
 
-  Blockly.Blocks['buzzer'] = {
+  Blockly.Blocks['Biblioteca_Motor'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("buzzer")
-          .appendField(new Blockly.FieldTextInput("nome"), "nome")
-          .appendField("porta")
-          .appendField(new Blockly.FieldNumber(0), "porta");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(60);
-   this.setTooltip("");
-    }
-  };
-
-  Blockly.Blocks['Motor'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Motor");
+          .appendField("Incluir biblioteca Motor");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
@@ -122,8 +140,8 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['motor'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("motor")
-          .appendField(new Blockly.FieldTextInput("nome"), "NAME");
+          .appendField("Motor")
+          .appendField(new Blockly.FieldTextInput("Nome"), "NAME");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
@@ -135,9 +153,9 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['motor_attach'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("porta do motor")
-          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
-          .appendField(new Blockly.FieldNumber(0), "porta");
+          .appendField("Porta do Motor")
+          .appendField(new Blockly.FieldTextInput("Nome"), "NAME")
+          .appendField(new Blockly.FieldNumber(0), "Porta");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
@@ -149,10 +167,9 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['motor_write'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("motor")
-          .appendField(new Blockly.FieldTextInput("nome"), "NAME")
-          .appendField("write")
-          .appendField(new Blockly.FieldNumber(0), "valor");
+          .appendField("Ângulo para mover o Motor")
+          .appendField(new Blockly.FieldTextInput("Nome"), "NAME")
+          .appendField(new Blockly.FieldNumber(0), "Ângulo");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
@@ -164,7 +181,7 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['SoftwareSerial'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("SoftwareSerial");
+          .appendField("Incluir biblioteca SoftwareSerial");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(400);
@@ -237,7 +254,7 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['serialbegin'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Serial.Begin")
+          .appendField("Velocidade da comunicação serial")
           .appendField(new Blockly.FieldNumber(9600), "NAME");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -251,7 +268,7 @@ Blockly.Blocks['ativar_led'] = {
     init: function() {
       this.appendStatementInput("IF")
           .setCheck(null)
-          .appendField("if")
+          .appendField("Se")
           .appendField(new Blockly.FieldTextInput("condição"), "NAME");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -265,7 +282,7 @@ Blockly.Blocks['ativar_led'] = {
   Blockly.Blocks['serialprint'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Serial.print")
+          .appendField("Escrever no serial: ")
           .appendField(new Blockly.FieldTextInput("input"), "text");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
