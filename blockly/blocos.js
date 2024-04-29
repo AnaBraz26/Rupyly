@@ -87,7 +87,7 @@
   Blockly.Blocks['digitalwrite_buzzer'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Acionar Buzzer")
+          .appendField("Ligar Buzzer")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
       this.setPreviousStatement(true, null);
