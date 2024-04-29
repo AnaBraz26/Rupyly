@@ -9,3 +9,8 @@ O Que falta a ser construido:
  * Alterar nomes dos blocos para ser mais efetivo
  * Melhorar o desing
  * Dar um jeito de fazer ligação direta com o aplicativo do Arduino
+
+# Deploy
+O seguinte trabalho pode ser acessado pelo link:
+
+https://ereko-blockly.vercel.app/
