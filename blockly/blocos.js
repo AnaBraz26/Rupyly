@@ -87,7 +87,7 @@
   Blockly.Blocks['digitalwrite_buzzer'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Ligar Buzzer")
+          .appendField("Acionar Buzzer")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
       this.setPreviousStatement(true, null);
@@ -195,10 +195,9 @@
       this.appendDummyInput()
           .appendField("SerialSoftware")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME")
-          .appendField(":")
-          .appendField("rxPin")
+          .appendField("Receber dados")
           .appendField(new Blockly.FieldNumber(0), "rxPin")
-          .appendField("txPin")
+          .appendField("Transmitir dados")
           .appendField(new Blockly.FieldNumber(0), "txPin");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -239,10 +238,9 @@
   Blockly.Blocks['namebegin'] = {
     init: function() {
       this.appendDummyInput()
+          .appendField("Velocidade do Serial")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME")
-
-          .appendField("begin")
-          .appendField(new Blockly.FieldNumber(0), "begin");
+          .appendField(new Blockly.FieldNumber(9600), "begin");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
@@ -279,19 +277,6 @@
   };
 
   
-  Blockly.Blocks['serialprint'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Escrever no serial: ")
-          .appendField(new Blockly.FieldTextInput("input"), "text");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-  };
-  
   Blockly.Blocks['analogwrite'] = {
     init: function() {
       this.appendDummyInput()
@@ -321,12 +306,26 @@
    this.setHelpUrl("");
     }
   };
+  
+  Blockly.Blocks['serialprint'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Escrever no serial: ")
+          .appendField(new Blockly.FieldTextInput("input"), "text");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
 
   Blockly.Blocks['serialprintln'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Serial.println")
-          .appendField(new Blockly.FieldTextInput("input"), "text");
+          .appendField("Escrever no serial:")
+          .appendField(new Blockly.FieldTextInput("input"), "text")
+          .appendField("e pular linha")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
