@@ -349,3 +349,44 @@
     }
   };
   
+  Blockly.Blocks['quadrado'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Fazer um quadrado de")
+          .appendField(new Blockly.FieldNumber(0), "valor")
+          .appendField("cm");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['circulo'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Fazer um circulo de")
+          .appendField(new Blockly.FieldNumber(0), "valor")
+          .appendField("cm");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['triangulo'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Fazer um triângulo de")
+          .appendField(new Blockly.FieldNumber(0), "valor")
+          .appendField("cm");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };

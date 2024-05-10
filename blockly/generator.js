@@ -196,3 +196,24 @@ Blockly.JavaScript['Biblioteca_Motor'] = function(block, generator) {
     var code = '&nbsp;<font color="#000000">'+text_name+'</font> <font color="#434f54">=</font> <font color="#000000">'+text_text+'</font><font color="#000000">;</font>';
     return code;
   };
+
+  Blockly.JavaScript['quadrado'] = function(block, generator) {
+    var number_valor = block.getFieldValue('valor');
+    // TODO: Assemble javascript into code variable.
+    var code = '...\n';
+    return code;
+  };
+
+  Blockly.JavaScript['circulo'] = function(block, generator) {
+    var number_valor = block.getFieldValue('valor');
+    // TODO: Assemble javascript into code variable.
+    var code = '...\n';
+    return code;
+  };
+
+  Blockly.JavaScript['triangulo'] = function(block, generator) {
+    var number_valor = block.getFieldValue('valor');
+    // TODO: Assemble javascript into code variable.
+    var code = '...\n';
+    return code;
+  };
