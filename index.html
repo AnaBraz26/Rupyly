@@ -42,7 +42,7 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">EREKO BLOCKLY TEST</a>
       <ul class="right hide-on-med-and-down">       
-        <button id="Download" class="btn waves-effect waves-light" type="submit" name="action">Download code (.ino)</button>
+        <button id="Download" class="btn waves-effect waves-light" type="submit" name="action">Download do codigo (.ino)</button>
       </ul>
     </div>
   </nav>
@@ -80,7 +80,7 @@
           <block type="loop"></block>
       </category> 
 
-      <category name="Antropomórfico" colour="00ffaa"> <!-- Erekopapa -->
+      <category name="Erekopapa" colour="00ffaa"> <!-- Antropomórfico -->
       <!-- <category name="Anthropomorphic" colour="00ffaa"> Erekopapa      -->
           <category name="Olhos" >
               <block type="led"></block>              
@@ -107,7 +107,7 @@
 
       </category>
 
-    <category name="Robô com Roda" colour="ff00e0"> <!--Arabeko -->
+    <category name="Master Arabeko" colour="ff8000"> <!--Arabeko -->
     <!-- <category name="Wheeled Robot" colour="ff00e0"> Arabeko -->
         <category name="Serial">
           <block type="software"></block>           
@@ -132,14 +132,35 @@
         </category>
 
     </category>
-<!-- 
-    <category name="Carrinho" colour="ff5900">
 
-    </category>
+    <category name="Medium Arabeko" colour="ff007b"> <!--Arabeko -->
+      <!-- <category name="Wheeled Robot" colour="ff00e0"> Arabeko -->
+          <category name="Direções">
+            <block type="software"></block>           
+            <block type="namebegin"></block> 
+            <block type="serialbegin"></block>          
+            <block type="serialprint"></block>
+            <block type="serialprintln"></block>
+          </category>
+  
+          <category name="Funções Gerais">
+            <block type="pinmode_led"></block>           
+            <block type="digitalwrite_led"></block>         
+            <block type="analogwrite"></block>  
+            <block type="map"></block>            
+            <block type="if"></block> 
+          </category>
+  
+      </category>
 
-    <category name="Cobra" colour="ff0000">
+      <category name="Easy Arabeko" colour="1500ff"> <!--Arabeko -->
+        <!-- <category name="Wheeled Robot" colour="ff00e0"> Arabeko -->
+            
+            <block type="quadrado"></block>           
+            <block type="circulo"></block>      
+    
+        </category>
 
-    </category> -->
 
     </xml>    
 
@@ -185,17 +206,19 @@
           }
           workspace.addChangeListener(update);
 
+     
+
           document.getElementById("Download").addEventListener("click", function() {
             var fileName = "codigo_gerado.ino";
-            var fileContent = mostrar; // Conteúdo do arquivo .ino gerado
-        
+            var fileContent = mostrar; // Conteúdo do arquivo .ino gerado  
+
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
             element.setAttribute('download', fileName);
-        
+
             element.style.display = 'none';
             document.body.appendChild(element);
-        
+            
             element.click();
         
             document.body.removeChild(element);
