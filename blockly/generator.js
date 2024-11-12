@@ -20,7 +20,8 @@ Blockly.JavaScript['led'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
   var number_porta = block.getFieldValue('porta');
   // TODO: Assemble javascript into code variable.
-  var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
+  //var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
+  var code = 'int led'+ text_nome +' = '+number_porta+';';
   return code;
 };
 
