@@ -1,31 +1,27 @@
-let port;
+let device;
 
-document.getElementById('connect').addEventListener('click', async () => {
-  try {
-    // Solicita ao usuário a seleção de uma porta serial
-    port = await navigator.serial.requestPort();
-    // Abre a conexão com a porta serial
-    await port.open({ baudRate: 9600 });
-    console.log('Conectado ao Arduino!');
-  } catch (e) {
-    console.error('Erro ao conectar:', e);
-  }
-});
+    // Função para conectar ao Arduino
+    document.getElementById('connect').addEventListener('click', async () => {
+      try {
+        device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] }); // ID do Arduino
+        await device.open(); // Abre o dispositivo
+        await device.selectConfiguration(1); // Seleciona a configuração
+        await device.claimInterface(2); // Interface de controle
+        console.log('Conectado ao Arduino');
+      } catch (error) {
+        console.log('Erro ao conectar ao Arduino:', error);
+      }
+    });
 
-document.getElementById('send').addEventListener('click', async () => {
-  if (!port) {
-    console.error('Nenhuma porta selecionada.');
-    return;
-  }
-
-  try {
-    // Cria um Writer para enviar dados
-    const writer = port.writable.getWriter();
-    // Envia um comando para o Arduino
-    await writer.write(new TextEncoder().encode('A'));
-    console.log('Comando enviado!');
-    writer.releaseLock();
-  } catch (e) {
-    console.error('Erro ao enviar comando:', e);
-  }
-});
+    // Função para enviar o código digitado ao Arduino
+    document.getElementById('enviarCodigo').addEventListener('click', async () => {
+      if (device) {
+        const codigo = document.getElementById('codigo').value;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(codigo);
+        await device.transferOut(4, data); // Envia o código ao endpoint 4
+        console.log('Código enviado:', codigo);
+      } else {
+        console.log('Arduino não está conectado');
+      }
+    });
