@@ -5,7 +5,7 @@
 Blockly.C['setup'] = function(block, generator) {
   var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
   // TODO: Assemble JavaScript into code variable.
-  var code = 'void (){ }';
+  var code = 'void setup(){\n\n}';
     return code;
 };
 
