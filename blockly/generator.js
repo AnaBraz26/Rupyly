@@ -1,7 +1,10 @@
 
 //----------------------------------------------------------------------------------------------------------------
 // Generator
-  
+
+Blockly.C = Object.create(Blockly.Generator.prototype);
+Blockly.C.name_ = 'C';
+
 Blockly.C['setup'] = function(block, generator) {
   var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
   // TODO: Assemble JavaScript into code variable.

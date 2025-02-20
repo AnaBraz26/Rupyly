@@ -176,8 +176,7 @@
           });
   
           function update(event) {
-              Blockly.C.INFINITE_LOOP_TRAP = null;
-              var code = new String(Blockly.C.workspaceToCode(workspace));
+              var code = Blockly.C.workspaceToCode(workspace);
               if (code != "") {
                   mostrar = code;
                   document.getElementById("codigogerado").innerHTML = mostrar;
@@ -201,10 +200,6 @@
                         document.getElementById("im").appendChild(element);
                     })
                     .catch(error => {
-                        // Create a new Viz instance (@see Caveats page for more info)
-                        viz = new Viz();
-
-                        // Possibly display the error
                         console.error(error);
                     });
               }
