@@ -24,8 +24,8 @@ Blockly.C['led'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
   var number_porta = block.getFieldValue('porta');
   // TODO: Assemble C into code variable.
-  var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
-  return code;
+  //var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
+  return "int led"+text_nome+" = "+number_porta+";";
 };
 
 Blockly.C['pinmode_led'] = function(block, generator) {
