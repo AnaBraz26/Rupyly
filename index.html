@@ -220,20 +220,25 @@
      
 
           document.getElementById("Download").addEventListener("click", function() {
-            var fileName = "codigo_gerado.c";
-            var fileContent = mostrar; // Conteúdo do arquivo .ino gerado  
+                var fileName = "codigo_gerado.c";
+                
+                // Obtém o conteúdo que está visível na tela (dentro da área onde o código C está sendo exibido)
+                var fileContent = document.getElementById("codigogerado").innerText; 
+                
+                // Cria um link temporário para download
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
+                element.setAttribute('download', fileName);
 
-            var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
-            element.setAttribute('download', fileName);
+                document.body.appendChild(element);
+                
+                // Simula um clique para iniciar o download
+                element.click();
+                
+                // Remove o elemento temporário
+                document.body.removeChild(element);
+            });
 
-            element.style.display = 'none';
-            document.body.appendChild(element);
-            
-            element.click();
-        
-            document.body.removeChild(element);
-        });
 
     </script>
 
