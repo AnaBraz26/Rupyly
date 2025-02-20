@@ -8,7 +8,11 @@
   <meta name="keywords" content="Arduino, Blockly, Ereko, Modelos Educacionais">
   <meta name="author" content="Ana Caroline Braz">
   
-  
+    <!-- Troca aaqui-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/arduino-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+
   <title>EREKO BLOCKLY</title>
 
   <!-- Import materialize.css  -->
@@ -66,8 +70,8 @@
               </div>
               <div id="codigogerado" style="font-family: 'Courier New', Courier, monospace; float:left; height: 600px; width: 100%;background-color: #FFFFFF;
               color: #ffffff; border-style: solid; border-color: #22f702;" class="clearfix">
-               </div>
-               <pre id="codigogerado"></pre>
+               <pre><code id="codigogerado" class="language-c"></code></pre>
+              </div>
             </div>
         </div>
     </div>
@@ -179,9 +183,15 @@
           function update(event) {
               var code = Blockly.C.workspaceToCode(workspace);
               if (code != "") {
-                  mostrar = code;
-                  document.getElementById("codigogerado").innerHTML = mostrar;
-                  cleanThanUp()
+                var codeElement = document.getElementById("codigogerado");
+        
+        // Define a formatação como código C/C++
+        codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                "</code></pre>";
+        
+        // Reaplica o realce de sintaxe
+        hljs.highlightElement(codeElement.querySelector("code"));
               }
           }
   
