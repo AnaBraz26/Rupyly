@@ -5,12 +5,12 @@
 Blockly.C = Object.create(Blockly.Generator.prototype);
 Blockly.C.name_ = 'C';
 
-Blockly.C['setup'] = function(block) {
-  //var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
+Blockly.C['setup'] = function(block, generator) {
+  var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
   // TODO: Assemble JavaScript into code variable.
   //var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
   //var code = "void setup(){}";
-  return "void setup(){\n  \n}";
+  return "void setup(){\n" +statements_name+ "\n}";
 };
 
 Blockly.JavaScript['loop'] = function(block, generator) {
