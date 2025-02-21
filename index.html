@@ -181,29 +181,15 @@
           });
   
           function update(event) {
-              //var code = new String(Blockly.C.workspaceToCode(workspace).trim());  
-              var code = "";
-              // Percorre todos os blocos independentes no workspace
-              var topBlocks = workspace.getTopBlocks(true);
-              
-              for (var i = 0; i < topBlocks.length; i++) {
-                  var blocoCodigo = Blockly.C.blockToCode(topBlocks[i]); // Converte o bloco para código
-                  if (Array.isArray(blocoCodigo)) {
-                      blocoCodigo = blocoCodigo[0]; // Se for um array, pega a primeira parte (o código principal)
-                  }
-                  if (blocoCodigo) {
-                      code += blocoCodigo + "\n"; // Acumula o código de todos os blocos
-                  }
-              }
-              
-              var codeElement = document.getElementById("codigogerado");
-        
-              if (code.trim() != "") {                
+              Blockly.C.INFINITE_LOOP_TRAP = null;
+              var code = new String(Blockly.C.workspaceToCode(workspace));   
+
+              if (code != "") {                
                 mostrar = code;
                 // Define a formatação como código C/C++
-                codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                        "</code></pre>";
+                document.getElementById("codigogerado").innerHTML = mostrar;
+                
+                // "<pre><code class='language-c'>" + code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</code></pre>";
                 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
