@@ -182,17 +182,15 @@
   
           function update(event) {
 
-              console.log("Evento de atualização chamado!");
-              var code = Blockly.C.workspaceToCode(workspace).trim();
-              console.log("Código gerado:", code);
+              var code = Blockly.C.workspaceToCode(workspace).trim();             
               var codeElement = document.getElementById("codigogerado");
         
               if (code != "") {                
                 // Define a formatação como código C/C++
-                codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                        "</code></pre>";
-                
+                // codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                //                         code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                //                         "</code></pre>";
+                codeElement.textContent = code;
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
               }else {
