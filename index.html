@@ -199,7 +199,7 @@
           }
   
           function cleanThanUp() {
-              var list = document.getElementById("codigogerado");
+              var list = document.getElementById("im");
               // while (list.hasChildNodes()) {
               //     list.removeChild(list.childNodes[0]);
               // }
@@ -212,7 +212,7 @@
                   var viz = new Viz();
                   viz.renderSVGElement(mostrar)
                     .then(function(element) {
-                        document.getElementById("codigogerado").appendChild(element);
+                        document.getElementById("im").appendChild(element);
                     })
                     .catch(error => {
                         viz = new Viz();
