@@ -186,11 +186,7 @@
               var codeElement = document.getElementById("codigogerado");
         
               if (code != "") {                
-                mostrar = code;
-                // Define a formatação como código C/C++
-                codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                        "</code></pre>";
+                mostrar = code;      
                 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
@@ -198,6 +194,10 @@
                   // Se não houver código, mantém a área vazia
                   codeElement.innerHTML = "<pre><code class='language-c'>// Arraste blocos para gerar código</code></pre>";
               }
+              // Define a formatação como código C/C++
+              codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        "</code></pre>";
           }
   
           function cleanThanUp() {
