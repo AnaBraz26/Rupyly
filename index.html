@@ -187,9 +187,9 @@
               if (code != "") {                
                 mostrar = code;
                 // Define a formatação como código C/C++
-                document.getElementById("codigogerado").innerHTML = mostrar;
-                
-                // "<pre><code class='language-c'>" + code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</code></pre>";
+                document.getElementById("codigogerado").innerHTML = "<pre><code class='language-c'>" + 
+                                        mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        "</code></pre>";
                 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
