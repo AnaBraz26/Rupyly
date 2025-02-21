@@ -188,11 +188,11 @@
                 mostrar = code;
                 // Define a formatação como código C/C++
                 codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
                                         "</code></pre>";
                 
                 // Reaplica o realce de sintaxe
-                hljs.highlightElement(codeElement.querySelector("code"));
+                hljs.highlightElement(codeElement.querySelector("mostar"));
                 cleanThanUp();
               }
           }
