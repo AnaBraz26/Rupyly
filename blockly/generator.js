@@ -2,7 +2,8 @@
 //----------------------------------------------------------------------------------------------------------------
 // Generator
 
-Blockly.C = Object.create(Blockly.Generator.prototype);
+Blockly.C = new Blockly.Generator('C');
+//Blockly.C = Object.create(Blockly.Generator.prototype);
 Blockly.C.name_ = 'C';
 
 Blockly.C['setup'] = function(block, generator) {
