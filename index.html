@@ -181,18 +181,18 @@
           });
   
           function update(event) {
-              Blockly.C.INFINITE_LOOP_TRAP = null;
-              var code = new String(Blockly.C.workspaceToCode(workspace));   
-
-              if (code != "") {                
+              var code = new String(Blockly.C.workspaceToCode(workspace);               
+              var codeElement = document.getElementById("codigogerado");
+        
+              if (code!= "") {                
                 mostrar = code;
                 // Define a formatação como código C/C++
-                document.getElementById("codigogerado").innerHTML = "<pre><code class='language-c'>" + 
+                codeElement.innerHTML = "<pre><code class='language-c'>" + 
                                         mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
                                         "</code></pre>";
                 
                 // Reaplica o realce de sintaxe
-                hljs.highlightElement(codeElement.querySelector("code"));
+                hljs.highlightElement(codeElement.querySelector("mostrar"));
                 cleanThanUp();
               }
           }
