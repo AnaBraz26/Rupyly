@@ -181,7 +181,10 @@
           });
   
           function update(event) {
+
+              console.log("Evento de atualização chamado!");
               var code = Blockly.C.workspaceToCode(workspace).trim();
+              console.log("Código gerado:", code);
               var codeElement = document.getElementById("codigogerado");
         
               if (code != "") {                
