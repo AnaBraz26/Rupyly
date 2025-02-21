@@ -181,7 +181,9 @@
           });
   
           function update(event) {
-              var code = new String(Blockly.C.workspaceToCode(workspace).trim());             
+              var code = new String(Blockly.C.workspaceToCode(workspace).trim());  
+              //var code = "";
+             // var topBlocks = workspace.getTopBlocks(true);          
               var codeElement = document.getElementById("codigogerado");
         
               if (code != "") {                
@@ -193,7 +195,7 @@
                 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
-                cleanThanUp()
+                cleanThanUp();
               }
           }
   
