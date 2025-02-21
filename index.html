@@ -194,19 +194,30 @@
 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
-                cleanThanUp();
+                document.addEventListener("DOMContentLoaded", function() {
+                      cleanThanUp(); // Chama a função após o DOM estar carregado
+                  });
               }
           }
   
+          // function cleanThanUp() {
+          //     var list = document.getElementById("im");
+          //     // while (list.hasChildNodes()) {
+          //     //     list.removeChild(list.childNodes[0]);
+          //     // }
+          //     list.innerHTML = '';
+          //     updateGraph();
+          // }
           function cleanThanUp() {
               var list = document.getElementById("im");
-              // while (list.hasChildNodes()) {
-              //     list.removeChild(list.childNodes[0]);
-              // }
-              list.innerHTML = '';
-              updateGraph();
+              if (list) { // Verifica se o elemento existe
+                  list.innerHTML = ''; // Limpa o conteúdo
+                  updateGraph();
+              } else {
+                  console.error("Elemento com ID 'im' não encontrado!");
+              }
           }
-  
+
           function updateGraph() {
               if (mostrar && mostrar != "nada aqui") {
                   var viz = new Viz();
