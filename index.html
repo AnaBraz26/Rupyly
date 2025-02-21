@@ -183,10 +183,18 @@
           function update(event) {
               //var code = new String(Blockly.C.workspaceToCode(workspace).trim());  
               var code = "";
-              var topBlocks = workspace.getTopBlocks(true);      
+              // Percorre todos os blocos independentes no workspace
+              var topBlocks = workspace.getTopBlocks(true);
+              
               for (var i = 0; i < topBlocks.length; i++) {
-                  code += Blockly.C.blockToCode(topBlocks[i]) + "\n";
-              }    
+                  var blocoCodigo = Blockly.C.blockToCode(topBlocks[i]); // Converte o bloco para código
+                  if (Array.isArray(blocoCodigo)) {
+                      blocoCodigo = blocoCodigo[0]; // Se for um array, pega a primeira parte (o código principal)
+                  }
+                  if (blocoCodigo) {
+                      code += blocoCodigo + "\n"; // Acumula o código de todos os blocos
+                  }
+              }
               
               var codeElement = document.getElementById("codigogerado");
         
