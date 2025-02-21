@@ -4,7 +4,7 @@
 
 Blockly.C = new Blockly.Generator('C');
 Blockly.C = Object.create(Blockly.Generator.prototype);
-Blockly.C.name_ = 'C';
+Blockly.C.name = 'C';
 
 Blockly.C['setup'] = function(block, generator) {
   var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
