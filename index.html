@@ -209,7 +209,7 @@
           //     updateGraph();
           // }
           function cleanThanUp() {
-              var list = document.getElementById("im");
+              var list = document.getElementById("codigogerado");
               if (list) { // Verifica se o elemento existe
                   list.innerHTML = ''; // Limpa o conteúdo
                   updateGraph();
@@ -223,7 +223,7 @@
                   var viz = new Viz();
                   viz.renderSVGElement(mostrar)
                     .then(function(element) {
-                        document.getElementById("im").appendChild(element);
+                        document.getElementById("codigogerado").appendChild(element);
                     })
                     .catch(error => {
                         viz = new Viz();
