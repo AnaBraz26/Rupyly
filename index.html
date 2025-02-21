@@ -193,6 +193,7 @@
                 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
+                cleanThanUp()
               }
           }
   
@@ -217,7 +218,7 @@
                     });
               }
           }
-          workspace.addChangeListener(updateGraph);
+          workspace.addChangeListener(update);
 
      
 
