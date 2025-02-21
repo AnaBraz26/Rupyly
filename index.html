@@ -181,8 +181,7 @@
           });
   
           function update(event) {
-              Blockly.C.INFINITE_LOOP_TRAP = null;
-              var code = Blockly.C.workspaceToCode(workspace).trim();             
+              var code = new String(Blockly.C.workspaceToCode(workspace).trim());             
               var codeElement = document.getElementById("codigogerado");
         
               if (code != "") {                
