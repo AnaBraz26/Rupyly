@@ -20,7 +20,7 @@ Blockly.C['loop'] = function(block, generator) {
 
 Blockly.C['led'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
-  var number_porta = block.getFieldValue('porta');
+  var number_porta = block.getFieldValue('Porta');
   //var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
   return "int led"+text_nome+" = "+number_porta+";";
 };
@@ -41,7 +41,7 @@ Blockly.C['digitalwrite_led'] = function(block, generator) {
 
 Blockly.C['buzzer'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
-  var number_porta = block.getFieldValue('porta');
+  var number_porta = block.getFieldValue('Porta');
   //var code = '<br><font color="#00979c">int </font><font color="#000000">buzzer'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
   return "int buzzer"+text_nome+" = "+number_porta+";";
 };
