@@ -181,17 +181,20 @@
           });
   
           function update(event) {
-              var code = Blockly.C.workspaceToCode(workspace);
-              if (code != "") {
-                var codeElement = document.getElementById("codigogerado");
+              var code = Blockly.C.workspaceToCode(workspace).trim();
+              var codeElement = document.getElementById("codigogerado");
         
-        // Define a formatação como código C/C++
-        codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                "</code></pre>";
-        
-        // Reaplica o realce de sintaxe
-        hljs.highlightElement(codeElement.querySelector("code"));
+              if (code != "") {                
+                // Define a formatação como código C/C++
+                codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        "</code></pre>";
+                
+                // Reaplica o realce de sintaxe
+                hljs.highlightElement(codeElement.querySelector("code"));
+              }else {
+                  // Se não houver código, mantém a área vazia
+                  codeElement.innerHTML = "<pre><code class='language-c'>// Arraste blocos para gerar código</code></pre>";
               }
           }
   
