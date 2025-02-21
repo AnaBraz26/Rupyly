@@ -181,14 +181,14 @@
           });
   
           function update(event) {
-              var code = new String(Blockly.C.workspaceToCode(workspace);               
+              var code = new String(Blockly.C.workspaceToCode(workspace));               
               var codeElement = document.getElementById("codigogerado");
         
               if (code!= "") {                
                 mostrar = code;
                 // Define a formatação como código C/C++
                 codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
                                         "</code></pre>";
                 
                 // Reaplica o realce de sintaxe
