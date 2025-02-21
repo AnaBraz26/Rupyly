@@ -187,10 +187,10 @@
               if (code!= "") {   
                 mostrar = code;             
                 // Define a formatação como código C/C++
-                // codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                //                         code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                //                         "</code></pre>";
-                codeElement.textContent = code;
+                codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        "</code></pre>";
+                
 
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
@@ -200,9 +200,10 @@
   
           function cleanThanUp() {
               var list = document.getElementById("im");
-              while (list.hasChildNodes()) {
-                  list.removeChild(list.childNodes[0]);
-              }
+              // while (list.hasChildNodes()) {
+              //     list.removeChild(list.childNodes[0]);
+              // }
+              list.innerHTML = '';
               updateGraph();
           }
   
