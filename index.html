@@ -181,11 +181,12 @@
           });
   
           function update(event) {
-
+              Blockly.C.INFINITE_LOOP_TRAP = null;
               var code = Blockly.C.workspaceToCode(workspace).trim();             
               var codeElement = document.getElementById("codigogerado");
         
               if (code != "") {                
+                mostrar = code;
                 // Define a formatação como código C/C++
                 codeElement.innerHTML = "<pre><code class='language-c'>" + 
                                         code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
@@ -215,6 +216,7 @@
                         document.getElementById("im").appendChild(element);
                     })
                     .catch(error => {
+                        viz = new Viz();
                         console.error(error);
                     });
               }
