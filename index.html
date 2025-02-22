@@ -175,14 +175,14 @@
     </xml>    
 
     <script>
-                var mostrar = "nada aqui";
+          var mostrar = "nada aqui";
           var workspace = Blockly.inject('blocklyDiv', {
               toolbox: document.getElementById('toolbox')
           });
   
           function update(event) {
-              Blockly.C.INFINITE_LOOP_TRAP = null;
-              var code = new String(Blockly.C.workspaceToCode(workspace));
+              Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+              var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
               if (code != "") {
                   mostrar = code;
                   document.getElementById("codigogerado").innerHTML = mostrar;
@@ -215,7 +215,7 @@
               }
           }
           workspace.addChangeListener(update);
-
+          
           // var mostrar = "nada aqui";
           // var workspace = Blockly.inject('blocklyDiv', {
           //     toolbox: document.getElementById('toolbox')
