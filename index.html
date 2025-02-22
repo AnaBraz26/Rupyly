@@ -197,37 +197,31 @@
               }
           }
   
-          // function cleanThanUp() {
-          //     var list = document.getElementById("im");
-          //     // while (list.hasChildNodes()) {
-          //     //     list.removeChild(list.childNodes[0]);
-          //     // }
-          //     list.innerHTML = '';
-          //     updateGraph();
-          // }
           function cleanThanUp() {
-              var list = document.getElementById("codigogerado");
-              if (list) { // Verifica se o elemento existe
-                  list.innerHTML = ''; // Limpa o conteúdo
-                  updateGraph();
-              } else {
-                  console.error("Elemento com ID 'im' não encontrado!");
+              var list = document.getElementById("im");
+              while (list.hasChildNodes()) {
+                  list.removeChild(list.childNodes[0]);
               }
+              updateGraph();
           }
-
+  
           function updateGraph() {
-              if (mostrar && mostrar != "nada aqui") {
+              if (mostrar != "nada aqui") {
                   var viz = new Viz();
                   viz.renderSVGElement(mostrar)
                     .then(function(element) {
-                        document.getElementById("codigogerado").appendChild(element);
+                        document.getElementById("im").appendChild(element);
                     })
                     .catch(error => {
+                        // Create a new Viz instance (@see Caveats page for more info)
                         viz = new Viz();
+
+                        // Possibly display the error
                         console.error(error);
                     });
               }
           }
+          wor
           workspace.addChangeListener(update);
 
      
