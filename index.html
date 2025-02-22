@@ -201,28 +201,23 @@
           }
   
           function cleanThanUp() {
-              var list = document.getElementById("code");
-              while (list.hasChildNodes()) {
-                  list.removeChild(list.childNodes[0]);
+              var list = document.getElementById("codigogerado"); // Alterado de "code" para "codigogerado"
+              if (list) {  
+                  while (list.hasChildNodes()) {
+                      list.removeChild(list.childNodes[0]);
+                  }
+                  updateGraph();
+              } else {
+                  console.error("Elemento com ID 'codigogerado' não encontrado!");
               }
-              updateGraph();
           }
-          // function cleanThanUp() {
-          //     var list = document.getElementById("im");
-          //     if (list) { // Verifica se o elemento existe
-          //         list.innerHTML = ''; // Limpa o conteúdo
-          //         updateGraph();
-          //     } else {
-          //         console.error("Elemento com ID 'im' não encontrado!");
-          //     }
-          // }
 
           function updateGraph() {
               if (mostrar && mostrar != "nada aqui") {
                   var viz = new Viz();
                   viz.renderSVGElement(mostrar)
                     .then(function(element) {
-                        document.getElementById("code").appendChild(element);
+                        document.getElementById("codigogerado").appendChild(element);
                     })
                     .catch(error => {
                         viz = new Viz();
