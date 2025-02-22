@@ -201,14 +201,14 @@
           }
   
           function cleanThanUp() {
-              var list = document.getElementById("codigogerado"); // Alterado de "code" para "codigogerado"
+              var list = document.getElementById(""); // Alterado de "code" para "codigogerado"
               if (list) {  
                   while (list.hasChildNodes()) {
                       list.removeChild(list.childNodes[0]);
                   }
                   updateGraph();
               } else {
-                  console.error("Elemento com ID 'codigogerado' não encontrado!");
+                  console.error("Elemento com ID '' não encontrado!");
               }
           }
 
@@ -217,7 +217,7 @@
                   var viz = new Viz();
                   viz.renderSVGElement(mostrar)
                     .then(function(element) {
-                        document.getElementById("codigogerado").appendChild(element);
+                        document.getElementById("").appendChild(element);
                     })
                     .catch(error => {
                         viz = new Viz();
