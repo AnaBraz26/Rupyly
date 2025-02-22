@@ -181,19 +181,21 @@
           });
   
           function update(event) {
-              var code = Blockly.C.workspaceToCode(workspace);               
+              var code = new String(Blockly.C.workspaceToCode(workspace));               
               var codeElement = document.getElementById("codigogerado");
         
               if (code!= "") {   
                 mostrar = code;             
                 // Define a formatação como código C/C++
-                codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                        "</code></pre>";
+                codeElement.innerHTML = mostrar;
+                
+                                        // "<pre><code class='language-c'>" + 
+                                        // code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                        // "</code></pre>";
                 
 
                 // Reaplica o realce de sintaxe
-                hljs.highlightElement(codeElement.querySelector("code"));
+                hljs.highlightElement(codeElement.querySelector("mostar"));
              
                 cleanThanUp(); 
                   
