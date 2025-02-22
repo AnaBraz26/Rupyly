@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/arduino-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
 
   <title>EREKO BLOCKLY</title>
 
@@ -169,9 +170,6 @@
     
         </category>
     
-
-
-
     </xml>    
 
     <script>
@@ -191,7 +189,6 @@
                                         code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
                                         "</code></pre>";
                 
-
                 // Reaplica o realce de sintaxe
                 hljs.highlightElement(codeElement.querySelector("code"));
              
