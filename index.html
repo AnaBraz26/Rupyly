@@ -50,8 +50,8 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">EREKO BLOCKLY</a>
       <ul class="right hide-on-med-and-down">       
         <button id="Download" class="btn waves-effect waves-light" type="submit" name="action">Download do codigo (.ino)</button>
-        <button id="connectArduino" className="btn waves-effect waves-light">Conectar ao Arduino</button>
-        <button id="sendCode" class="btn waves-effect waves-light " disabled>Enviar Código</button>
+        <button id="connectArduino" class="btn waves-effect waves-light">Conectar ao Arduino</button>
+        <button id="sendCode" class="btn waves-effect waves-light" disabled>Enviar Código</button>        
       </ul>
     </div>
   </nav>
@@ -248,34 +248,7 @@
                 document.body.removeChild(element);
             });
 
-
-    </script>
-
-  <footer class="page-footer blue">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Ereko Blockly Test</h5>
-          <p class="grey-text text-lighten-4">Layout criado para Versão teste do Ereko Blockly</p>
-          <!-- <p class="grey-text text-lighten-4">Test Version of Ereko Blockly</p> -->
-        </div>
-  
-    <div class="footer-copyright">
-      <div class="container">
-      Made by Ana Caroline da Rocha Braz  Universidade de Brasilia 2024
-      </div>
-    </div>
-  </footer>
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/FileSaver.js"></script>
-    <script type="text/javascript" src="js/prettify.js"></script>
-    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-
-    <script>
-      let port;
+            let port;
       let writer;
     
       document.getElementById("connectArduino").addEventListener("click", async () => {
@@ -316,9 +289,31 @@
               alert("Falha ao enviar código.");
           }
       });
-    
+
     </script>
-    
+
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ereko Blockly Test</h5>
+          <p class="grey-text text-lighten-4">Layout criado para Versão teste do Ereko Blockly</p>
+          <!-- <p class="grey-text text-lighten-4">Test Version of Ereko Blockly</p> -->
+        </div>
+  
+    <div class="footer-copyright">
+      <div class="container">
+      Made by Ana Caroline da Rocha Braz  Universidade de Brasilia 2024
+      </div>
+    </div>
+  </footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/FileSaver.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
 
   </body>
 </html>
