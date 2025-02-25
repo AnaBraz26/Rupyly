@@ -270,59 +270,73 @@
               }
 
               // Nome do arquivo que será salvo
-              let fileName = "codigo_gerado.c";
+              let fileName = "codigo_gerado.ino";
               let fileContent = code;
 
-              // Criar e baixar o arquivo .ino
-              let blob = new Blob([fileContent], { type: "text/plain" });
-              let a = document.createElement("a");
-              a.href = URL.createObjectURL(blob);
-              a.download = fileName;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
+              // // Criar e baixar o arquivo .ino
+              // let blob = new Blob([fileContent], { type: "text/plain" });
+              // let a = document.createElement("a");
+              // a.href = URL.createObjectURL(blob);
+              // a.download = fileName;
+              // document.body.appendChild(a);
+              // a.click();
+              // document.body.removeChild(a);
 
               alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
               const { exec } = require("child_process");
+              const fs = require("fs");
+              const path = require("path");
 
-          try {
-              exec("arduino-cli board list", (error, stdout, stderr) => {
-                  if (error) {
-                      console.error(`Erro ao listar placas: ${error.message}`);
-                      console.error(`stderr: ${stderr}`);
-                      alert("Erro ao listar placas.");
-                      return;
-                  }
+              try {
+                const fileName = "codigo_gerado.ino"; // Substitua pelo nome real do arquivo
+                const fileBaseName = path.parse(fileName).name; // Nome sem extensão
+                const dirPath = path.join(__dirname, fileBaseName); // Caminho da pasta
 
-                  console.log("Saída do board list:", stdout);
+                // Criar a pasta se não existir
+                if (!fs.existsSync(dirPath)) {
+                    fs.mkdirSync(dirPath);
+                    console.log(`Pasta criada: ${dirPath}`);
+                }
 
-                  let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
-                  if (!match) {
-                      alert("Nenhuma placa encontrada!");
-                      return;
-                  }
+                // Criar o arquivo dentro da pasta
+                const filePath = path.join(dirPath, fileName);
+                if (!fs.existsSync(filePath)) {
+                    fs.writeFileSync(filePath, "// Código Arduino aqui\nvoid setup() {}\nvoid loop() {}");
+                    console.log(`Arquivo criado: ${filePath}`);
+                }
+                  exec("arduino-cli board list", (error, stdout, stderr) => {
+                      if (error) {
+                          console.error(`Erro ao listar placas: ${error.message}`);
+                          console.error(`stderr: ${stderr}`);
+                          alert("Erro ao listar placas.");
+                          return;
+                      }
 
-                  let port = match[1]; // Porta do Arduino
-                  let fqbn = match[2]; // Nome da placa
+                      console.log("Saída do board list:", stdout);
 
-                  console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
+                      let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
+                      if (!match) {
+                          alert("Nenhuma placa encontrada!");
+                          return;
+                      }
 
-                  if (!fileName) {
-                      console.error("Erro: fileName não está definido!");
-                      alert("Erro: Nome do arquivo não especificado.");
-                      return;
-                  }
+                      let port = match[1]; // Porta do Arduino
+                      let fqbn = match[2]; // Nome da placa
 
-                  // exec(`arduino-cli compile --fqbn ${fqbn} ${fileName}`, (compErr, compStdout, compStderr) => {
-                  //     if (compErr) {
-                  //         console.error(`Erro ao compilar: ${compErr.message}`);
-                  //         console.error(`stderr: ${compStderr}`);
-                  //         alert("Erro na compilação.");
-                  //         return;
-                  //     }                 
-                  
-                      exec(`arduino-cli compile -p ${port} ${fileName}`, (compErr, compStdout, compStderr) => {
+                      console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
+
+                      if (!fileName) {
+                          console.error("Erro: fileName não está definido!");
+                          alert("Erro: Nome do arquivo não especificado.");
+                          return;
+                      }             
+                      if (fqbn === "Unknown") {
+                          console.warn("Placa não reconhecida! Usando um modelo padrão...");
+                          fqbn = "arduino:avr:uno"; // Substitua pelo modelo correto encontrado no passo 1
+                      }
+
+                      exec(`arduino-cli compile --fqbn ${fqbn} ${dirPath}`, (compErr, compStdout, compStderr) => {
                       if (compErr) {
                           console.error(`Erro ao compilar: ${compErr.message}`);
                           console.error(`stderr: ${compStderr}`);
@@ -332,7 +346,7 @@
 
                       console.log("Compilação:", compStdout);
 
-                      exec(`arduino-cli upload -p ${port} ${fileName}`, (uploadErr, uploadStdout, uploadStderr) => {
+                      exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${dirPath}`, (uploadErr, uploadStdout, uploadStderr) => {
                           if (uploadErr) {
                               console.error(`Erro ao enviar código: ${uploadErr.message}`);
                               console.error(`stderr: ${uploadStderr}`);
@@ -343,12 +357,12 @@
                           console.log("Upload:", uploadStdout);
                           alert("Código enviado com sucesso!");
                       });
+                    });
                   });
-                });
-            } catch (error) {
-                console.error("Erro ao executar arduino-cli:", error);
-                alert("Erro ao executar o arduino-cli.");
-            }
+                } catch (error) {
+                    console.error("Erro ao executar arduino-cli:", error);
+                    alert("Erro ao executar o arduino-cli.");
+                }
 
           });
 
