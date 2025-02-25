@@ -262,7 +262,9 @@
               }
           });
 
-          document.getElementById("sendCode").addEventListener("click", async () => {
+          let serverURL = "http://172.17.255.255"; // Seu IP local
+
+            document.getElementById("sendCode").addEventListener("click", async () => {
                 let code = document.getElementById("codigogerado").innerText;
                 
                 if (!code) {
@@ -271,7 +273,7 @@
                 }
 
                 try {
-                    let response = await fetch("http://localhost:3000/upload", {
+                    let response = await fetch(`${serverURL}/upload`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ code })
@@ -288,6 +290,7 @@
                     alert("Falha ao conectar ao servidor.");
                 }
             });
+
 
   </script>
 
