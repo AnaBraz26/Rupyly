@@ -205,7 +205,7 @@
             }
     
             function cleanThanUp() {
-              var list = document.getElementById("toolbox"); 
+              var list = document.getElementById("im"); 
                 if(list){
                   while (list.hasChildNodes()) {
                       list.removeChild(list.childNodes[0]);
@@ -217,19 +217,34 @@
                 }
             }
 
+            // function updateGraph() {
+            //     if(mostrar != "nada"){
+            //       var Viz = new Viz();
+            //       viz.renderSVGElement(mostrar)
+            //       .then(function(element){
+            //           document.getElementById("im").appendChild(element);
+            //       })
+            //       .catch(error => {
+            //         viz = new Viz();
+            //         console.error(error);
+            //       });
+            //     }
+            // }
+
             function updateGraph() {
-                if(mostrar != "nada"){
+              if (mostrar != "nada") {
                   var Viz = new Viz();
                   viz.renderSVGElement(mostrar)
-                  .then(function(element){
-                      document.getElementById("im").appendChild(element);
+                  .then(function(element) {
+                      document.getElementById("mostrar").innerHTML = ''; // Limpa o conteúdo antes de adicionar
+                      document.getElementById("mostrar").appendChild(element);
                   })
                   .catch(error => {
-                    viz = new Viz();
-                    console.error(error);
+                      viz = new Viz();
+                      console.error(error);
                   });
-                }
-            }
+              }
+          } 
             workspace.addChangeListener(update);     
         });
 
