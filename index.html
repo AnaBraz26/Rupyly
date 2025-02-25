@@ -272,24 +272,14 @@
               // Nome do arquivo que será salvo
               let fileName = "codigo_gerado.ino";
               let fileContent = code;
-
-              // // Criar e baixar o arquivo .ino
-              // let blob = new Blob([fileContent], { type: "text/plain" });
-              // let a = document.createElement("a");
-              // a.href = URL.createObjectURL(blob);
-              // a.download = fileName;
-              // document.body.appendChild(a);
-              // a.click();
-              // document.body.removeChild(a);
-
+              
               alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
               const { exec } = require("child_process");
               const fs = require("fs");
               const path = require("path");
 
-              try {
-                const fileName = "codigo_gerado.ino"; // Substitua pelo nome real do arquivo
+              // try {               
                 const fileBaseName = path.parse(fileName).name; // Nome sem extensão
                 const dirPath = path.join(__dirname, fileBaseName); // Caminho da pasta
 
@@ -359,10 +349,10 @@
                       });
                     });
                   });
-                } catch (error) {
-                    console.error("Erro ao executar arduino-cli:", error);
-                    alert("Erro ao executar o arduino-cli.");
-                }
+                // } catch (error) {
+                //     console.error("Erro ao executar arduino-cli:", error);
+                //     alert("Erro ao executar o arduino-cli.");
+                // }
 
           });
 
