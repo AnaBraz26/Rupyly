@@ -199,22 +199,23 @@
                   // Reaplica o realce de sintaxe
                   hljs.highlightElement(codeElement.querySelector("code"));
               
-                  cleanThanUp();                   
+                  //cleanThanUp();   
+                  updateGraph();                
                 }
             }
     
             function cleanThanUp() {
               var list = document.getElementById("toolbox"); 
                 if(list){
-                while (list.hasChildNodes()) {
-                    list.removeChild(list.childNodes[0]);
+                  while (list.hasChildNodes()) {
+                      list.removeChild(list.childNodes[0]);
                 }
-                updateGraph();
+                  updateGraph();
+                }
+                else{
+                  console.error("Elemento #im não encontrado")
+                }
             }
-            else{
-              console.error("Elemento #im não encontrado")
-            }
-          }
 
             function updateGraph() {
                 if(mostrar != "nada"){
