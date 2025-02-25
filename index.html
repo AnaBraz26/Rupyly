@@ -34,7 +34,11 @@
   <script src="blockly/workspace.js"></script>    
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-       AOS.init();
+      
+      window.addEventListener("DOMContentLoaded", function(){
+         AOS.init();
+      });
+
   </script>
 </head>
 
@@ -173,16 +177,12 @@
     </xml>    
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
+      window.addEventListener("DOMContentLoaded", function(){
             var mostrar = "nada";
-            const blocklyDiv = document.getElementById("blocklyDiv");
-            const toolbox = document.getElementById("toolbox");
-
-            if (blocklyDiv && toolbox) {
-                var workspace = Blockly.inject(blocklyDiv, {
-                    toolbox: toolbox
-                });
-
+            var workspace = Blockly.inject('blocklyDiv', {
+                toolbox: document.getElementById('toolbox')
+            });
+    
             function update(event) {
               Blockly.C.INFINITE_LOOP_TRAP = null;
                 var code = new String(Blockly.C.workspaceToCode(workspace));               
@@ -197,7 +197,7 @@
                                           "</code></pre>";
                   
                   // Reaplica o realce de sintaxe
-                  // hljs.highlightElement(codeElement.querySelector("code"));
+                  hljs.highlightElement(codeElement.querySelector("code"));
               
                   cleanThanUp();                   
                 }
@@ -225,7 +225,7 @@
                 }
             }
             workspace.addChangeListener(update);     
-          }});
+        });
 
           // document.getElementById("Download").addEventListener("click", function() {
           //       var fileName = "codigo_gerado.c";
@@ -278,7 +278,7 @@
               // Nome do arquivo que será salvo
               let fileName = "codigo_gerado.ino";
               let fileContent = code;
-
+              
               alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
               const { exec } = require("child_process");
