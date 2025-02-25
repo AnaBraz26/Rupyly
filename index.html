@@ -173,53 +173,59 @@
     </xml>    
 
     <script>
-          var mostrar = "nada";
-          var workspace = Blockly.inject('blocklyDiv', {
-              toolbox: document.getElementById('toolbox')
-          });
-  
-          function update(event) {
-            Blockly.C.INFINITE_LOOP_TRAP = null;
-              var code = new String(Blockly.C.workspaceToCode(workspace));               
-              var codeElement = document.getElementById("codigogerado");
-        
-              if (code!= "") {   
-                mostrar = code;             
+      document.addEventListener("DOMContentLoaded", function() {
+            var mostrar = "nada";
+            const blocklyDiv = document.getElementById("blocklyDiv");
+            const toolbox = document.getElementById("toolbox");
 
-                // Define a formatação como código C/C++
-                codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                        mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                        "</code></pre>";
-                
-                // Reaplica o realce de sintaxe
-                // hljs.highlightElement(codeElement.querySelector("code"));
-             
-                cleanThanUp();                   
-              }
-          }
-  
-          function cleanThanUp() {
-              var list = document.getElementById("im"); 
-              while (list.hasChildNodes()) {
-                  list.removeChild(list.childNodes[0]);
-              }
-              updateGraph();
-          }
-
-          function updateGraph() {
-              if(mostrar != "nada"){
-                var Viz = new Viz();
-                viz.renderSVGElement(mostrar)
-                .then(function(element){
-                    document.getElementById("im").appendChild(element);
-                })
-                .catch(error => {
-                  viz = new Viz();
-                  console.error(error);
+            if (blocklyDiv && toolbox) {
+                var workspace = Blockly.inject(blocklyDiv, {
+                    toolbox: toolbox
                 });
-              }
-          }
-          workspace.addChangeListener(update);     
+
+            function update(event) {
+              Blockly.C.INFINITE_LOOP_TRAP = null;
+                var code = new String(Blockly.C.workspaceToCode(workspace));               
+                var codeElement = document.getElementById("codigogerado");
+          
+                if (code!= "") {   
+                  mostrar = code;             
+
+                  // Define a formatação como código C/C++
+                  codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                          mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                          "</code></pre>";
+                  
+                  // Reaplica o realce de sintaxe
+                  // hljs.highlightElement(codeElement.querySelector("code"));
+              
+                  cleanThanUp();                   
+                }
+            }
+    
+            function cleanThanUp() {
+                var list = document.getElementById("im"); 
+                while (list.hasChildNodes()) {
+                    list.removeChild(list.childNodes[0]);
+                }
+                updateGraph();
+            }
+
+            function updateGraph() {
+                if(mostrar != "nada"){
+                  var Viz = new Viz();
+                  viz.renderSVGElement(mostrar)
+                  .then(function(element){
+                      document.getElementById("im").appendChild(element);
+                  })
+                  .catch(error => {
+                    viz = new Viz();
+                    console.error(error);
+                  });
+                }
+            }
+            workspace.addChangeListener(update);     
+          }});
 
           // document.getElementById("Download").addEventListener("click", function() {
           //       var fileName = "codigo_gerado.c";
@@ -272,7 +278,7 @@
               // Nome do arquivo que será salvo
               let fileName = "codigo_gerado.ino";
               let fileContent = code;
-              
+
               alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
               const { exec } = require("child_process");
