@@ -248,52 +248,52 @@
                 document.body.removeChild(element);
             });
 
-            let port;
-      let writer;
-    
-      document.getElementById("connectArduino").addEventListener("click", async () => {
-          try {
-              // Solicita ao usuário que selecione um dispositivo serial
-              port = await navigator.serial.requestPort();
-              await port.open({ baudRate: 115200 });
-    
-              // Cria um writer para enviar dados
-              writer = port.writable.getWriter();
-    
-              document.getElementById("sendCode").disabled = false;
-              alert("Conectado ao Arduino!");
-    
-          } catch (error) {
-              console.error("Erro ao conectar:", error);
-              alert("Falha ao conectar ao Arduino.");
-          }
-      });
-    
-      async function sendCodeToArduino() {
-      if (!writer) {
-          alert("Arduino não conectado!");
-          return;
-      }
+          let port;
+          let writer;
+        
+          document.getElementById("connectArduino").addEventListener("click", async () => {
+              try {
+                  // Solicita ao usuário que selecione um dispositivo serial
+                  port = await navigator.serial.requestPort();
+                  await port.open({ baudRate: 115200 });
+        
+                  // Cria um writer para enviar dados
+                  writer = port.writable.getWriter();
+        
+                  document.getElementById("sendCode").disabled = false;
+                  alert("Conectado ao Arduino!");
+        
+              } catch (error) {
+                  console.error("Erro ao conectar:", error);
+                  alert("Falha ao conectar ao Arduino.");
+              }
+          });
 
-      let code = document.getElementById("codigogerado").innerText;
-      if (!code) {
-          alert("Nenhum código foi gerado!");
-          return;
-      }
+          document.getElementById("sendCode").addEventListener("click", async () => {
+                if (!writer) {
+                    alert("Arduino não está conectado!");
+                    return;
+                }
 
-      let inoCode = `// Código gerado pelo Ereko Blockly\n\n${code}`;
-      let formattedCode = new TextEncoder().encode(inoCode + "\n");
+                let code = document.getElementById("codigogerado").innerText;
+                if (!code) {
+                    alert("Nenhum código gerado!");
+                    return;
+                }
 
-      try {
-          await writer.write(formattedCode);
-          alert("Código .ino enviado para o Arduino!");
-      } catch (error) {
-          console.error("Erro ao enviar código:", error);
-          alert("Falha ao enviar código.");
-      }
-  }
+                let formattedCode = new TextEncoder().encode(code + "\n");
 
-  document.getElementById("sendCode").addEventListener("click", sendCode);
+                try {
+                    await writer.write(formattedCode);
+                    alert("Código enviado para o Arduino com sucesso!");
+                } catch (error) {
+                    console.error("Erro ao enviar código:", error);
+                    alert("Falha ao enviar código.");
+                }
+          });
+
+
+
   </script>
 
   <footer class="page-footer blue">
