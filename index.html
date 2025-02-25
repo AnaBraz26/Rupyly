@@ -8,12 +8,11 @@
   <meta name="keywords" content="Arduino, Blockly, Ereko, Modelos Educacionais">
   <meta name="author" content="Ana Caroline Braz">
   
-    <!-- Troca aaqui-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/arduino-light.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
 
-  <title>EREKO BLOCKLY</title>
+  <title>ErekoBlockly</title>
 
   <!-- Import materialize.css  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -174,59 +173,53 @@
     </xml>    
 
     <script>
-          var mostrar = " ";
+          var mostrar = "nada";
           var workspace = Blockly.inject('blocklyDiv', {
               toolbox: document.getElementById('toolbox')
           });
   
           function update(event) {
+            Blockly.C.INFINITE_LOOP_TRAP = null;
               var code = new String(Blockly.C.workspaceToCode(workspace));               
               var codeElement = document.getElementById("codigogerado");
         
               if (code!= "") {   
                 mostrar = code;             
+
                 // Define a formatação como código C/C++
                 codeElement.innerHTML = "<pre><code class='language-c'>" + 
                                         mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
                                         "</code></pre>";
                 
-
                 // Reaplica o realce de sintaxe
-                hljs.highlightElement(codeElement.querySelector("code"));
+                // hljs.highlightElement(codeElement.querySelector("code"));
              
-                cleanThanUp(); 
-                  
+                cleanThanUp();                   
               }
           }
   
           function cleanThanUp() {
-              var list = document.getElementById(""); 
-              if (list) {  
-                  while (list.hasChildNodes()) {
-                      list.removeChild(list.childNodes[0]);
-                  }
-                  updateGraph();
-              } else {
-                  console.error("Elemento com ID '' não encontrado!");
+              var list = document.getElementById("im"); 
+              while (list.hasChildNodes()) {
+                  list.removeChild(list.childNodes[0]);
               }
+              updateGraph();
           }
 
           function updateGraph() {
-              if (mostrar && mostrar != " ") {
-                  var viz = new Viz();
-                  viz.renderSVGElement(mostrar)
-                    .then(function(element) {
-                        document.getElementById("").appendChild(element);
-                    })
-                    .catch(error => {
-                        viz = new Viz();
-                        console.error(error);
-                    });
+              if(mostrar != "nada"){
+                var viz = new Viz();
+                viz.renderSVGElement(mostrar)
+                .then(function(element){
+                    document.getElementById("im").appendChild(element);
+                })
+                .catch(error => {
+                  viz = new Viz();
+                  console.error(error);
+                });
               }
           }
-          workspace.addChangeListener(update);
-
-     
+          workspace.addChangeListener(update);     
 
           document.getElementById("Download").addEventListener("click", function() {
                 var fileName = "codigo_gerado.c";
@@ -291,9 +284,6 @@
                     alert("Falha ao enviar código.");
                 }
           });
-
-
-
   </script>
 
   <footer class="page-footer blue">
