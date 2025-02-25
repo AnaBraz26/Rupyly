@@ -314,7 +314,15 @@
                       return;
                   }
 
-                  exec(`arduino-cli compile --fqbn ${fqbn} ${fileName}`, (compErr, compStdout, compStderr) => {
+                  // exec(`arduino-cli compile --fqbn ${fqbn} ${fileName}`, (compErr, compStdout, compStderr) => {
+                  //     if (compErr) {
+                  //         console.error(`Erro ao compilar: ${compErr.message}`);
+                  //         console.error(`stderr: ${compStderr}`);
+                  //         alert("Erro na compilação.");
+                  //         return;
+                  //     }                 
+                  
+                      exec(`arduino-cli compile -p ${port} ${fileName}`, (compErr, compStdout, compStderr) => {
                       if (compErr) {
                           console.error(`Erro ao compilar: ${compErr.message}`);
                           console.error(`stderr: ${compStderr}`);
@@ -324,7 +332,7 @@
 
                       console.log("Compilação:", compStdout);
 
-                      exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${fileName}`, (uploadErr, uploadStdout, uploadStderr) => {
+                      exec(`arduino-cli upload -p ${port} ${fileName}`, (uploadErr, uploadStdout, uploadStderr) => {
                           if (uploadErr) {
                               console.error(`Erro ao enviar código: ${uploadErr.message}`);
                               console.error(`stderr: ${uploadStderr}`);
