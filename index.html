@@ -221,25 +221,25 @@
           }
           workspace.addChangeListener(update);     
 
-          document.getElementById("Download").addEventListener("click", function() {
-                var fileName = "codigo_gerado.c";
+          // document.getElementById("Download").addEventListener("click", function() {
+          //       var fileName = "codigo_gerado.c";
                 
-                // Obtém o conteúdo que está visível na tela (dentro da área onde o código C está sendo exibido)
-                var fileContent = document.getElementById("codigogerado").innerText; 
+          //       // Obtém o conteúdo que está visível na tela (dentro da área onde o código C está sendo exibido)
+          //       var fileContent = document.getElementById("codigogerado").innerText; 
                 
-                // Cria um link temporário para download
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
-                element.setAttribute('download', fileName);
+          //       // Cria um link temporário para download
+          //       var element = document.createElement('a');
+          //       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
+          //       element.setAttribute('download', fileName);
 
-                document.body.appendChild(element);
+          //       document.body.appendChild(element);
                 
-                // Simula um clique para iniciar o download
-                element.click();
+          //       // Simula um clique para iniciar o download
+          //       element.click();
                 
-                // Remove o elemento temporário
-                document.body.removeChild(element);
-            });
+          //       // Remove o elemento temporário
+          //       document.body.removeChild(element);
+          //   });
 
           let port;
           let writer;
@@ -284,56 +284,64 @@
 
               alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
-              // Verifica se o arduino-cli está disponível
-              try {
-                  const { exec } = require("child_process");
+              const { exec } = require("child_process");
 
-                  // Lista as placas conectadas
-                  exec("arduino-cli board list", (error, stdout, stderr) => {
-                      if (error) {
-                          console.error(`Erro ao listar placas: ${error.message}`);
-                          alert("Erro ao listar placas.");
+          try {
+              exec("arduino-cli board list", (error, stdout, stderr) => {
+                  if (error) {
+                      console.error(`Erro ao listar placas: ${error.message}`);
+                      console.error(`stderr: ${stderr}`);
+                      alert("Erro ao listar placas.");
+                      return;
+                  }
+
+                  console.log("Saída do board list:", stdout);
+
+                  let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
+                  if (!match) {
+                      alert("Nenhuma placa encontrada!");
+                      return;
+                  }
+
+                  let port = match[1]; // Porta do Arduino
+                  let fqbn = match[2]; // Nome da placa
+
+                  console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
+
+                  if (!fileName) {
+                      console.error("Erro: fileName não está definido!");
+                      alert("Erro: Nome do arquivo não especificado.");
+                      return;
+                  }
+
+                  exec(`arduino-cli compile --fqbn ${fqbn} ${fileName}`, (compErr, compStdout, compStderr) => {
+                      if (compErr) {
+                          console.error(`Erro ao compilar: ${compErr.message}`);
+                          console.error(`stderr: ${compStderr}`);
+                          alert("Erro na compilação.");
                           return;
                       }
 
-                      console.log(stdout);
-                      let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
-                      if (!match) {
-                          alert("Nenhuma placa encontrada!");
-                          return;
-                      }
+                      console.log("Compilação:", compStdout);
 
-                      let port = match[1]; // Porta do Arduino
-                      let fqbn = match[2]; // Nome da placa (ex: arduino:avr:uno)
-
-                      console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
-
-                      // Compilar e enviar o código para o Arduino
-                      exec(`arduino-cli compile --fqbn ${fqbn} ${fileName}`, (compErr, compStdout, compStderr) => {
-                          if (compErr) {
-                              console.error(`Erro ao compilar: ${compErr.message}`);
-                              alert("Erro na compilação.");
+                      exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${fileName}`, (uploadErr, uploadStdout, uploadStderr) => {
+                          if (uploadErr) {
+                              console.error(`Erro ao enviar código: ${uploadErr.message}`);
+                              console.error(`stderr: ${uploadStderr}`);
+                              alert("Falha ao enviar código.");
                               return;
                           }
 
-                          console.log(compStdout);
-
-                          exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${fileName}`, (uploadErr, uploadStdout, uploadStderr) => {
-                              if (uploadErr) {
-                                  console.error(`Erro ao enviar código: ${uploadErr.message}`);
-                                  alert("Falha ao enviar código.");
-                                  return;
-                              }
-
-                              console.log(uploadStdout);
-                              alert("Código enviado para o Arduino com sucesso!");
-                          });
+                          console.log("Upload:", uploadStdout);
+                          alert("Código enviado com sucesso!");
                       });
                   });
-              } catch (error) {
-                  console.error("Erro ao executar arduino-cli:", error);
-                  alert("Erro ao executar o arduino-cli.");
-              }
+                });
+            } catch (error) {
+                console.error("Erro ao executar arduino-cli:", error);
+                alert("Erro ao executar o arduino-cli.");
+            }
+
           });
 
   </script>
