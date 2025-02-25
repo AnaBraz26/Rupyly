@@ -208,7 +208,7 @@
 
           function updateGraph() {
               if(mostrar != "nada"){
-                var viz = new Viz();
+                var Viz = new Viz();
                 viz.renderSVGElement(mostrar)
                 .then(function(element){
                     document.getElementById("im").appendChild(element);
@@ -262,35 +262,79 @@
               }
           });
 
-          let serverURL = "http://172.17.255.255"; // Seu IP local
+          document.getElementById("sendCode").addEventListener("click", async () => {
+              let code = document.getElementById("codigogerado").innerText;
+              if (!code) {
+                  alert("Nenhum código gerado!");
+                  return;
+              }
 
-            document.getElementById("sendCode").addEventListener("click", async () => {
-                let code = document.getElementById("codigogerado").innerText;
-                
-                if (!code) {
-                    alert("Nenhum código gerado!");
-                    return;
-                }
+              // Nome do arquivo que será salvo
+              let fileName = "codigo_gerado.ino";
+              let fileContent = code;
 
-                try {
-                    let response = await fetch(`${serverURL}/upload`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ code })
-                    });
+              // Criar e baixar o arquivo .ino
+              let blob = new Blob([fileContent], { type: "text/plain" });
+              let a = document.createElement("a");
+              a.href = URL.createObjectURL(blob);
+              a.download = fileName;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
 
-                    let result = await response.json();
-                    if (response.ok) {
-                        alert(result.message);
-                    } else {
-                        alert("Erro: " + result.error);
-                    }
-                } catch (error) {
-                    console.error("Erro ao enviar código:", error);
-                    alert("Falha ao conectar ao servidor.");
-                }
-            });
+              alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
+              // Verifica se o arduino-cli está disponível
+              try {
+                  const { exec } = require("child_process");
+
+                  // Lista as placas conectadas
+                  exec("arduino-cli board list", (error, stdout, stderr) => {
+                      if (error) {
+                          console.error(`Erro ao listar placas: ${error.message}`);
+                          alert("Erro ao listar placas.");
+                          return;
+                      }
+
+                      console.log(stdout);
+                      let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
+                      if (!match) {
+                          alert("Nenhuma placa encontrada!");
+                          return;
+                      }
+
+                      let port = match[1]; // Porta do Arduino
+                      let fqbn = match[2]; // Nome da placa (ex: arduino:avr:uno)
+
+                      console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
+
+                      // Compilar e enviar o código para o Arduino
+                      exec(`arduino-cli compile --fqbn ${fqbn} ${fileName}`, (compErr, compStdout, compStderr) => {
+                          if (compErr) {
+                              console.error(`Erro ao compilar: ${compErr.message}`);
+                              alert("Erro na compilação.");
+                              return;
+                          }
+
+                          console.log(compStdout);
+
+                          exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${fileName}`, (uploadErr, uploadStdout, uploadStderr) => {
+                              if (uploadErr) {
+                                  console.error(`Erro ao enviar código: ${uploadErr.message}`);
+                                  alert("Falha ao enviar código.");
+                                  return;
+                              }
+
+                              console.log(uploadStdout);
+                              alert("Código enviado para o Arduino com sucesso!");
+                          });
+                      });
+                  });
+              } catch (error) {
+                  console.error("Erro ao executar arduino-cli:", error);
+                  alert("Erro ao executar o arduino-cli.");
+              }
+          });
 
   </script>
 
