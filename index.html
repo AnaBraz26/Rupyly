@@ -269,28 +269,32 @@
           }
       });
     
-      document.getElementById("sendCode").addEventListener("click", async () => {
-          if (!writer) {
-              alert("Arduino não conectado!");
-              return;
-          }
-    
-          // Obtém o código gerado no bloco de exibição
-          let code = document.getElementById("codigogerado").innerText;
-          
-          // Converte para formato adequado (se necessário)
-          let formattedCode = new TextEncoder().encode(code + "\n");
-    
-          try {
-              await writer.write(formattedCode);
-              alert("Código enviado para o Arduino!");
-          } catch (error) {
-              console.error("Erro ao enviar código:", error);
-              alert("Falha ao enviar código.");
-          }
-      });
+      async function sendCodeToArduino() {
+      if (!writer) {
+          alert("Arduino não conectado!");
+          return;
+      }
 
-    </script>
+      let code = document.getElementById("codigogerado").innerText;
+      if (!code) {
+          alert("Nenhum código foi gerado!");
+          return;
+      }
+
+      let inoCode = `// Código gerado pelo Ereko Blockly\n\n${code}`;
+      let formattedCode = new TextEncoder().encode(inoCode + "\n");
+
+      try {
+          await writer.write(formattedCode);
+          alert("Código .ino enviado para o Arduino!");
+      } catch (error) {
+          console.error("Erro ao enviar código:", error);
+          alert("Falha ao enviar código.");
+      }
+  }
+
+  document.getElementById("sendCode").addEventListener("click", sendCode);
+  </script>
 
   <footer class="page-footer blue">
     <div class="container">
