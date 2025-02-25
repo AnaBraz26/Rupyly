@@ -263,27 +263,32 @@
           });
 
           document.getElementById("sendCode").addEventListener("click", async () => {
-                if (!writer) {
-                    alert("Arduino não está conectado!");
-                    return;
-                }
-
                 let code = document.getElementById("codigogerado").innerText;
+                
                 if (!code) {
                     alert("Nenhum código gerado!");
                     return;
                 }
 
-                let formattedCode = new TextEncoder().encode(code + "\n");
-
                 try {
-                    await writer.write(formattedCode);
-                    alert("Código enviado para o Arduino com sucesso!");
+                    let response = await fetch("http://localhost:3000/upload", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ code })
+                    });
+
+                    let result = await response.json();
+                    if (response.ok) {
+                        alert(result.message);
+                    } else {
+                        alert("Erro: " + result.error);
+                    }
                 } catch (error) {
                     console.error("Erro ao enviar código:", error);
-                    alert("Falha ao enviar código.");
+                    alert("Falha ao conectar ao servidor.");
                 }
-          });
+            });
+
   </script>
 
   <footer class="page-footer blue">
