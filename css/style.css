@@ -36,3 +36,7 @@
   padding: 5px 0;
   font-size: 0.8rem;
 }
+
+main {
+  flex: 1; /* Isso empurra o footer pra baixo */
+}
