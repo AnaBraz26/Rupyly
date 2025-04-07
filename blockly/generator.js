@@ -6,26 +6,38 @@ Blockly.C = new Blockly.Generator('C');
 Blockly.C = Object.create(Blockly.Generator.prototype);
 Blockly.C.name = 'C';
 
-Blockly.C['setup'] = function(block, generator) {
-  var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
+Blockly.JavaScript['setup'] = function(block, generator) {
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_setup');
+  // TODO: Assemble JavaScript into code variable.
   var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
-  // return "void setup(){\n" +statements_name+ "\n}";
-  return code;
-};
-
-Blockly.C['loop'] = function(block, generator) {
-  var statements_name = Blockly.C.statementToCode(block, 'Void_loop');
-  var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
-    // return "void loop(){\n" + statements_name +"\n}";
     return code;
 };
+
+Blockly.JavaScript['loop'] = function(block, generator) {
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_loop');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
+    return code;
+};
+
+
+// Blockly.C['setup'] = function(block, generator) {
+//   var statements_name = Blockly.C.statementToCode(block, 'Void_setup');
+//   //var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
+//   return "void setup(){\n" +statements_name+ "\n}";
+// };
+
+// Blockly.C['loop'] = function(block, generator) {
+//   var statements_name = Blockly.C.statementToCode(block, 'Void_loop');
+//   //var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
+//     return "void loop(){\n" + statements_name +"\n}";
+// };
 
 Blockly.C['led'] = function(block, generator) {
   var text_nome = block.getFieldValue('nome');
   var number_porta = block.getFieldValue('Porta');
-  var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
-  // return "int led"+text_nome+" = "+number_porta+";";
-  return code;
+  //var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
+  return "int led"+text_nome+" = "+number_porta+";";
 };
 
 Blockly.C['pinmode_led'] = function(block, generator) {
