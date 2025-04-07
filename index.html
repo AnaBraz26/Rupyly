@@ -178,61 +178,102 @@
     </xml>    
 
     <script>
-      window.addEventListener("DOMContentLoaded", function(){
-            var mostrar = "nada";
-            var workspace = Blockly.inject('blocklyDiv', {
-                toolbox: document.getElementById('toolbox')
-            });
-    
-            function update(event) {
-              Blockly.C.INFINITE_LOOP_TRAP = null;
-                var code = new String(Blockly.C.workspaceToCode(workspace));               
-                var codeElement = document.getElementById("codigogerado");
-          
-                if (code!= "") {   
-                  mostrar = code;             
-
-                  // Define a formatação como código C/C++
-                  codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                          mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                          "</code></pre>";
-                  
-                  // Reaplica o realce de sintaxe
-                  hljs.highlightElement(codeElement.querySelector("code"));
-              
-                  cleanThanUp();   
-                  //updateGraph();                
-                }
-            }
-    
-            function cleanThanUp() {
-              var list = document.getElementById("mostrar"); 
-                if(list){
-                  while (list.hasChildNodes()) {
-                      list.removeChild(list.childNodes[0]);
-                }
-                  updateGraph();
-                }
-                else{
-                  console.error("Elemento #im não encontrado")
-                }
-            }
-
-            function updateGraph() {
-                if(mostrar != "nada"){
+      var mostrar = "nada aqui";
+          var workspace = Blockly.inject('blocklyDiv', {
+              toolbox: document.getElementById('toolbox')
+          });
+  
+          function update(event) {
+              Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+              var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
+              if (code != "") {
+                  mostrar = code;
+                  document.getElementById("codigogerado").innerHTML = mostrar;
+                  cleanThanUp()
+              }
+          }
+  
+          function cleanThanUp() {
+              var list = document.getElementById("im");
+              while (list.hasChildNodes()) {
+                  list.removeChild(list.childNodes[0]);
+              }
+              updateGraph();
+          }
+  
+          function updateGraph() {
+              if (mostrar != "nada aqui") {
                   var viz = new Viz();
                   viz.renderSVGElement(mostrar)
-                  .then(function(element){
-                      document.getElementById("im").appendChild(element);
-                  })
-                  .catch(error => {
-                    viz = new Viz();
-                    console.error(error);
-                  });
-                }
-            }
-            workspace.addChangeListener(update);     
-        });
+                    .then(function(element) {
+                        document.getElementById("im").appendChild(element);
+                    })
+                    .catch(error => {
+                        // Create a new Viz instance (@see Caveats page for more info)
+                        viz = new Viz();
+
+                        // Possibly display the error
+                        console.error(error);
+                    });
+              }
+          }
+          workspace.addChangeListener(update);
+
+      // window.addEventListener("DOMContentLoaded", function(){
+      //       var mostrar = "nada";
+      //       var workspace = Blockly.inject('blocklyDiv', {
+      //           toolbox: document.getElementById('toolbox')
+      //       });
+    
+      //       function update(event) {
+      //         Blockly.C.INFINITE_LOOP_TRAP = null;
+      //           var code = new String(Blockly.C.workspaceToCode(workspace));               
+      //           var codeElement = document.getElementById("codigogerado");
+          
+      //           if (code!= "") {   
+      //             mostrar = code;             
+
+      //             // Define a formatação como código C/C++
+      //             codeElement.innerHTML = "<pre><code class='language-c'>" + 
+      //                                     mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+      //                                     "</code></pre>";
+                  
+      //             // Reaplica o realce de sintaxe
+      //             hljs.highlightElement(codeElement.querySelector("code"));
+              
+      //             cleanThanUp();   
+      //             //updateGraph();                
+      //           }
+      //       }
+    
+      //       function cleanThanUp() {
+      //         var list = document.getElementById("mostrar"); 
+      //           if(list){
+      //             while (list.hasChildNodes()) {
+      //                 list.removeChild(list.childNodes[0]);
+      //           }
+      //             updateGraph();
+      //           }
+      //           else{
+      //             console.error("Elemento #im não encontrado")
+      //           }
+      //       }
+
+      //       function updateGraph() {
+      //           if(mostrar != "nada"){
+      //             var viz = new Viz();
+      //             viz.renderSVGElement(mostrar)
+      //             .then(function(element){
+      //                 document.getElementById("im").appendChild(element);
+      //             })
+      //             .catch(error => {
+      //               viz = new Viz();
+      //               console.error(error);
+      //             });
+      //           }
+      //       }
+      //       workspace.addChangeListener(update);     
+      //   });
 
           // document.getElementById("Download").addEventListener("click", function() {
           //       var fileName = "codigo_gerado.c";
