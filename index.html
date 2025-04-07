@@ -7,22 +7,20 @@
   <meta name="description" content="Blockly for arduino">
   <meta name="keywords" content="Arduino, Blockly, Ereko, Modelos Educacionais">
   <meta name="author" content="Ana Caroline Braz">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/arduino-light.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.0/viz.js"></script>
-
   <title>ErekoBlockly</title>
-
-  <!-- Import materialize.css  -->
+  
+  <!-- Materialize CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-  <!--Let browser know website is optimized for mobile-->
-  <title>Ereko Blockly</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/arduino-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+
+    <!-- Viz.js para grafos -->
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.0/viz.js"></script>
   
   <!--blocklys-->
   
@@ -33,53 +31,75 @@
   <script src="blockly/blocos.js"></script>  
   <script src="blockly/generator.js"></script>
   <script src="blockly/workspace.js"></script>    
+
+  <!-- jQuery e AOS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
+ 
+  <!-- <script>
       
       window.addEventListener("DOMContentLoaded", function(){
          AOS.init();
       });
 
-  </script>
-</head>
+  </script> -->
 
-<style>
+  <style>
     .clearfix {
         overflow: auto;
     }
-</style>
+  </style>
 
-<body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">EREKO BLOCKLY</a>
-      <ul class="right hide-on-med-and-down">       
-        <button id="Download" class="btn waves-effect waves-light" type="submit" name="action">Download do codigo (.ino)</button>
-        <button id="connectArduino" class="btn waves-effect waves-light">Conectar ao Arduino</button>
-        <button id="sendCode" class="btn waves-effect waves-light" disabled>Enviar Código</button>        
-      </ul>
-    </div>
-  </nav>
+</head>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-    <div class="col s12" style="height: 600px">
-        <div class="row">
-            <div class="col s6" style="height: 600px">
-              <div class="center", style="background-color: #2c7fd2">
-                <h5>Área destinada aos blocos</h5>
-                <!-- <h5>Area intended for blocks</h5> -->
-              </div>
-                <div id="blocklyDiv" style="float:left; height: 600px; width: 102%;border-style: solid; border-color: #2c7fd2; background-color: #598aba"></div>
-            </div>
-            <div class="col s6">
-              <div class="center", style="background-color: #22f702">
-                <h5>Área destinada a geração do código em C</h5>
-                <!-- <h5>Area intended for generating code in C</h5> -->
-              </div>
-              <div id="codigogerado" style="font-family: 'Courier New', Courier, monospace; float:left; height: 600px; width: 100%;background-color: #FFFFFF;
-              color: #000; border-style: solid; border-color: #22f702;" class="clearfix">
-               <!-- <pre><code id="codigogerado" class="language-c"></code></pre> -->
-              </div>
-            </div>
+  <body>
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">EREKO BLOCKLY</a>
+        <ul class="right hide-on-med-and-down">       
+          <button id="Download" class="btn waves-effect waves-light" type="submit" name="action">Download do codigo (.ino)</button>
+          <button id="connectArduino" class="btn waves-effect waves-light">Conectar ao Arduino</button>
+          <button id="sendCode" class="btn waves-effect waves-light" disabled>Enviar Código</button>        
+        </ul>
+      </div>
+    </nav>
+
+  <!-- <div class="col s12" style="height: 600px">
+      <div class="row">
+          <div class="col s6" style="height: 600px">
+            <div class="center", style="background-color: #2c7fd2">
+              <h5>Área destinada aos blocos</h5>
+              <h5>Area intended for blocks</h5> -->
+            <!-- </div>
+              <div id="blocklyDiv" style="float:left; height: 600px; width: 102%;border-style: solid; border-color: #2c7fd2; background-color: #598aba"></div>
+          </div>
+          <div class="col s6">
+            <div class="center", style="background-color: #22f702">
+              <h5>Área destinada a geração do código em C</h5>
+              <h5>Area intended for generating code in C</h5> -->
+            <!-- </div>
+            <div id="codigogerado" style="font-family: 'Courier New', Courier, monospace; float:left; height: 600px; width: 100%;background-color: #FFFFFF;
+            color: #000; border-style: solid; border-color: #22f702;" class="clearfix">
+              <pre><code id="codigogerado" class="language-c"></code></pre> -->
+            <!-- </div>
+          </div>
+      </div>
+  </div> --> 
+
+    <div class="row" style="height: 600px;">
+      <div class="col s6" style="height: 600px">
+        <div class="center" style="background-color: #2c7fd2">
+          <h5>Área destinada aos blocos</h5>
         </div>
+        <div id="blocklyDiv" style="height: 600px; width: 102%; border: 1px solid #2c7fd2; background-color: #598aba;"></div>
+      </div>
+
+      <div class="col s6">
+        <div class="center" style="background-color: #22f702">
+          <h5>Área destinada à geração do código em C</h5>
+        </div>
+        <div id="codigogerado" class="clearfix" style="font-family: 'Courier New', Courier, monospace; height: 600px; width: 100%; background-color: #fff; color: #000; border: 1px solid #22f702;"></div>
+      </div>
     </div>
 
     <xml id="toolbox" style="display: none">	 
@@ -178,6 +198,26 @@
     </xml>    
 
     <script>
+      window.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+
+      let mostrar = "nada";
+      const workspace = Blockly.inject('blocklyDiv', {
+        toolbox: document.getElementById('toolbox')
+      });
+
+      workspace.addChangeListener(function () {
+        Blockly.C.INFINITE_LOOP_TRAP = null;
+        const code = Blockly.C.workspaceToCode(workspace);
+
+        if (code.trim() !== "") {
+          mostrar = code;
+          const codeElement = document.getElementById("codigogerado");
+          codeElement.innerHTML = `<pre><code class='language-c'>${mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
+          hljs.highlightElement(codeElement.querySelector("code"));
+        }
+      });
+    });
       // var mostrar = "nada aqui";
       //     var workspace = Blockly.inject('blocklyDiv', {
       //         toolbox: document.getElementById('toolbox')
@@ -219,61 +259,63 @@
       //     }
       //     workspace.addChangeListener(update);
 
-      window.addEventListener("DOMContentLoaded", function(){
-            var mostrar = "nada";
-            var workspace = Blockly.inject('blocklyDiv', {
-                toolbox: document.getElementById('toolbox')
-            });
+      // ------------------------------------------------------------------------------------------------------------------
+      // window.addEventListener("DOMContentLoaded", function(){
+      //       var mostrar = "nada";
+      //       var workspace = Blockly.inject('blocklyDiv', {
+      //           toolbox: document.getElementById('toolbox')
+      //       });
     
-            function update(event) {
-              Blockly.C.INFINITE_LOOP_TRAP = null;
-                var code = new String(Blockly.C.workspaceToCode(workspace));               
-                var codeElement = document.getElementById("codigogerado");
+      //       function update(event) {
+      //         Blockly.C.INFINITE_LOOP_TRAP = null;
+      //           var code = new String(Blockly.C.workspaceToCode(workspace));               
+      //           var codeElement = document.getElementById("codigogerado");
           
-                if (code!= "") {   
-                  mostrar = code;             
+      //           if (code!= "") {   
+      //             mostrar = code;             
 
-                  // Define a formatação como código C/C++
-                  codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                          mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                          "</code></pre>";
+      //             // Define a formatação como código C/C++
+      //             codeElement.innerHTML = "<pre><code class='language-c'>" + 
+      //                                     mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+      //                                     "</code></pre>";
                   
-                  // Reaplica o realce de sintaxe
-                  hljs.highlightElement(codeElement.querySelector("code"));
+      //             // Reaplica o realce de sintaxe
+      //             hljs.highlightElement(codeElement.querySelector("code"));
               
-                  cleanThanUp();   
-                  //updateGraph();                
-                }
-            }
+      //             cleanThanUp();   
+      //             //updateGraph();                
+      //           }
+      //       }
     
-            function cleanThanUp() {
-              var list = document.getElementById("mostrar"); 
-                if(list){
-                  while (list.hasChildNodes()) {
-                      list.removeChild(list.childNodes[0]);
-                }
-                  updateGraph();
-                }
-                else{
-                  console.error("Elemento #im não encontrado")
-                }
-            }
+      //       function cleanThanUp() {
+      //         var list = document.getElementById("mostrar"); 
+      //           if(list){
+      //             while (list.hasChildNodes()) {
+      //                 list.removeChild(list.childNodes[0]);
+      //           }
+      //             updateGraph();
+      //           }
+      //           else{
+      //             console.error("Elemento #im não encontrado")
+      //           }
+      //       }
 
-            function updateGraph() {
-                if(mostrar != "nada"){
-                  var viz = new Viz();
-                  viz.renderSVGElement(mostrar)
-                  .then(function(element){
-                      document.getElementById("im").appendChild(element);
-                  })
-                  .catch(error => {
-                    viz = new Viz();
-                    console.error(error);
-                  });
-                }
-            }
-            workspace.addChangeListener(update);     
-        });
+      //       function updateGraph() {
+      //           if(mostrar != "nada"){
+      //             var viz = new Viz();
+      //             viz.renderSVGElement(mostrar)
+      //             .then(function(element){
+      //                 document.getElementById("im").appendChild(element);
+      //             })
+      //             .catch(error => {
+      //               viz = new Viz();
+      //               console.error(error);
+      //             });
+      //           }
+      //       }
+      //       workspace.addChangeListener(update);     
+      //   });
+      // -------------------------------------------------------------------------------------------------
 
           // document.getElementById("Download").addEventListener("click", function() {
           //       var fileName = "codigo_gerado.c";
@@ -434,10 +476,5 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/FileSaver.js"></script>
-    <script type="text/javascript" src="js/prettify.js"></script>
-    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-
   </body>
 </html>
