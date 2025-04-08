@@ -167,35 +167,57 @@
     </xml>    
 
     <script>
-    //   window.addEventListener("DOMContentLoaded", function () {
-    //   AOS.init();
 
-    //   let mostrar = "nada";
-    //   const workspace = Blockly.inject('blocklyDiv', {
-    //     toolbox: document.getElementById('toolbox')
-    //   });
+    // var mostrar = "nada aqui";
+    //       var workspace = Blockly.inject('blocklyDiv', {
+    //           toolbox: document.getElementById('toolbox')
+    //       });
+  
+    //       function update(event) {
+    //           Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+    //           var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
+    //           if (code != "") {
+    //               mostrar = code;
+    //               document.getElementById("codigogerado").innerHTML = mostrar;
+    //               cleanThanUp()
+    //           }
+    //       }
+  
+    //       function cleanThanUp() {
+    //           var list = document.getElementById("im");
+    //           while (list.hasChildNodes()) {
+    //               list.removeChild(list.childNodes[0]);
+    //           }
+    //           updateGraph();
+    //       }
+  
+    //       function updateGraph() {
+    //           if (mostrar != "nada aqui") {
+    //               var viz = new Viz();
+    //               viz.renderSVGElement(mostrar)
+    //                 .then(function(element) {
+    //                     document.getElementById("im").appendChild(element);
+    //                 })
+    //                 .catch(error => {
+    //                     // Create a new Viz instance (@see Caveats page for more info)
+    //                     viz = new Viz();
 
-    //   workspace.addChangeListener(function () {
-    //     Blockly.C.INFINITE_LOOP_TRAP = null;
-    //     const code = Blockly.C.workspaceToCode(workspace);
+    //                     // Possibly display the error
+    //                     console.error(error);
+    //                 });
+    //           }
+    //       }
+    //       workspace.addChangeListener(update);
 
-    //     if (code.trim() !== "") {
-    //       mostrar = code;
-    //       const codeElement = document.getElementById("codigogerado");
-    //       codeElement.innerHTML = `<pre><code class='language-c'>${mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
-    //       hljs.highlightElement(codeElement.querySelector("code"));
-    //     }
-    //   });
-    // });
-
-    var mostrar = "nada aqui";
+   
+      var mostrar = "nada aqui";
           var workspace = Blockly.inject('blocklyDiv', {
               toolbox: document.getElementById('toolbox')
           });
   
           function update(event) {
-              Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-              var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
+              Blockly.C.INFINITE_LOOP_TRAP = null;
+              var code = new String(Blockly.C.workspaceToCode(workspace));
               if (code != "") {
                   mostrar = code;
                   document.getElementById("codigogerado").innerHTML = mostrar;
@@ -228,52 +250,6 @@
               }
           }
           workspace.addChangeListener(update);
-
-
-
-
-
-    
-      // var mostrar = "nada aqui";
-      //     var workspace = Blockly.inject('blocklyDiv', {
-      //         toolbox: document.getElementById('toolbox')
-      //     });
-  
-      //     function update(event) {
-      //         Blockly.C.INFINITE_LOOP_TRAP = null;
-      //         var code = new String(Blockly.C.workspaceToCode(workspace));
-      //         if (code != "") {
-      //             mostrar = code;
-      //             document.getElementById("codigogerado").innerHTML = mostrar;
-      //             cleanThanUp()
-      //         }
-      //     }
-  
-      //     function cleanThanUp() {
-      //         var list = document.getElementById("im");
-      //         while (list.hasChildNodes()) {
-      //             list.removeChild(list.childNodes[0]);
-      //         }
-      //         updateGraph();
-      //     }
-  
-      //     function updateGraph() {
-      //         if (mostrar != "nada aqui") {
-      //             var viz = new Viz();
-      //             viz.renderSVGElement(mostrar)
-      //               .then(function(element) {
-      //                   document.getElementById("im").appendChild(element);
-      //               })
-      //               .catch(error => {
-      //                   // Create a new Viz instance (@see Caveats page for more info)
-      //                   viz = new Viz();
-
-      //                   // Possibly display the error
-      //                   console.error(error);
-      //               });
-      //         }
-      //     }
-      //     workspace.addChangeListener(update);
 
       // ------------------------------------------------------------------------------------------------------------------
       // window.addEventListener("DOMContentLoaded", function(){
