@@ -49,13 +49,14 @@ main {
   letter-spacing: 1px;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, color 0.3s ease;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .nav-buttons {
   display: flex;
   gap: 15px; /* Espaço entre os botões */
   margin-right: 15px; /* Distância da borda direita */
+  margin-left: 20px;
   margin-top: 10px;
   align-items: center;
 }
