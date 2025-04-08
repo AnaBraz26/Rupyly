@@ -23,7 +23,6 @@
   <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.0/viz.js"></script>
   
   <!--blocklys-->
-  
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/javascript_compressed.js"></script>
@@ -36,14 +35,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
  
-  <!-- <script>
-      
-      window.addEventListener("DOMContentLoaded", function(){
-         AOS.init();
-      });
-
-  </script> -->
-
   <style>
     .clearfix {
         overflow: auto;
@@ -63,28 +54,6 @@
         </ul>
       </div>
     </nav>
-
-  <!-- <div class="col s12" style="height: 600px">
-      <div class="row">
-          <div class="col s6" style="height: 600px">
-            <div class="center", style="background-color: #2c7fd2">
-              <h5>Área destinada aos blocos</h5>
-              <h5>Area intended for blocks</h5> -->
-            <!-- </div>
-              <div id="blocklyDiv" style="float:left; height: 600px; width: 102%;border-style: solid; border-color: #2c7fd2; background-color: #598aba"></div>
-          </div>
-          <div class="col s6">
-            <div class="center", style="background-color: #22f702">
-              <h5>Área destinada a geração do código em C</h5>
-              <h5>Area intended for generating code in C</h5> -->
-            <!-- </div>
-            <div id="codigogerado" style="font-family: 'Courier New', Courier, monospace; float:left; height: 600px; width: 100%;background-color: #FFFFFF;
-            color: #000; border-style: solid; border-color: #22f702;" class="clearfix">
-              <pre><code id="codigogerado" class="language-c"></code></pre> -->
-            <!-- </div>
-          </div>
-      </div>
-  </div> --> 
 
     <div class="row" style="height: 600px;">
       <div class="col s6" style="height: 600px">
@@ -198,26 +167,67 @@
     </xml>    
 
     <script>
-      window.addEventListener("DOMContentLoaded", function () {
-      AOS.init();
+    //   window.addEventListener("DOMContentLoaded", function () {
+    //   AOS.init();
 
-      let mostrar = "nada";
-      const workspace = Blockly.inject('blocklyDiv', {
-        toolbox: document.getElementById('toolbox')
-      });
+    //   let mostrar = "nada";
+    //   const workspace = Blockly.inject('blocklyDiv', {
+    //     toolbox: document.getElementById('toolbox')
+    //   });
 
-      workspace.addChangeListener(function () {
-        Blockly.C.INFINITE_LOOP_TRAP = null;
-        const code = Blockly.C.workspaceToCode(workspace);
+    //   workspace.addChangeListener(function () {
+    //     Blockly.C.INFINITE_LOOP_TRAP = null;
+    //     const code = Blockly.C.workspaceToCode(workspace);
 
-        if (code.trim() !== "") {
-          mostrar = code;
-          const codeElement = document.getElementById("codigogerado");
-          codeElement.innerHTML = `<pre><code class='language-c'>${mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
-          hljs.highlightElement(codeElement.querySelector("code"));
-        }
-      });
-    });
+    //     if (code.trim() !== "") {
+    //       mostrar = code;
+    //       const codeElement = document.getElementById("codigogerado");
+    //       codeElement.innerHTML = `<pre><code class='language-c'>${mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
+    //       hljs.highlightElement(codeElement.querySelector("code"));
+    //     }
+    //   });
+    // });
+
+    var mostrar = "nada aqui";
+          var workspace = Blockly.inject('blocklyDiv', {
+              toolbox: document.getElementById('toolbox')
+          });
+  
+          function update(event) {
+              Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+              var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
+              if (code != "") {
+                  mostrar = code;
+                  document.getElementById("codigogerado").innerHTML = mostrar;
+                  cleanThanUp()
+              }
+          }
+  
+          function cleanThanUp() {
+              var list = document.getElementById("im");
+              while (list.hasChildNodes()) {
+                  list.removeChild(list.childNodes[0]);
+              }
+              updateGraph();
+          }
+  
+          function updateGraph() {
+              if (mostrar != "nada aqui") {
+                  var viz = new Viz();
+                  viz.renderSVGElement(mostrar)
+                    .then(function(element) {
+                        document.getElementById("im").appendChild(element);
+                    })
+                    .catch(error => {
+                        // Create a new Viz instance (@see Caveats page for more info)
+                        viz = new Viz();
+
+                        // Possibly display the error
+                        console.error(error);
+                    });
+              }
+          }
+          workspace.addChangeListener(update);
 
 
 
