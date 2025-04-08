@@ -55,19 +55,29 @@
       </div>
     </nav>
 
-    <div class="row" style="height: 600px;">
-      <div class="col s6" style="height: 600px">
-        <div class="center" style="background-color: #2c7fd2">
-          <h5>Área destinada aos blocos</h5>
+    <div class="row" style="min-height: 600px; margin-bottom: 0;">
+      <!-- Blocos -->
+      <div class="col s12 m6" style="padding: 0;">
+        <div style="background-color: #2c7fd2; padding: 10px; text-align: center;">
+          <h5 style="margin: 0; color: white;">Área destinada aos blocos</h5>
         </div>
-        <div id="blocklyDiv" style="height: 600px; width: 102%; border: 5px solid #2c7fd2; background-color: #598aba;"></div>
+        <div id="blocklyDiv" style="height: 600px; width: 100%; border: 5px solid #2c7fd2; background-color: #598aba;"></div>
       </div>
-
-      <div class="col s6">
-        <div class="center" style="background-color: #22f702">
-          <h5>Área destinada à geração do código em C</h5>
+    
+      <!-- Código -->
+      <div class="col s12 m6" style="padding: 0;">
+        <div style="background-color: #22f702; padding: 10px; text-align: center;">
+          <h5 style="margin: 0;">Área destinada à geração do código em C</h5>
         </div>
-        <div id="codigogerado" class="clearfix" style="font-family: 'Courier New', Courier, monospace; height: 600px; width: 100%; background-color: #fff; color: #000; border: 5px solid #22f702;"></div>
+        <div id="codigogerado" class="clearfix" style="
+          font-family: 'Courier New', Courier, monospace;
+          height: 600px;
+          width: 100%;
+          background-color: #fff;
+          color: #000;
+          border: 5px solid #22f702;
+          padding: 10px;
+          overflow: auto;"></div>
         <div id="im" style="padding: 20px; border: 1px solid #ccc; background-color: #f9f9f9;"></div>
       </div>
     </div>
