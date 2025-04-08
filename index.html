@@ -68,6 +68,7 @@
           <h5>Área destinada à geração do código em C</h5>
         </div>
         <div id="codigogerado" class="clearfix" style="font-family: 'Courier New', Courier, monospace; height: 600px; width: 100%; background-color: #fff; color: #000; border: 5px solid #22f702;"></div>
+        <div id="im" style="padding: 20px; border: 1px solid #ccc; background-color: #f9f9f9;"></div>
       </div>
     </div>
 
@@ -226,7 +227,7 @@
           }
   
           function cleanThanUp() {
-              var list = document.getElementById("");
+              var list = document.getElementById("im").appendChild(element);
               if (list) {
                   while (list.hasChildNodes()) {
                       list.removeChild(list.childNodes[0]);
