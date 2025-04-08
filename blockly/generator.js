@@ -2,9 +2,9 @@
 //----------------------------------------------------------------------------------------------------------------
 // Generator
 
-// Blockly.C = new Blockly.Generator('C');
-// Blockly.C = Object.create(Blockly.Generator.prototype);
-// Blockly.C.name = 'C';
+Blockly.C = new Blockly.Generator('C');
+Blockly.C = Object.create(Blockly.Generator.prototype);
+Blockly.C.name = 'C';
 
 // Blockly.JavaScript['setup'] = function(block, generator) {
 //   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_setup');
