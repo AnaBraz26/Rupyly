@@ -55,6 +55,7 @@ main {
   display: flex;
   gap: 15px; /* Espaço entre os botões */
   margin-right: 30px; /* Distância da borda direita */
+  margin-top: 10px;
   align-items: center;
 }
 
