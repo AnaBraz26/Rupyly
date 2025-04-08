@@ -40,3 +40,13 @@
 main {
   flex: 1; /* Isso empurra o footer pra baixo */
 }
+
+.brand-logo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
