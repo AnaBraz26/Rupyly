@@ -2,7 +2,6 @@
 //----------------------------------------------------------------------------------------------------------------
 // Generator
 
-Blockly.C = new Blockly.Generator('C');
 Blockly.C = Object.create(Blockly.Generator.prototype);
 Blockly.C.name = 'C';
 
@@ -111,7 +110,7 @@ Blockly.C['Biblioteca_Motor'] = function(block) {
 
   Blockly.C['SoftwareSerial'] = function(block) {  
     //var code = '<br><font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>';
-    return "#include <SoftwareServial.h>";
+    return "#include <SoftwareSerial.h>";
   };
   
   Blockly.C['software'] = function(block) {
@@ -163,18 +162,19 @@ Blockly.C['Biblioteca_Motor'] = function(block) {
 
   Blockly.C['analogwrite'] = function(block) {
     var text_nome = block.getFieldValue('nome');
+    var text_valor = block.getFieldValue('valor');
     //var code = '<br>&nbsp<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">'+text_nome+'</font><font color="#000000">)</font><font color="#000000">;</font>';
-    return "analogWrite("+text_nome+");";
+    return "analogWrite("+text_nome+", "+text_valor+");";
   };
 
   Blockly.C['map'] = function(block) {
     var text_valor = block.getFieldValue('valor');
     var text_demenor = block.getFieldValue('deMenor');
-    var text__demaior = block.getFieldValue(' deMaior');
+    var text_demaior = block.getFieldValue('deMaior');
     var text_paramenor = block.getFieldValue('paraMenor');
     var text_paramaior = block.getFieldValue('paraMaior');  
     //var code = '<br><font color="#d35400">map</font><font color="#000000">(</font><font color="#000000">'+text_valor+'</font><font color="#434f54">,</font> <font color="#000000">'+text_demenor+'</font><font color="#434f54">,</font> <font color="#000000">'+text__demaior+'</font><font color="#434f54">,</font> <font color="#000000">'+text_paramenor+'</font><font color="#434f54">,</font> <font color="#000000">'+text_paramaior+'</font><font color="#000000">)</font>';
-    return "map(("+text_valor+"), "+text_demenor+", "+text__demaior+", "+text_paramenor+", "+text_paramaior+");";
+    return "map(("+text_valor+"), "+text_demenor+", "+text_demaior+", "+text_paramenor+", "+text_paramaior+");";
   };
 
   Blockly.C['serialprintln'] = function(block) {
