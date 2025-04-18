@@ -416,7 +416,7 @@
     var varName = 'led_' + text_nome;
       
     // Nenhum código vai no corpo do setup ou loop nesse bloco
-    return 'int ' + varName + ' = ' + number_porta + ';';
+    return Blockly.Arduino.addVariable(varName, 'int ' + varName + ' = ' + number_porta + ';', true);;
   };
   
   
