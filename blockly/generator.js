@@ -397,22 +397,26 @@
   
   Blockly.Arduino['setup'] = function(block) {
     var statements_name = Blockly.Arduino.statementToCode(block, 'Void_setup');
-    // TODO: Assemble JavaScript into code variable.
-    var code = 'void setup(){ '+statements_name+'}';
+    var code = 'void setup() {\n' + statements_name + '}\n';
     return code;
   };
   
   Blockly.Arduino['loop'] = function(block) {
     var statements_name = Blockly.Arduino.statementToCode(block, 'Void_loop');
-    // TODO: Assemble JavaScript into code variable.
-    var code = 'void loop(){ '+statements_name+'}';
+    var code = 'void loop() {\n' + statements_name + '}\n';
     return code;
   };
+  
   
   Blockly.Arduino['led'] = function(block) {
     var text_nome = block.getFieldValue('nome');
     var number_porta = block.getFieldValue('Porta');
-    var code = 'int led_'+text_nome+'= '+number_porta+';';
-    return code;
+    var varName = 'led_' + text_nome;
     
+    Blockly.Arduino.addVariable(varName, 'int ' + varName + ' = ' + number_porta + ';', true);
+  
+    // Nenhum código vai no corpo do setup ou loop nesse bloco
+    return '';
   };
+  
+  
