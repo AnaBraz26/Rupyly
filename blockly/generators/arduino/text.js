@@ -1,9 +1,8 @@
 /**
- * @license
  * Visual Blocks Language
  *
- * Copyright 2018 Google Inc.
- * https://developers.google.com/blockly/
+ * Copyright 2012 Google Inc.
+ * http://blockly.googlecode.com/
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,17 +18,18 @@
  */
 
 /**
- * @fileoverview Generating Dart for dynamic variable blocks.
- * @author fenichel@google.com (Rachel Fenichel)
+ * @fileoverview Generating Arduino for text blocks.
+ * @author gasolin@gmail.com (Fred Lin)
  */
 'use strict';
 
-goog.provide('Blockly.Dart.variablesDynamic');
+goog.provide('Blockly.Arduino.texts');
 
-goog.require('Blockly.Dart');
-goog.require('Blockly.Dart.variables');
+goog.require('Blockly.Arduino');
 
 
-// Dart is dynamically typed.
-Blockly.Dart['variables_get_dynamic'] = Blockly.Dart['variables_get'];
-Blockly.Dart['variables_set_dynamic'] = Blockly.Dart['variables_set'];
+Blockly.Arduino.text = function() {
+  // Text value.
+  var code = Blockly.Arduino.quote_(this.getFieldValue('TEXT'));
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};

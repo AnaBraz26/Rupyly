@@ -189,11 +189,11 @@
       });
 
       function update(event) {
-          Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-          var code = new String(Blockly.JavaScript.workspaceToCode(workspace));
+          //Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+          var code = new String(Blockly.Arduino.workspaceToCode(workspace));
           if (code != "") {
               mostrar = code;
-              document.getElementById("codigogerado").innerHTML = mostrar;
+              document.getElementById("codigogerado").textContent = mostrar;
               cleanThanUp()
           }
       }
@@ -224,6 +224,8 @@
       }
       workspace.addChangeListener(update);
 
+    //------------------------------------------------------------------------------------
+    // Code in C
    
     // var mostrar = "nada aqui";
     // var workspace = Blockly.inject('blocklyDiv', {
