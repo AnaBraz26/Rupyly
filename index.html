@@ -183,18 +183,18 @@
     </xml>    
 
     <script>
-      var workspace = Blockly.inject('blocklyDiv', {
-          toolbox: document.getElementById('toolbox')
-      });
+    var workspace = Blockly.inject('blocklyDiv', {
+        toolbox: document.getElementById('toolbox')
+      }); 
 
-      function update(event) {
-          var code = Blockly.Arduino.workspaceToCode(workspace);
-          if (code.trim() !== "") {
-              document.getElementById("codigogerado").textContent = code;
-          }
-      }
+    function update(event) {
+        var code = Blockly.Arduino.workspaceToCode(workspace);
+        if (code.trim() !== "") {
+            document.getElementById("codigogerado").textContent = code;
+        }
+    }
 
-      workspace.addChangeListener(update);
+    workspace.addChangeListener(update); 
 
       // ------------------------------------------------------------------------------------------------------------------
       // window.addEventListener("DOMContentLoaded", function(){

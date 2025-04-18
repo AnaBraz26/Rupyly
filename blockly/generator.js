@@ -395,7 +395,7 @@
   //------------------------------------------------
   
   // Blockly.Arduino = Object.create(Blockly.Generator.prototype);
-  // Blockly.Arduino.name = 'Arduino';
+  Blockly.Arduino.name = 'Arduino';
   // goog.require('Blockly.Arduino');
   
   Blockly.Arduino['setup'] = function(block) {
