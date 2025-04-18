@@ -396,21 +396,21 @@
   
   
   Blockly.Arduino['setup'] = function(block) {
-    var statements_name = Blockly.Arduino.statementToCode(block, 'Void_setup');
+    var statements_name = Blockly.Arduino.statementToCode(block, "Void_setup");
     var code = 'void setup() {\n' + statements_name + '}\n';
     return code;
   };
   
   Blockly.Arduino['loop'] = function(block) {
-    var statements_name = Blockly.Arduino.statementToCode(block, 'Void_loop');
+    var statements_name = Blockly.Arduino.statementToCode(block, "Void_loop");
     var code = 'void loop() {\n' + statements_name + '}\n';
     return code;
   };
   
   
   Blockly.Arduino['led'] = function(block) {
-    var text_nome = block.getFieldValue('nome');
-    var number_porta = block.getFieldValue('Porta');
+    var text_nome = block.getFieldValue("nome");
+    var number_porta = block.getFieldValue("Porta");
     var varName = 'led_' + text_nome;
     
     Blockly.Arduino.addVariable(varName, 'int ' + varName + ' = ' + number_porta + ';', true);
