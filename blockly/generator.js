@@ -196,7 +196,7 @@
 //   };
 
   // ---------------------------------------------------------------------
-  // GEnerator in Java
+  // Generator in Java
 
   Blockly.JavaScript['setup'] = function(block, generator) {
   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_setup');
@@ -391,3 +391,28 @@ Blockly.JavaScript['Biblioteca_Motor'] = function(block) {
     var code = '...\n';
     return code;
   };
+
+  //------------------------------------------------
+  
+  
+  // Blockly.JavaScript['setup'] = function(block, generator) {
+  //   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_setup');
+  //   // TODO: Assemble JavaScript into code variable.
+  //   var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['loop'] = function(block, generator) {
+  //   var statements_name = Blockly.JavaScript.statementToCode(block, 'Void_loop');
+  //   // TODO: Assemble JavaScript into code variable.
+  //   var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
+  //   return code;
+  // };
+  
+  // Blockly.JavaScript['led'] = function(block) {
+  //   var text_nome = block.getFieldValue('nome');
+  //   var number_porta = block.getFieldValue('Porta');
+  //   var code = '<br><font color="#00979c">int </font><font color="#000000">led'+ text_nome +'</font><font color="#434f54"> =</font> <font color="#000000">'+number_porta+'</font><font color="#000000">;</font>';
+  //   return code;
+    
+  // };
