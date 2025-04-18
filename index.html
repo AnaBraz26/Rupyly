@@ -183,8 +183,6 @@
     </xml>    
 
     <script>
-      var mostrar = "nada aqui";
-
       var workspace = Blockly.inject('blocklyDiv', {
           toolbox: document.getElementById('toolbox')
       });
@@ -192,8 +190,7 @@
       function update(event) {
           var code = Blockly.Arduino.workspaceToCode(workspace);
           if (code.trim() !== "") {
-              mostrar = code;
-              document.getElementById("codigogerado").textContent = mostrar;
+              document.getElementById("codigogerado").textContent = code;
           }
       }
 
