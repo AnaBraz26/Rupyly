@@ -31,7 +31,7 @@
   <!--blocklys-->
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
-  <script src="blockly/javascript_compressed.js"></script>
+  <script src="blockly/arduino_compressed.js"></script>
   <script src="blockly/msg/js/en.js"></script> 
   <script src="blockly/blocos.js"></script>  
   <script src="blockly/generator.js"></script>
@@ -183,18 +183,25 @@
     </xml>    
 
     <script>
+    // Criação do workspace Blockly e conexão com o toolbox
     var workspace = Blockly.inject('blocklyDiv', {
         toolbox: document.getElementById('toolbox')
-      }); 
+      });
 
-    function update(event) {
+      // Função chamada sempre que houver mudança no workspace (blocos)
+      function update(event) {
+        // Gera o código Arduino a partir dos blocos no workspace
         var code = Blockly.Arduino.workspaceToCode(workspace);
-        if (code.trim() !== "") {
-            document.getElementById("codigogerado").textContent = code;
-        }
-    }
 
-    workspace.addChangeListener(update); 
+        if (code.trim() !== "") {
+          mostrar = code;
+
+          // Exibe o código gerado na tela (em um elemento com id="codigogerado")
+          document.getElementById("codigogerado").innerHTML = mostrar;
+        }
+      }
+
+      workspace.addChangeListener(update);
 
       // ------------------------------------------------------------------------------------------------------------------
       // window.addEventListener("DOMContentLoaded", function(){
