@@ -184,21 +184,25 @@
 
     <script>
     // Criação do workspace Blockly e conexão com o toolbox
-    var workspace = Blockly.inject('blocklyDiv', {
-        toolbox: document.getElementById('toolbox')
-      });
+      var workspace = Blockly.inject('blocklyDiv', {
+          toolbox: document.getElementById('toolbox')
+        });
+        
+      var mostrar = "nada";  
 
       // Função chamada sempre que houver mudança no workspace (blocos)
       function update(event) {
         Blockly.Arduino.INFINITE_LOOP_TRAP = null;
-        // Gera o código Arduino a partir dos blocos no workspace
-        var code = Blockly.Arduino.workspaceToCode(workspace);
+        var code = Blockly.Arduino.workspaceToCode(workspace);               
+        var codeElement = document.getElementById("codigogerado");
 
-        if (code.trim() !== "") {
+        if (code !== "") {
           mostrar = code;
+          codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                          mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                          "</code></pre>";
+          hljs.highlightElement(codeElement.querySelector("code"));
 
-          // Exibe o código gerado na tela (em um elemento com id="codigogerado")
-          document.getElementById("codigogerado").innerHTML = mostrar;
         }
       }
 
