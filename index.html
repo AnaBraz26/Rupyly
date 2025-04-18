@@ -183,8 +183,9 @@
     </xml>    
 
     <script>
+      var mostrar = "nada aqui";
       var workspace = Blockly.inject('blocklyDiv', {
-          toolbox: document.getElementById('toolbox')              
+          toolbox: document.getElementById('toolbox')
       });
 
       function update(event) {
@@ -195,7 +196,6 @@
       }
 
     workspace.addChangeListener(update);
-
 
       // ------------------------------------------------------------------------------------------------------------------
       // window.addEventListener("DOMContentLoaded", function(){
