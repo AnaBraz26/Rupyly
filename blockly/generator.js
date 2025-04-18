@@ -393,8 +393,7 @@
 //   };
 
   //------------------------------------------------
-  
-  
+    
   Blockly.Arduino['setup'] = function(block) {
     var statements_name = Blockly.Arduino.statementToCode(block, "Void_setup");
     var code = 'void setup() {\n' + statements_name + '}\n';
