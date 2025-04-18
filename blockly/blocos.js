@@ -8,7 +8,7 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("");
+   this.setTooltip("Código que roda uma vez ao iniciar");
    this.setHelpUrl("");
     }
   };
@@ -20,7 +20,7 @@
           .appendField("Ciclo");
       this.setPreviousStatement(true, null);
       this.setColour(0);
-   this.setTooltip("");
+   this.setTooltip("Código que roda continuamente");
    this.setHelpUrl("");
     }
   };

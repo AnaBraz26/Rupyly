@@ -183,66 +183,16 @@
     </xml>    
 
     <script>
-      var mostrar = "nada aqui";
-      var workspace = Blockly.inject('blocklyDiv', {
-          toolbox: document.getElementById('toolbox')
-      });
+      var workspace = Blockly.inject('blocklyDiv',options);
 
       function update(event) {
-          //Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
           var code = Blockly.Arduino.workspaceToCode(workspace);
-          if (code != "") {
-              mostrar = code;
-              document.getElementById("codigogerado").innerHTML = mostrar;
-              //cleanThanUp()
+          if (code.trim() !== "") {
+              document.getElementById("codigogerado").textContent = code;
           }
       }
-      
-      workspace.addChangeListener(update);
 
-    //------------------------------------------------------------------------------------
-    // Code in C
-   
-    // var mostrar = "nada aqui";
-    // var workspace = Blockly.inject('blocklyDiv', {
-    //     toolbox: document.getElementById('toolbox')
-    // });
-
-    // function update(event) {
-    //     Blockly.C.INFINITE_LOOP_TRAP = null;
-    //     var code = Blockly.C.workspaceToCode(workspace);
-    //     if (code != "") {
-    //         mostrar = code;
-    //         document.getElementById("codigogerado").innerHTML = mostrar;
-    //         cleanThanUp();
-    //         updateGraph();
-    //     }
-    // }
-
-    // function cleanThanUp() {
-    //     var list = document.getElementById("im");
-    //     if (list) {
-    //         while (list.hasChildNodes()) {
-    //             list.removeChild(list.firstChild);
-    //         }
-    //     }
-    // }
-
-    // function updateGraph() {
-    //     if (mostrar != "nada aqui") {
-    //         var viz = new Viz();
-    //         viz.renderSVGElement(mostrar)
-    //             .then(function(element) {
-    //                 document.getElementById("im").appendChild(element);
-    //             })
-    //             .catch(error => {
-    //                 console.error(error);
-    //                 viz = new Viz(); // Recria o Viz se tiver erro
-    //             });
-    //     }
-    // }
-
-    // workspace.addChangeListener(update);
+    workspace.addChangeListener(update);
 
 
       // ------------------------------------------------------------------------------------------------------------------
