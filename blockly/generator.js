@@ -402,14 +402,14 @@
     return code;
   };
   
-  Blockly.JavaScript['loop'] = function(block) {
+  Blockly.Arduino['loop'] = function(block) {
     var statements_name = Blockly.Arduino.statementToCode(block, 'Void_loop');
     // TODO: Assemble JavaScript into code variable.
     var code = 'void loop(){ '+statements_name+'}';
     return code;
   };
   
-  Blockly.JavaScript['led'] = function(block) {
+  Blockly.Arduino['led'] = function(block) {
     var text_nome = block.getFieldValue('nome');
     var number_porta = block.getFieldValue('Porta');
     var code = 'int led_'+text_nome+'= '+number_porta+';';
