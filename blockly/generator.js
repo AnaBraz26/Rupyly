@@ -406,16 +406,12 @@
     return code;
   };
   
-  
   Blockly.Arduino['led'] = function(block) {
     var text_nome = block.getFieldValue("nome");
     var number_porta = block.getFieldValue("Porta");
-    var varName = 'led_' + text_nome;
-    
-    Blockly.Arduino.addVariable(varName, 'int ' + varName + ' = ' + number_porta + ';', true);
   
     // Nenhum código vai no corpo do setup ou loop nesse bloco
-    return '';
+    return "int led_"+text_nome+" = "+number_porta+";";
   };
   
   

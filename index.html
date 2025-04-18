@@ -190,6 +190,7 @@
 
       // Função chamada sempre que houver mudança no workspace (blocos)
       function update(event) {
+        Blockly.Arduino.INFINITE_LOOP_TRAP = null;
         // Gera o código Arduino a partir dos blocos no workspace
         var code = Blockly.Arduino.workspaceToCode(workspace);
 
