@@ -183,7 +183,10 @@
     </xml>    
 
     <script>
-    var workspace = Blockly.inject('blocklyDiv', options); // Usa as opções do workspace.js
+    var workspace = Blockly.inject('blocklyDiv', {
+        toolbox: document.getElementById('toolbox'),
+        options
+      }); // Usa as opções do workspace.js
 
     function update(event) {
         var code = Blockly.Arduino.workspaceToCode(workspace);
