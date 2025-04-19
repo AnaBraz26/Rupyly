@@ -272,23 +272,22 @@
         if (!fileName) return;
 
         try {
-          const response = await fetch("https://ereko-blockly-back.onrender.com/enviar-codigo", {
+          const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              fileName: fileName.endsWith(".ino") ? fileName : `${fileName}.ino`,
-              code,
+              code
             }),
           });
 
           const text = await response.text();
 
           if (response.ok) {
-            alert("✅ Sucesso!\n\n" + text);
+            alert("✅ Código salvo no servidor com sucesso!\n\n" + text);
           } else {
-            alert("❌ Falha no envio:\n\n" + text);
+            alert("❌ Falha ao salvar código:\n\n" + text);
           }
         } catch (err) {
           alert("❌ Erro de rede ou servidor: " + err.message);
