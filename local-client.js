@@ -5,7 +5,7 @@ const { exec } = require("child_process");
 
 const url = "https://ereko-blockly-back.onrender.com/codigo"; // troque pelo seu link real
 const fqbn = "arduino:avr:uno";
-const porta = "/dev/ttyACM0"; // ou COM3 no Windows
+const porta = "/dev/ttyACM1"; // ou COM3 no Windows
 
 async function buscarEEnviarCodigo() {
   try {
