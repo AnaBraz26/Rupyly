@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { exec } = require("child_process");
 
-const url = "https://seu-backend-no-render.onrender.com/codigo"; // troque pelo seu link real
+const url = "https://ereko-blockly-back.onrender.com/codigo"; // troque pelo seu link real
 const fqbn = "arduino:avr:uno";
 const porta = "/dev/ttyACM0"; // ou COM3 no Windows
 
