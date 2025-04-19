@@ -7,11 +7,22 @@ const url = "https://ereko-blockly-back.onrender.com/codigo"; // Troque pelo seu
 const fqbn = "arduino:avr:uno";
 const porta = "/dev/ttyACM1"; // ou COM3 no Windows
 
+let ultimoCodigo = ""; // Variável para armazenar o código da última vez
+
 async function buscarEEnviarCodigo() {
   try {
     console.log("🔎 Buscando código...");
     const res = await axios.get(url);
     const { fileName, code } = res.data;
+
+    // Verifica se o código mudou
+    if (code === ultimoCodigo) {
+      console.log("⚠️ Nenhuma mudança no código. Nenhuma ação necessária.");
+      return; // Se o código não mudou, não faz nada
+    }
+
+    // Atualiza o código anterior com o código atual
+    ultimoCodigo = code;
 
     const dir = path.join(__dirname, fileName.replace(".ino", ""));
     if (!fs.existsSync(dir)) {
@@ -44,9 +55,5 @@ async function buscarEEnviarCodigo() {
   }
 }
 
-// Verifica a cada 15 segundos
-setInterval(buscarEEnviarCodigo, 15000);
-
-
-// Verifica a cada 15 segundos
+// Verifica periodicamente a cada 15 segundos, mas só faz upload se o código mudar
 setInterval(buscarEEnviarCodigo, 15000);
