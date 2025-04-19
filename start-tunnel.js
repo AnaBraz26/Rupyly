@@ -15,7 +15,7 @@ async function startTunnel() {
   });
 
   // 2. Criar o túnel
-  const tunnel = await localtunnel({ port: 3000, subdomain: "ereko-backend" });
+  const tunnel = await localtunnel({ port: 3000, subdomain: "ereko-backend2" });
 
   console.log(`🌐 Tunnel ativo: ${tunnel.url}`);
 
