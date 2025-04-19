@@ -207,198 +207,152 @@
 
       workspace.addChangeListener(update);
 
-      // ------------------------------------------------------------------------------------------------------------------
-      // window.addEventListener("DOMContentLoaded", function(){
-      //       var mostrar = "nada";
-      //       var workspace = Blockly.inject('blocklyDiv', {
-      //           toolbox: document.getElementById('toolbox')
-      //       });
-    
-      //       function update(event) {
-      //         Blockly.C.INFINITE_LOOP_TRAP = null;
-      //           var code = new String(Blockly.C.workspaceToCode(workspace));               
-      //           var codeElement = document.getElementById("codigogerado");
-          
-      //           if (code!= "") {   
-      //             mostrar = code;             
-
-      //             // Define a formatação como código C/C++
-      //             codeElement.innerHTML = "<pre><code class='language-c'>" + 
-      //                                     mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-      //                                     "</code></pre>";
-                  
-      //             // Reaplica o realce de sintaxe
-      //             hljs.highlightElement(codeElement.querySelector("code"));
-              
-      //             cleanThanUp();   
-      //             //updateGraph();                
-      //           }
-      //       }
-    
-      //       function cleanThanUp() {
-      //         var list = document.getElementById("mostrar"); 
-      //           if(list){
-      //             while (list.hasChildNodes()) {
-      //                 list.removeChild(list.childNodes[0]);
-      //           }
-      //             updateGraph();
-      //           }
-      //           else{
-      //             console.error("Elemento #im não encontrado")
-      //           }
-      //       }
-
-      //       function updateGraph() {
-      //           if(mostrar != "nada"){
-      //             var viz = new Viz();
-      //             viz.renderSVGElement(mostrar)
-      //             .then(function(element){
-      //                 document.getElementById("im").appendChild(element);
-      //             })
-      //             .catch(error => {
-      //               viz = new Viz();
-      //               console.error(error);
-      //             });
-      //           }
-      //       }
-      //       workspace.addChangeListener(update);     
-      //   });
       // -------------------------------------------------------------------------------------------------
 
-          // document.getElementById("Download").addEventListener("click", function() {
-          //       var fileName = "codigo_gerado.c";
-                
-          //       // Obtém o conteúdo que está visível na tela (dentro da área onde o código C está sendo exibido)
-          //       var fileContent = document.getElementById("codigogerado").innerText; 
-                
-          //       // Cria um link temporário para download
-          //       var element = document.createElement('a');
-          //       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
-          //       element.setAttribute('download', fileName);
+      document.getElementById("Download").addEventListener("click", function () {
+          // Pergunta ao usuário o nome do arquivo
+          var fileName = prompt("Digite o nome do arquivo:", "codigo_arduino");
 
-          //       document.body.appendChild(element);
-                
-          //       // Simula um clique para iniciar o download
-          //       element.click();
-                
-          //       // Remove o elemento temporário
-          //       document.body.removeChild(element);
-          //   });
+          // Se o usuário cancelar ou deixar em branco, interrompe
+          if (!fileName) return;
 
-          // let port;
-          // let writer;
-        
-          // document.getElementById("connectArduino").addEventListener("click", async () => {
-          //     try {
-          //         // Solicita ao usuário que selecione um dispositivo serial
-          //         port = await navigator.serial.requestPort();
-          //         await port.open({ baudRate: 115200 });
-        
-          //         // Cria um writer para enviar dados
-          //         writer = port.writable.getWriter();
-        
-          //         document.getElementById("sendCode").disabled = false;
-          //         alert("Conectado ao Arduino!");
-        
-          //     } catch (error) {
-          //         console.error("Erro ao conectar:", error);
-          //         alert("Falha ao conectar ao Arduino.");
-          //     }
-          // });
+          // Garante que o nome termina com .ino
+          if (!fileName.endsWith(".ino")) {
+              fileName += ".ino";
+          }
 
-          // document.getElementById("sendCode").addEventListener("click", async () => {
-          //     let code = document.getElementById("codigogerado").innerText;
-          //     if (!code) {
-          //         alert("Nenhum código gerado!");
-          //         return;
-          //     }
+          // Pega o conteúdo exibido no campo de código
+          var fileContent = document.getElementById("codigogerado").innerText;
 
-          //     // Nome do arquivo que será salvo
-          //     let fileName = "codigo_gerado.ino";
-          //     let fileContent = code;
-              
-          //     alert("Código salvo como .ino. Agora será enviado para o Arduino.");
+          // Cria um link temporário para download
+          var element = document.createElement("a");
+          element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(fileContent));
+          element.setAttribute("download", fileName);
 
-          //     const { exec } = require("child_process");
-          //     const fs = require("fs");
-          //     const path = require("path");
+          document.body.appendChild(element);
 
-          //     // try {               
-          //       const fileBaseName = path.parse(fileName).name; // Nome sem extensão
-          //       const dirPath = path.join(__dirname, fileBaseName); // Caminho da pasta
+          // Simula o clique para iniciar o download
+          element.click();
 
-          //       // Criar a pasta se não existir
-          //       if (!fs.existsSync(dirPath)) {
-          //           fs.mkdirSync(dirPath);
-          //           console.log(`Pasta criada: ${dirPath}`);
-          //       }
+          // Remove o link da página
+          document.body.removeChild(element);
+      });
 
-          //       // Criar o arquivo dentro da pasta
-          //       const filePath = path.join(dirPath, fileName);
-          //       if (!fs.existsSync(filePath)) {
-          //           fs.writeFileSync(filePath, "// Código Arduino aqui\nvoid setup() {}\nvoid loop() {}");
-          //           console.log(`Arquivo criado: ${filePath}`);
-          //       }
-          //         exec("arduino-cli board list", (error, stdout, stderr) => {
-          //             if (error) {
-          //                 console.error(`Erro ao listar placas: ${error.message}`);
-          //                 console.error(`stderr: ${stderr}`);
-          //                 alert("Erro ao listar placas.");
-          //                 return;
-          //             }
 
-          //             console.log("Saída do board list:", stdout);
+      // let port;
+      // let writer;
+    
+      // document.getElementById("connectArduino").addEventListener("click", async () => {
+      //     try {
+      //         // Solicita ao usuário que selecione um dispositivo serial
+      //         port = await navigator.serial.requestPort();
+      //         await port.open({ baudRate: 115200 });
+    
+      //         // Cria um writer para enviar dados
+      //         writer = port.writable.getWriter();
+    
+      //         document.getElementById("sendCode").disabled = false;
+      //         alert("Conectado ao Arduino!");
+    
+      //     } catch (error) {
+      //         console.error("Erro ao conectar:", error);
+      //         alert("Falha ao conectar ao Arduino.");
+      //     }
+      // });
 
-          //             let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
-          //             if (!match) {
-          //                 alert("Nenhuma placa encontrada!");
-          //                 return;
-          //             }
+      // document.getElementById("sendCode").addEventListener("click", async () => {
+      //     let code = document.getElementById("codigogerado").innerText;
+      //     if (!code) {
+      //         alert("Nenhum código gerado!");
+      //         return;
+      //     }
 
-          //             let port = match[1]; // Porta do Arduino
-          //             let fqbn = match[2]; // Nome da placa
+      //     // Nome do arquivo que será salvo
+      //     let fileName = "codigo_gerado.ino";
+      //     let fileContent = code;
+          
+      //     alert("Código salvo como .ino. Agora será enviado para o Arduino.");
 
-          //             console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
+      //     const { exec } = require("child_process");
+      //     const fs = require("fs");
+      //     const path = require("path");
 
-          //             if (!fileName) {
-          //                 console.error("Erro: fileName não está definido!");
-          //                 alert("Erro: Nome do arquivo não especificado.");
-          //                 return;
-          //             }             
-          //             if (fqbn === "Unknown") {
-          //                 console.warn("Placa não reconhecida! Usando um modelo padrão...");
-          //                 fqbn = "arduino:avr:uno"; // Substitua pelo modelo correto encontrado no passo 1
-          //             }
+      //     // try {               
+      //       const fileBaseName = path.parse(fileName).name; // Nome sem extensão
+      //       const dirPath = path.join(__dirname, fileBaseName); // Caminho da pasta
 
-          //             exec(`arduino-cli compile --fqbn ${fqbn} ${dirPath}`, (compErr, compStdout, compStderr) => {
-          //             if (compErr) {
-          //                 console.error(`Erro ao compilar: ${compErr.message}`);
-          //                 console.error(`stderr: ${compStderr}`);
-          //                 alert("Erro na compilação.");
-          //                 return;
-          //             }
+      //       // Criar a pasta se não existir
+      //       if (!fs.existsSync(dirPath)) {
+      //           fs.mkdirSync(dirPath);
+      //           console.log(`Pasta criada: ${dirPath}`);
+      //       }
 
-          //             console.log("Compilação:", compStdout);
+      //       // Criar o arquivo dentro da pasta
+      //       const filePath = path.join(dirPath, fileName);
+      //       if (!fs.existsSync(filePath)) {
+      //           fs.writeFileSync(filePath, "// Código Arduino aqui\nvoid setup() {}\nvoid loop() {}");
+      //           console.log(`Arquivo criado: ${filePath}`);
+      //       }
+      //         exec("arduino-cli board list", (error, stdout, stderr) => {
+      //             if (error) {
+      //                 console.error(`Erro ao listar placas: ${error.message}`);
+      //                 console.error(`stderr: ${stderr}`);
+      //                 alert("Erro ao listar placas.");
+      //                 return;
+      //             }
 
-          //             exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${dirPath}`, (uploadErr, uploadStdout, uploadStderr) => {
-          //                 if (uploadErr) {
-          //                     console.error(`Erro ao enviar código: ${uploadErr.message}`);
-          //                     console.error(`stderr: ${uploadStderr}`);
-          //                     alert("Falha ao enviar código.");
-          //                     return;
-          //                 }
+      //             console.log("Saída do board list:", stdout);
 
-          //                 console.log("Upload:", uploadStdout);
-          //                 alert("Código enviado com sucesso!");
-          //             });
-          //           });
-          //         });
-          //       // } catch (error) {
-          //       //     console.error("Erro ao executar arduino-cli:", error);
-          //       //     alert("Erro ao executar o arduino-cli.");
-          //       // }
+      //             let match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
+      //             if (!match) {
+      //                 alert("Nenhuma placa encontrada!");
+      //                 return;
+      //             }
 
-          // });
+      //             let port = match[1]; // Porta do Arduino
+      //             let fqbn = match[2]; // Nome da placa
+
+      //             console.log(`Placa encontrada: ${fqbn} na porta ${port}`);
+
+      //             if (!fileName) {
+      //                 console.error("Erro: fileName não está definido!");
+      //                 alert("Erro: Nome do arquivo não especificado.");
+      //                 return;
+      //             }             
+      //             if (fqbn === "Unknown") {
+      //                 console.warn("Placa não reconhecida! Usando um modelo padrão...");
+      //                 fqbn = "arduino:avr:uno"; // Substitua pelo modelo correto encontrado no passo 1
+      //             }
+
+      //             exec(`arduino-cli compile --fqbn ${fqbn} ${dirPath}`, (compErr, compStdout, compStderr) => {
+      //             if (compErr) {
+      //                 console.error(`Erro ao compilar: ${compErr.message}`);
+      //                 console.error(`stderr: ${compStderr}`);
+      //                 alert("Erro na compilação.");
+      //                 return;
+      //             }
+
+      //             console.log("Compilação:", compStdout);
+
+      //             exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${dirPath}`, (uploadErr, uploadStdout, uploadStderr) => {
+      //                 if (uploadErr) {
+      //                     console.error(`Erro ao enviar código: ${uploadErr.message}`);
+      //                     console.error(`stderr: ${uploadStderr}`);
+      //                     alert("Falha ao enviar código.");
+      //                     return;
+      //                 }
+
+      //                 console.log("Upload:", uploadStdout);
+      //                 alert("Código enviado com sucesso!");
+      //             });
+      //           });
+      //         });
+      //       // } catch (error) {
+      //       //     console.error("Erro ao executar arduino-cli:", error);
+      //       //     alert("Erro ao executar o arduino-cli.");
+      //       // }
+
+      // });
 
   </script>
 
