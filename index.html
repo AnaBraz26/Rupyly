@@ -260,6 +260,31 @@
           }
       });
 
+      document.getElementById("sendCode").addEventListener("click", async () => {
+        let code = document.getElementById("codigogerado").innerText;
+        if (!code) {
+            alert("Nenhum código gerado!");
+            return;
+        }
+
+        const fileName = prompt("Digite o nome do arquivo:", "meu_codigo");
+
+        const response = await fetch("/enviar-codigo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                code: code,
+                filename: fileName
+            })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+    });
+
+
       // document.getElementById("sendCode").addEventListener("click", async () => {
       //     let code = document.getElementById("codigogerado").innerText;
       //     if (!code) {
