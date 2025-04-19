@@ -239,26 +239,26 @@
       });
 
 
-      // let port;
-      // let writer;
+      let port;
+      let writer;
     
-      // document.getElementById("connectArduino").addEventListener("click", async () => {
-      //     try {
-      //         // Solicita ao usuário que selecione um dispositivo serial
-      //         port = await navigator.serial.requestPort();
-      //         await port.open({ baudRate: 115200 });
+      document.getElementById("connectArduino").addEventListener("click", async () => {
+          try {
+              // Solicita ao usuário que selecione um dispositivo serial
+              port = await navigator.serial.requestPort();
+              await port.open({ baudRate: 115200 });
     
-      //         // Cria um writer para enviar dados
-      //         writer = port.writable.getWriter();
+              // Cria um writer para enviar dados
+              writer = port.writable.getWriter();
     
-      //         document.getElementById("sendCode").disabled = false;
-      //         alert("Conectado ao Arduino!");
+              document.getElementById("sendCode").disabled = false;
+              alert("Conectado ao Arduino!");
     
-      //     } catch (error) {
-      //         console.error("Erro ao conectar:", error);
-      //         alert("Falha ao conectar ao Arduino.");
-      //     }
-      // });
+          } catch (error) {
+              console.error("Erro ao conectar:", error);
+              alert("Falha ao conectar ao Arduino.");
+          }
+      });
 
       // document.getElementById("sendCode").addEventListener("click", async () => {
       //     let code = document.getElementById("codigogerado").innerText;
