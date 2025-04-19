@@ -1,12 +1,16 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const { exec } = require("child_process");
-const app = express();
-const PORT = process.env.PORT || 3000;
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+const { exec } = require('child_process');
 
+const app = express();
+
+// Configuração do CORS para permitir todas as origens
+app.use(cors());
+
+// Middleware para lidar com o corpo da requisição (JSON)
 app.use(express.json());
-app.use(express.static("public")); // onde está seu index.html
 
 app.post("/enviar-codigo", (req, res) => {
     const { fileName, code } = req.body;
@@ -54,5 +58,7 @@ app.post("/enviar-codigo", (req, res) => {
     });
 });
 
-
-app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
+// Inicia o servidor na porta 3000 (ou a porta que preferir)
+app.listen(3000, () => {
+    console.log("Servidor rodando na porta 3000");
+});
