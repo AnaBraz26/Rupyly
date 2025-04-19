@@ -269,15 +269,12 @@
 
         const fileName = prompt("Digite o nome do arquivo:", "meu_codigo");
 
-        const response = await fetch("/enviar-codigo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                code: code,
-                filename: fileName
-            })
+        fetch("https://ereko-blockly-back.onrender.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ fileName: "meu_codigo.ino", code: document.getElementById("codigogerado").innerText }),
         });
 
         const result = await response.json();

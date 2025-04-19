@@ -6,39 +6,24 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.static("public")); // frontend
+app.use(express.static("public")); // onde está seu index.html
 
 app.post("/enviar-codigo", (req, res) => {
-    const code = req.body.code;
-    const fileBase = req.body.filename || "codigo_gerado";
-    const fileName = fileBase + ".ino";
-    const folderPath = path.join(__dirname, fileBase);
+  const { fileName, code } = req.body;
+  const dir = path.join(__dirname, fileName.replace(".ino", ""));
 
-    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
-    const filePath = path.join(folderPath, fileName);
-    fs.writeFileSync(filePath, code);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  const filePath = path.join(dir, fileName);
+  fs.writeFileSync(filePath, code);
 
-    // Detectar placa
-    exec("arduino-cli board list", (err, stdout, stderr) => {
-        if (err) return res.json({ message: "Erro ao listar placas." });
+  exec(`arduino-cli compile --fqbn arduino:avr:uno ${dir}`, (err) => {
+    if (err) return res.status(500).send("Erro na compilação.");
 
-        const match = stdout.match(/(\/dev\/tty\w+|COM\d+)\s+(\S+)/);
-        if (!match) return res.json({ message: "Nenhuma placa encontrada." });
-
-        let port = match[1];
-        let fqbn = match[2] === "Unknown" ? "arduino:avr:uno" : match[2];
-
-        // Compilar
-        exec(`arduino-cli compile --fqbn ${fqbn} ${folderPath}`, (compErr, compOut, compStderr) => {
-            if (compErr) return res.json({ message: "Erro na compilação." });
-
-            // Enviar
-            exec(`arduino-cli upload -p ${port} --fqbn ${fqbn} ${folderPath}`, (uploadErr, uploadOut, uploadStderr) => {
-                if (uploadErr) return res.json({ message: "Erro ao enviar para o Arduino." });
-                res.json({ message: "Código enviado com sucesso!" });
-            });
-        });
+    exec(`arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno ${dir}`, (err2) => {
+      if (err2) return res.status(500).send("Erro no upload.");
+      res.send("Código enviado com sucesso!");
     });
+  });
 });
 
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
