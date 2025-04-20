@@ -1,8 +1,0 @@
-# .gitignore
-dist/
-Apps.zip
-*.exe
-*.AppImage
-*.dmg
-*.zip
-*.log
