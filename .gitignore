@@ -1,6 +1,9 @@
+# .gitignore
 dist/
 node_modules/
 Apps.zip
 *.exe
 *.AppImage
 *.dmg
+*.zip
+*.log
