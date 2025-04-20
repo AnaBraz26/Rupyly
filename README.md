@@ -17,3 +17,11 @@ https://ereko-blockly-back.onrender.com
 
 Para rodar localmente, faça a clonagem do repositório e utilize:
 npm start
+
+Foram utilizadas como base bibliotecas dos seguintes aplicativos:
+[Blockly-at-rduino](https://github.com/technologiescollege/Blockly-at-rduino)
+[BlocklyDuino](https://github.com/BlocklyDuino)
+[Ardublockly](https://github.com/carlosperate/ardublockly)
+
+Também foi utilizado o [Arduino-cli](https://docs.arduino.cc/arduino-cli/), uma ferramenta de linha de comando oficial da Arduino que permite
+compilar, upload e gerenciar placas e bibliotecas sem precisar da IDE gráfico do Arduino
