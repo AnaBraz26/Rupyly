@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { exec } = require("child_process");
 
-const url = "https://ereko-blockly-back.onrender.com/salvar-codigo";
+const url = "https://ereko-blockly-back.onrender.com/codigo";
 const fqbn = "arduino:avr:uno";
 let porta = "";
 
