@@ -9,7 +9,7 @@
       this.setNextStatement(true, null);
       this.setColour(0);
    this.setTooltip("Código que roda uma vez ao iniciar");
-   this.setHelpUrl("");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/sketch/setup/");
     }
   };
   
@@ -21,7 +21,7 @@
       this.setPreviousStatement(true, null);
       this.setColour(0);
    this.setTooltip("Código que roda continuamente");
-   this.setHelpUrl("");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/sketch/loop/");
     }
   };
   
@@ -35,8 +35,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Declara a porta em que o Led será ligado");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/vari%C3%A1veis/data-types/int/");
     }
   };
   
@@ -49,8 +49,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Aciona um valor HIGH ou LOW para o Led");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
 
@@ -64,8 +64,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Configura o led para funcionar como uma entrada ou saída");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/pinMode/");
     }
   };
 
@@ -80,7 +80,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(60);
-   this.setTooltip("");
+   this.setTooltip("Declara a porta em que o Buzzer será ligado");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/vari%C3%A1veis/data-types/int/");
     }
   };
 
@@ -93,8 +94,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(60);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Aciona um valor HIGH ou LOW para o Buzzer");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
   
@@ -107,8 +108,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(60);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Configura o Buzzer para funcionar como uma entrada ou saída");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/pinMode/");
     }
   };
   
@@ -120,8 +121,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Pausa o programa por certo tempo em milissegundos");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/time/delay/");
     }
   };
 
@@ -132,8 +133,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Inclui a biblioteca do servomotor");
+   this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
 
@@ -145,8 +146,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Declara o servomotor");
+   this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
 
@@ -159,8 +160,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Declara em qual porta o servomotor será ligado");
+   this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
 
@@ -173,8 +174,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Colocar o valor, em graus, que o motor irá mexer");
+   this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
 
@@ -185,8 +186,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(400);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Incluí a biblioteca SoftwareSerial");
+   this.setHelpUrl("https://docs.arduino.cc/learn/built-in-libraries/software-serial/");
     }
   };
 
@@ -202,8 +203,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Cria uma instância de um objeto SoftwareSerial");
+   this.setHelpUrl("https://docs.arduino.cc/learn/built-in-libraries/software-serial/#softwareserial");
     }
   };
 
@@ -215,8 +216,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Declara uma varível como um byte");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/en/variables/data-types/byte/");
     }
   };
 
@@ -230,8 +231,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Declara uma variável inteira");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/vari%C3%A1veis/data-types/int/");
     }
   };
 
@@ -244,8 +245,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Coloca a velocidade para uma variável");
+   this.setHelpUrl("https://docs.arduino.cc/learn/built-in-libraries/software-serial/#begin");
     }
   };
 
@@ -257,8 +258,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Coloca a velocidade para comunicação serial");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/en/functions/communication/serial/begin/");
     }
   };
 
@@ -271,8 +272,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Verifica se é válido a condição e executa o comando a seguir");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/control-structure/if/");
     }
   };
 
@@ -285,8 +286,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Aciona uma onda PWM em um pino");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/analog-io/analogWrite/");
     }
   };
   
@@ -302,8 +303,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Remapeia um número de um intervalo para outro");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/math/map/");
     }
   };
   
@@ -315,8 +316,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Imprime dados no pino de transmissão do objeto SoftwareSerial");
+   this.setHelpUrl("https://docs.arduino.cc/learn/built-in-libraries/software-serial/#print");
     }
   };
 
@@ -329,8 +330,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Imprime dados no pino de transmissão do objeto SoftwareSerial com pulo de linha ao final");
+   this.setHelpUrl("https://docs.arduino.cc/learn/built-in-libraries/software-serial/#println");
     }
   };
 
@@ -344,8 +345,8 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("");
-   this.setHelpUrl("");
+   this.setTooltip("Atruição de valor de uma varível");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/arithmetic-operators/assignment/");
     }
   };
   
@@ -358,7 +359,7 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
-   this.setTooltip("");
+   this.setTooltip("Esse bloco faz com que o carrinho ande em quadrado");
    this.setHelpUrl("");
     }
   };
@@ -372,7 +373,7 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
-   this.setTooltip("");
+   this.setTooltip("Esse bloco faz com que o carrinho ande em círculo");
    this.setHelpUrl("");
     }
   };
@@ -386,7 +387,7 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(230);
-   this.setTooltip("");
+   this.setTooltip("Esse bloco faz com que o carrinho ande em triângulo");
    this.setHelpUrl("");
     }
   };
