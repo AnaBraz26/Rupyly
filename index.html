@@ -183,14 +183,14 @@
     </xml>    
 
     <script>
-      
+
     // Função chamada sempre que houver mudança no workspace (blocos)
     function update(event) {
         var code = Blockly.Arduino.workspaceToCode(workspace);               
         var codeElement = document.getElementById("codigogerado");
 
         // Verifica se o workspace está vazio
-        if (workspace.getAllBlocks().length === 0) {
+        if (workspace.getAllBlocks().length == 0) {
             // Se estiver vazio, limpa o código na área de exibição
             codeElement.innerHTML = "<pre><code class='language-c'></code></pre>";
         } else if (code !== "") {
