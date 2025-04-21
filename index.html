@@ -193,7 +193,6 @@
 
       // Função chamada sempre que houver mudança no workspace (blocos)
       function update(event) {
-        Blockly.Arduino = new Blockly.Generator('Arduino');
         var code = Blockly.Arduino.workspaceToCode(workspace);               
         var codeElement = document.getElementById("codigogerado");
 
