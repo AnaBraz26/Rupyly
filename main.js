@@ -34,7 +34,7 @@ function runLocalClient() {
   });
 
   child.on("close", (code) => {
-    console.log(`${code}`);
+    console.log(`child process exited with code ${code}`);
   });
 }
 

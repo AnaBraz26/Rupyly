@@ -39,7 +39,7 @@ async function buscarEEnviarCodigo() {
     const { fileName, code } = res.data;
 
     if (code === ultimoCodigo) {
-      console.log("⚠️ Nenhuma mudança no código.");
+      console.log("🚨 Nenhuma mudança no código.");
       return;
     }
 
@@ -78,7 +78,7 @@ async function buscarEEnviarCodigo() {
 
 function iniciarVerificacao() {
   buscarEEnviarCodigo(); // Executa imediatamente
-  setInterval(buscarEEnviarCodigo, 15000); // Depois a cada 15s se mudar o código
+  setInterval(buscarEEnviarCodigo, 10000); // Depois a cada 10s se mudar o código
 }
 
 // Iniciar: detectar a porta primeiro
