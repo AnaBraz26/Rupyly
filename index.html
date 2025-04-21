@@ -185,6 +185,12 @@
     <script>
     // Criação do workspace Blockly e conexão com o toolbox
 
+      var workspace = Blockly.inject('blocklyDiv', {
+          toolbox: document.getElementById('toolbox')
+        });
+        
+      var mostrar = "nada";  
+
       // Função chamada sempre que houver mudança no workspace (blocos)
       function update(event) {
           var code = Blockly.Arduino.workspaceToCode(workspace);               
@@ -203,6 +209,7 @@
       }
 
       workspace.addChangeListener(update);
+
 
       // -------------------------------------------------------------------------------------------------
 
