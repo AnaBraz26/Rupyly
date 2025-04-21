@@ -26,15 +26,15 @@ function runLocalClient() {
   const child = exec("node local-client.js");
 
   child.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
+    console.log(`${data}`);
   });
 
   child.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
+    console.error(`${data}`);
   });
 
   child.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
+    console.log(`${code}`);
   });
 }
 
