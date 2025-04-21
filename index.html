@@ -183,30 +183,27 @@
     </xml>    
 
     <script>
-    // Criação do workspace Blockly e conexão com o toolbox
-
-      var workspace = Blockly.inject('blocklyDiv', {
-          toolbox: document.getElementById('toolbox')
-        });
-        
-      var mostrar = "nada";  
-
-      // Função chamada sempre que houver mudança no workspace (blocos)
-      function update(event) {
+      
+    // Função chamada sempre que houver mudança no workspace (blocos)
+    function update(event) {
         var code = Blockly.Arduino.workspaceToCode(workspace);               
         var codeElement = document.getElementById("codigogerado");
 
-        if (code !== "") {
-          mostrar = code;
-          codeElement.innerHTML = "<pre><code class='language-c'>" + 
-                                          mostrar.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
-                                          "</code></pre>";
-          hljs.highlightElement(codeElement.querySelector("code"));
-
+        // Verifica se o workspace está vazio
+        if (workspace.getAllBlocks().length === 0) {
+            // Se estiver vazio, limpa o código na área de exibição
+            codeElement.innerHTML = "<pre><code class='language-c'></code></pre>";
+        } else if (code !== "") {
+            // Se não estiver vazio, exibe o código gerado
+            codeElement.innerHTML = "<pre><code class='language-c'>" + 
+                                            code.replace(/</g, "&lt;").replace(/>/g, "&gt;") + 
+                                            "</code></pre>";
+            hljs.highlightElement(codeElement.querySelector("code"));
         }
-      }
+    }
 
-      workspace.addChangeListener(update);
+    workspace.addChangeListener(update);
+
 
       // -------------------------------------------------------------------------------------------------
 
