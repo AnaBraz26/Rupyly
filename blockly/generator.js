@@ -4,13 +4,17 @@
 Blockly.Arduino['setup'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'Void_setup');
   //var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
-  return "void setup(){\n" +statements_name+ "\n}";
+  var code = "void setup(){\n" +statements_name+ "\n}";
+  code += Blockly.Arduino.blockToCode(block.getNextBlock());
+  return code;
 };
 
 Blockly.Arduino['loop'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'Void_loop');
   //var code = '<br><br><font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><br><font color="#000000">{</font>&nbsp;'+statements_name+'<br><font color="#000000">}</font>';
-    return "void loop(){\n" + statements_name +"\n}";
+  var code = "void loop(){\n" + statements_name +"\n}";
+  code += Blockly.Arduino.blockToCode(block.getNextBlock());
+  return code;
 };
 
 Blockly.Arduino['led'] = function(block) {
