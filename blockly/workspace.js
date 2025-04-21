@@ -1,6 +1,4 @@
 /* TODO: Change toolbox XML ID if necessary. Can export toolbox XML from Workspace Factory. */
-Blockly.setLocale('pt-br');
-
 var toolbox = document.getElementById("toolbox");
 
 var options = { 
