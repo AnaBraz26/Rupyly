@@ -5,5 +5,8 @@ void setup(){
 }
 void loop(){
   digitalWrite(ledNome,HIGH);
+  delay(500);
+  digitalWrite(ledNome,HIGH);
+  delay(500);
 
 }
