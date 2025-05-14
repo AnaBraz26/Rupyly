@@ -29,6 +29,7 @@ function detectarPorta(callback) {
     }
 
     console.error("⚠️ Nenhuma placa encontrada. Conecte uma placa e tente novamente.");
+    setInterval(detectarPorta, 10000); 
   });
 }
 

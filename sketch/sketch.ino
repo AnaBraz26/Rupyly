@@ -1,12 +1,12 @@
-int ledNome = 0;
+int ledNome = 11;
 void setup(){
   pinMode(ledNome,OUTPUT);
 
 }
 void loop(){
   digitalWrite(ledNome,HIGH);
-  delay(500);
-  digitalWrite(ledNome,HIGH);
-  delay(500);
+  delay(200);
+  digitalWrite(ledNome,LOW);
+  delay(200);
 
 }

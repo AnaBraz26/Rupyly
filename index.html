@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
   <link rel="manifest" href="favicon_io/site.webmanifest">
 
-  <title>ErekoBlockly</title>
+  <title>Rupyly</title>
   
   <!-- Materialize CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -52,14 +52,14 @@
 
   <body>
     <nav class="light-blue lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RUPYLY</a>
+      <div class="nav-wrapper "><a id="logo-container" href="#" class="brand-logo">RUPYLY</a>
         <ul class="right hide-on-med-and-down nav-buttons">       
           <button id="Download" class="btn waves-effect waves-light" type="submit">Download do código (.ino)</button>
           <!-- <button id="connectArduino" class="btn waves-effect waves-light">Conectar ao Arduino</button> -->
           <button id="sendCode" class="btn waves-effect waves-light" >Enviar Código</button>        
         </ul>
       </div>
-    </nav>
+    </nav>  
 
     <div class="row" style="min-height: 600px; margin-bottom: 0;">
       <!-- Blocos -->
@@ -67,7 +67,13 @@
         <div style="background-color: #2c7fd2; padding: 10px; text-align: center;">
           <h5 style="margin: 0; color: white;">Área destinada aos blocos</h5>
         </div>
-        <div id="blocklyDiv" style="height: 600px; width: 100%; border: 5px solid #2c7fd2; background-color: #598aba;"></div>
+        <div id="blocklyDiv" class="clearfix" style="
+        height: 600px; 
+        width: 100%; 
+        border: 5px solid #2c7fd2; 
+        background-color: #598aba;
+        overflow: auto;">
+        </div>
       </div>
     
       <!-- Código -->
@@ -75,14 +81,13 @@
         <div style="background-color: #22f702; padding: 10px; text-align: center;">
           <h5 style="margin: 0;">Área destinada à geração do código em C</h5>
         </div>
-        <div id="codigogerado" class="clearfix" style="
+        <div id="codigogerado" style="
           font-family: 'Courier New', Courier, monospace;
           height: 600px;
           width: 100%;
           background-color: #fff;
           color: #000;
           border: 5px solid #22f702;
-          padding: 10px;
           overflow: auto;"></div>
       </div>
     </div>
@@ -177,6 +182,12 @@
               <block type="int"></block>  
               <block type="igualdade"></block>  
             </category>
+
+            <category name="Motores">
+              <block type="motor"></block>                  
+              <block type="motor_attach"></block>
+              <block type="motor_write"></block>    
+            </category>
     
         </category>
   
@@ -242,28 +253,6 @@
           document.body.removeChild(element);
       });
 
-
-      // let port;
-      // let writer;
-    
-      // document.getElementById("connectArduino").addEventListener("click", async () => {
-      //     try {
-      //         // Solicita ao usuário que selecione um dispositivo serial
-      //         port = await navigator.serial.requestPort();
-      //         await port.open({ baudRate: 115200 });
-    
-      //         // Cria um writer para enviar dados
-      //         writer = port.writable.getWriter();
-    
-      //         document.getElementById("sendCode").disabled = false;
-      //         alert("Conectado ao Arduino!");
-    
-      //     } catch (error) {
-      //         console.error("Erro ao conectar:", error);
-      //         alert("Falha ao conectar ao Arduino.");
-      //     }
-      // });
-
       
       document.getElementById("sendCode").addEventListener("click", async () => {
         const code = document.getElementById("codigogerado").innerText;
@@ -271,9 +260,6 @@
           alert("Nenhum código gerado!");
           return;
         }
-
-        //const fileName = prompt("Digite o nome do arquivo:", "meu_codigo");
-        //if (!fileName) return;
 
         try {
           const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
@@ -300,10 +286,10 @@
 
   </script>
 
-  <footer style="background-color: #0095ff; color: white; padding: 15px; text-align: center;">
-    <strong>Rupyly</strong><br>
-    Software exclusivo para modelos educacionais do grupo de pesquisa Ereko<br>
-    Made by Ana Carolina da Rocha Braz — Universidade de Brasília © 2024
+  <footer class="page-footer">
+    <h5 class="page-footer-h5">Rupyly</h5>
+    <p class="page-footer-p">Software exclusivo para modelos educacionais do grupo de pesquisa Ereko</p>
+    <p class="footer-copyright">Made by Ana Caroline da Rocha Braz — Universidade de Brasília © 2024.  Todos os direitos reservados.</p>
   </footer>
 
 

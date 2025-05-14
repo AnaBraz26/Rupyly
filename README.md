@@ -6,6 +6,11 @@ O Que falta a ser construido:
  * Biblioteca completa do Arebeko com a adição do braço
  * Arrumar a junção dos blocos para aparecer o código completo
 
+## Como rodar
+node local-client.js
+
+npm start
+
 # Deploy
 O seguinte trabalho pode ser acessado pelo link:
 
