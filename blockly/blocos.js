@@ -24,6 +24,46 @@
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/sketch/loop/");
     }
   };
+
+  Blockly.Blocks['funcao'] = {
+    init: function() {
+      this.appendStatementInput('void')
+        .setCheck(null)
+        .appendField('Função')
+        .appendField(new Blockly.FieldTextInput('nome'), 'nome');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setTooltip("Bloco para geração de função");
+      this.setHelpUrl('');
+      this.setColour(240);
+    }
+  };
+                      
+  Blockly.Blocks['chamada']= {
+    init: function() {
+      this.appendStatementInput('void')
+        .appendField('Chamar a Função')
+        .appendField(new Blockly.FieldTextInput('nome'), 'nome');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setTooltip("Chama uma função criada");
+      this.setHelpUrl('');
+      this.setColour(120);
+    }
+  };                
+  
+  Blockly.Blocks['texto']= {
+    init: function() {
+      this.appendDummyInput('void')
+        .appendField(new Blockly.FieldTextInput('nome'), 'nome');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setTooltip("Bloco para texto");
+      this.setHelpUrl('');
+      this.setColour(0);
+    }
+  };
+                      
   
   Blockly.Blocks['led'] = {
     init: function() {
@@ -340,15 +380,30 @@
     init: function() {
       this.appendDummyInput()
           .appendField(new Blockly.FieldTextInput("variavel"), "NAME")
-          .appendField("=")
+          .appendField("==")
           .appendField(new Blockly.FieldTextInput("input"), "text");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("Atruição de valor de uma varível");
+   this.setTooltip("Verifica se valor de uma varível é igual a outra");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/comparison-operators/equalTo/");
+    }
+  };
+
+  Blockly.Blocks['atribuicao'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldTextInput("variavel"), "NAME")
+          .appendField("=")
+          .appendField(new Blockly.FieldTextInput("input"), "text");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(200);
+   this.setTooltip("Atribuição de algum valor a váriavel");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/arithmetic-operators/assignment/");
     }
   };
+  
   
   Blockly.Blocks['quadrado'] = {
     init: function() {
