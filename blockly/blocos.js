@@ -62,8 +62,7 @@
       this.setHelpUrl('');
       this.setColour(0);
     }
-  };
-                      
+  };                   
   
   Blockly.Blocks['led'] = {
     init: function() {
@@ -77,6 +76,20 @@
       this.setColour(255);
    this.setTooltip("Declara a porta em que o Led será ligado");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/vari%C3%A1veis/data-types/int/");
+    }
+  };
+
+  Blockly.Blocks['digitalwrite'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Aciona alguma coisa")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("Aciona um valor HIGH ou LOW");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
   
@@ -109,6 +122,20 @@
     }
   };
 
+  Blockly.Blocks['pinmode'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Configuração do pino")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(255);
+   this.setTooltip("Configura o pino para funcionar como uma entrada ou saída");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/pinMode/");
+    }
+  };
+
 
   Blockly.Blocks['buzzer'] = {
     init: function() {
@@ -135,6 +162,20 @@
       this.setNextStatement(true, null);
       this.setColour(60);
    this.setTooltip("Aciona um valor HIGH ou LOW para o Buzzer");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
+    }
+  };
+  
+  Blockly.Blocks['digitalwrite'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Acionar Pino")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+          .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(60);
+   this.setTooltip("Aciona um valor HIGH ou LOW para o pino");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
@@ -322,7 +363,8 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Analog Write")
-          .appendField(new Blockly.FieldTextInput("pino,valor"), "nome")
+          .appendField(new Blockly.FieldTextInput("pino"), "nome")          
+          .appendField(new Blockly.FieldTextInput("valor"), "valor")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
@@ -408,11 +450,8 @@
   Blockly.Blocks['quadrado'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Fazer um quadrado de")
+          .appendField("Fazer um quadrado")
           .appendField(new Blockly.FieldNumber(0), "valor")
-          .appendField("cm");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
       this.setColour(230);
    this.setTooltip("Esse bloco faz com que o carrinho ande em quadrado");
    this.setHelpUrl("");
@@ -422,11 +461,8 @@
   Blockly.Blocks['circulo'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Fazer um circulo de")
+          .appendField("Fazer um circulo ")
           .appendField(new Blockly.FieldNumber(0), "valor")
-          .appendField("cm");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
       this.setColour(230);
    this.setTooltip("Esse bloco faz com que o carrinho ande em círculo");
    this.setHelpUrl("");
@@ -436,13 +472,32 @@
   Blockly.Blocks['triangulo'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Fazer um triângulo de")
+          .appendField("Fazer um triângulo")
           .appendField(new Blockly.FieldNumber(0), "valor")
-          .appendField("cm");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
       this.setColour(230);
    this.setTooltip("Esse bloco faz com que o carrinho ande em triângulo");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['reto'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Andar somente para frente")
+          .appendField(new Blockly.FieldNumber(0), "valor")
+      this.setColour(230);
+   this.setTooltip("Esse bloco faz com que o carrinho ande somente para frente");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.Blocks['atras'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Andar somente para trás")
+          .appendField(new Blockly.FieldNumber(0), "valor")
+      this.setColour(230);
+   this.setTooltip("Esse bloco faz com que o carrinho ande somente para trás");
    this.setHelpUrl("");
     }
   };
