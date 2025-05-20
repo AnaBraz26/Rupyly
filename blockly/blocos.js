@@ -362,7 +362,7 @@
   Blockly.Blocks['analogwrite'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Analog Write")
+          .appendField("Acionar onda PWM em")
           .appendField(new Blockly.FieldTextInput("pino"), "nome")          
           .appendField(new Blockly.FieldTextInput("valor"), "valor")
       this.setPreviousStatement(true, null);
@@ -418,19 +418,19 @@
   };
 
   
-  Blockly.Blocks['igualdade'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldTextInput("variavel"), "NAME")
-          .appendField("==")
-          .appendField(new Blockly.FieldTextInput("input"), "text");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(255);
-   this.setTooltip("Verifica se valor de uma varível é igual a outra");
-   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/comparison-operators/equalTo/");
-    }
-  };
+  // Blockly.Blocks['igualdade'] = {
+  //   init: function() {
+  //     this.appendDummyInput()
+  //         .appendField(new Blockly.FieldTextInput("variavel"), "NAME")
+  //         .appendField("==")
+  //         .appendField(new Blockly.FieldTextInput("input"), "text");
+  //     this.setPreviousStatement(true, null);
+  //     this.setNextStatement(true, null);
+  //     this.setColour(255);
+  //  this.setTooltip("Verifica se valor de uma varível é igual a outra");
+  //  this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/comparison-operators/equalTo/");
+  //   }
+  // };
 
   Blockly.Blocks['atribuicao'] = {
     init: function() {

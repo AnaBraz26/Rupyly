@@ -236,13 +236,13 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
     return code;
   };
 
-  Blockly.Arduino['igualdade'] = function(block) {
-    var text_name = block.getFieldValue('NAME');
-    var text_text = block.getFieldValue('text');  
-    var code = text_name+"=="+text_text;
-    code += Blockly.Arduino.blockToCode(block.getNextBlock());
-    return code;
-  };
+  // Blockly.Arduino['igualdade'] = function(block) {
+  //   var text_name = block.getFieldValue('NAME');
+  //   var text_text = block.getFieldValue('text');  
+  //   var code = text_name+"=="+text_text;
+  //   code += Blockly.Arduino.blockToCode(block.getNextBlock());
+  //   return code;
+  // };
 
   Blockly.Arduino['atribuicao'] = function(block) {
     var text_name = block.getFieldValue('NAME');

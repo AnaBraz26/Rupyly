@@ -41,54 +41,172 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
  
-  <style>
-    .clearfix {
-        overflow: auto;
+<style>
+  .clearfix {
+    overflow: auto;
+  }
+
+  #resizable-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 120px); /* 100% da altura da tela menos o nav */
+    min-width: 100px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #panel-blocks, #panel-code {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 150px;
+    flex-grow: 1;
+  }
+
+  #panel-blocks {
+    border-right: 2px solid #2c7fd2;
+    background-color: #598aba;
+  }
+
+  #panel-code {
+    border-left: 2px solid #22f702;
+    background-color: white;
+    color: black;
+  }
+
+  .header {
+    text-align: center;
+    padding-right: 40px;
+    padding: 10px;
+    font-weight: bold;
+    position: relative;
+  }
+
+  .header h5 {
+    margin: 0;
+  }
+  .header a {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #000;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 15px;
+  }
+
+  #panel-blocks .header {
+    background-color: #2c7fd2;
+    color: white;
+  }
+
+  #panel-code .header {
+    background-color: #22f702;
+    color: black;
+  }
+
+  #blocklyDiv {
+    flex: 1;
+    min-width: 0;
+    border: 5px solid #2c7fd2;
+    background-color: white;
+    overflow: auto;
+  }
+
+  #codigogerado {
+    flex: 1;
+    min-width: 0;
+    background-color: #fff;
+    color: #000;
+    border: 5px solid #22f702;
+    overflow: auto;
+    white-space: pre-wrap;
+  }
+
+
+  #dragbar {
+    width: 2px;
+    cursor: col-resize;
+    background-color: #444;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+
+  #dragbar:hover {
+    opacity: 1;
+  }
+
+  /* Layout adaptável em telas pequenas */
+  @media (max-width: 768px) {
+    #resizable-container {
+      flex-direction: column;
     }
-  </style>
+
+    #panel-blocks, #panel-code {
+      width: 100% !important;
+      height: 50vh;
+    }
+
+    #dragbar {
+      width: 100%;
+      height: 5px;
+      cursor: row-resize;
+    }
+}
+</style>
 
 </head>
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
   <body>
     <nav class="light-blue lighten-1" role="navigation">
-      <div class="nav-wrapper "><a id="logo-container" href="#" class="brand-logo">RUPYLY</a>
-        <ul class="right hide-on-med-and-down nav-buttons">       
-          <button id="Download" class="btn waves-effect waves-light" type="submit">Download do código (.ino)</button>
-          <!-- <button id="connectArduino" class="btn waves-effect waves-light">Conectar ao Arduino</button> -->
-          <button id="sendCode" class="btn waves-effect waves-light" >Enviar Código</button>        
-        </ul>
+      <div class="nav-wrapper">      
+          <div class="left-buttons">
+            <a href="caminho/para/seu_arquivo.pdf" download class="btn waves-effect waves-light">
+              Primeiras explicações
+            </a>
+        
+            <button class="btn waves-effect waves-light" onclick="togglePanel('reset')">
+              Restaurar Telas
+            </button>
+        </div>
+        <h3 href="#" class="brand-logo center-logo">RUPYLY</h3>
+        <div class="nav-buttons">
+          <button id="Download" class="btn waves-effect waves-light" type="submit">Download do Código (.ino)</button>
+          <button id="sendCode" class="btn waves-effect waves-light">Enviar Cógigo</button>
+        </div>
       </div>
-    </nav>  
+    </nav>
+       
 
-    <div class="row" style="min-height: 600px; margin-bottom: 0;">
-      <!-- Blocos -->
-      <div class="col s12 m6" style="padding: 0;">
-        <div style="background-color: #2c7fd2; padding: 10px; text-align: center;">
-          <h5 style="margin: 0; color: white;">Área destinada aos blocos</h5>
+    <div id="resizable-container">
+      <!-- Painel dos blocos -->
+      <div id="panel-blocks">
+        <div class="header">
+          <h5 style="margin: 0;">Área destinada aos blocos</h5>         
+            <a href="#" class="right hide-on-small-only" onclick="togglePanel('panel-blocks')">
+              <i class="material-icons">close</i>
+            </a>          
         </div>
-        <div id="blocklyDiv" class="clearfix" style="
-        height: 600px; 
-        width: 100%; 
-        border: 5px solid #2c7fd2; 
-        background-color: #598aba;
-        overflow: auto;">
-        </div>
+        <div id="blocklyDiv" class="clearfix"></div>
       </div>
-    
-      <!-- Código -->
-      <div class="col s12 m6" style="padding: 0;">
-        <div style="background-color: #22f702; padding: 10px; text-align: center;">
+  
+      <!-- Barra de drag -->
+      <div id="dragbar"></div>
+  
+      <!-- Painel do código -->
+      <div id="panel-code">
+        <div class="header">
           <h5 style="margin: 0;">Área destinada à geração do código em C</h5>
+          <a href="#" class="right hide-on-small-only" onclick="togglePanel('panel-code')">
+            <i class="material-icons">close</i>
+          </a>
         </div>
-        <div id="codigogerado" style="
-          font-family: 'Courier New', Courier, monospace;
-          height: 600px;
-          width: 100%;
-          background-color: #fff;
-          color: #000;
-          border: 5px solid #22f702;
-          overflow: auto;"></div>
+        <div id="codigogerado"></div>
       </div>
     </div>
 
@@ -184,12 +302,13 @@
               <block type="if"></block> 
               <block type="chamada"></block>
               <block type="texto"></block>
+              <block type="delay"></block>
             </category>
     
             <category name="Variáveis">
               <block type="byte"></block>  
               <block type="int"></block>  
-              <block type="igualdade"></block> 
+              <!-- <block type="igualdade"></block>  -->
               <block type="atribuicao"></block> 
             </category>
 
@@ -207,7 +326,36 @@
     // Criação do workspace Blockly e conexão com o toolbox
 
       var workspace = Blockly.inject('blocklyDiv', {
-          toolbox: document.getElementById('toolbox')
+          toolbox: document.getElementById('toolbox'),
+          scrollbars: true,
+          zoom: {
+              controls: true,
+              wheel: true,
+              startScale: 1.0,
+              maxScale: 3,
+              minScale: 0.3,
+              scaleSpeed: 1.2
+          },
+          move: {
+              scrollbars: true,
+              drag: true,
+              wheel: true
+          },
+          sounds: true,
+          grid: {
+            spacing: 100,
+            length: 5,
+            colour: '#999',
+            snap: false
+          },
+          collapse: true,
+          comments: true,
+          disable: false,
+          maxBlocks: Infinity,
+          trashcan: true,
+          horizontalLayout: false,
+          toolboxPosition: 'start',
+          css: true,
         });
         
       var mostrar = "nada";  
@@ -230,6 +378,63 @@
       }
 
       workspace.addChangeListener(update);
+      //-------------------------------------------------------------------------------------------------
+      // Drag resize
+    const dragbar = document.getElementById('dragbar');
+    const panelBlocks = document.getElementById('panel-blocks');
+    const panelCode = document.getElementById('panel-code');
+    const container = document.getElementById('resizable-container');
+
+    dragbar.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+
+      document.body.style.userSelect = 'none';
+      dragbar.style.opacity = '1';
+
+      function onMouseMove(e) {
+        const containerRect = container.getBoundingClientRect();
+        let newWidthBlocks = e.clientX - containerRect.left;
+
+        const minWidth = 150;
+        const maxWidth = containerRect.width - minWidth - dragbar.offsetWidth;
+
+        if (newWidthBlocks < minWidth) newWidthBlocks = minWidth;
+        if (newWidthBlocks > maxWidth) newWidthBlocks = maxWidth;
+
+        panelBlocks.style.flexGrow = '0';
+        panelBlocks.style.width = newWidthBlocks + 'px';
+
+        panelCode.style.flexGrow = '0';
+        panelCode.style.width = (containerRect.width - newWidthBlocks - dragbar.offsetWidth) + 'px';
+
+        // Ajusta Blockly para o novo tamanho
+        // Redimensiona o workspace do Blockly
+        Blockly.svgResize(workspace);
+
+
+      }
+
+      function onMouseUp() {
+        document.body.style.userSelect = 'auto';
+        dragbar.style.opacity = '0.5';
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+
+        // Restaura o layout metade-metade
+        panelBlocks.style.flexGrow = '1';
+        panelBlocks.style.width = '50%';
+
+        panelCode.style.flexGrow = '1';
+        panelCode.style.width = '50%';
+
+        Blockly.svgResize(workspace); // Redimensiona o Blockly após restaurar
+      }
+
+
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+
+    });
 
 
       // -------------------------------------------------------------------------------------------------
@@ -293,6 +498,42 @@
           alert("❌ Erro de rede ou servidor: " + err.message);
         }
       });
+
+    window.addEventListener('resize', () => Blockly.svgResize(workspace));
+    window.addEventListener('load', () => Blockly.svgResize(workspace));
+
+    function togglePanel(panelId) {
+      const panelBlocks = document.getElementById('panel-blocks');
+      const panelCode = document.getElementById('panel-code');
+      const dragbar = document.getElementById('dragbar');
+
+      if (panelId === 'reset') {
+        panelBlocks.style.display = 'flex';
+        panelCode.style.display = 'flex';
+        panelBlocks.style.flexGrow = '1';
+        panelCode.style.flexGrow = '1';
+        dragbar.style.display = 'block';
+        Blockly.svgResize(workspace);
+        return;
+      }
+
+      const panel = document.getElementById(panelId);
+      const otherPanel = panelId === 'panel-blocks' ? panelCode : panelBlocks;
+
+      if (panel.style.display === 'none') {
+        panel.style.display = 'flex';
+        otherPanel.style.display = 'flex';
+        dragbar.style.display = 'block';
+      } else {
+        panel.style.display = 'none';
+        otherPanel.style.flexGrow = '1';
+        otherPanel.style.width = '100%';
+        dragbar.style.display = 'none';
+      }
+
+      Blockly.svgResize(workspace);
+    }
+
 
   </script>
 
