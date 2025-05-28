@@ -8,7 +8,7 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("Código que roda uma vez ao iniciar");
+   this.setTooltip("Esse bloco inicializa os componentes do seu circuito");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/sketch/setup/");
     }
   };
@@ -21,7 +21,7 @@
       this.setPreviousStatement(true, null);      
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("Código que roda continuamente");
+   this.setTooltip("Esse bloco faz com que as ações dos seus componentes sejam contínuos");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/sketch/loop/");
     }
   };
@@ -31,12 +31,14 @@
       this.appendStatementInput('void')
         .setCheck(null)
         .appendField('Função')
-        .appendField(new Blockly.FieldTextInput('nome'), 'nome');
+        .appendField(new Blockly.FieldTextInput('nome'), 'nome')       
+        .appendField('passando valores')
+        .appendField(new Blockly.FieldTextInput(''), 'argumento'); 
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip("Bloco para geração de função");
       this.setHelpUrl('');
-      this.setColour(240);
+      this.setColour(40);
     }
   };
                       
@@ -44,22 +46,25 @@
     init: function() {
       this.appendStatementInput('void')
         .appendField('Chamar a Função')
-        .appendField(new Blockly.FieldTextInput('nome'), 'nome');
+        .appendField(new Blockly.FieldTextInput('nome'), 'nome')
+        .appendField('passando valores')
+        .appendField(new Blockly.FieldTextInput(''), 'argumento'); 
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip("Chama uma função criada");
       this.setHelpUrl('');
-      this.setColour(120);
+      this.setColour(40);
     }
   };                
   
   Blockly.Blocks['texto']= {
     init: function() {
       this.appendDummyInput('void')
-        .appendField(new Blockly.FieldTextInput('nome'), 'nome');
+        .appendField('Comentar')
+        .appendField(new Blockly.FieldTextInput('texto'), 'nome');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setTooltip("Bloco para texto");
+      this.setTooltip("Com esse bloco é possível colocar comentários no seu código");
       this.setHelpUrl('');
       this.setColour(0);
     }
@@ -69,8 +74,8 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Led")
-          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
-          .appendField("Porta")
+          .appendField(new Blockly.FieldTextInput("nome"), "nome")
+          .appendField("conectado na porta")
           .appendField(new Blockly.FieldNumber(0), "Porta");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -83,13 +88,13 @@
   Blockly.Blocks['digitalwrite'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Aciona alguma coisa")
+          .appendField("Fazer o componente")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("Aciona um valor HIGH ou LOW");
+   this.setTooltip("Aciona um valor HIGH (ligado) ou LOW (desligado) para o componente");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
@@ -97,13 +102,13 @@
   Blockly.Blocks['digitalwrite_led'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Acionar Led")
+          .appendField("Fazer o Led")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("Aciona um valor HIGH ou LOW para o Led");
+   this.setTooltip("Aciona um valor HIGH (ligado) ou LOW (desligado) para o Led");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
@@ -112,13 +117,13 @@
   Blockly.Blocks['pinmode_led'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Configuração do Led")
-          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
-          .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
+          .appendField("Configurar o Led")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome");
+          // .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("Configura o led para funcionar como uma entrada ou saída");
+   this.setTooltip("Configura o led para funcionar como uma saída");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/pinMode/");
     }
   };
@@ -126,7 +131,7 @@
   Blockly.Blocks['pinmode'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Configuração do pino")
+          .appendField("Configurar o componente")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
       this.setPreviousStatement(true, null);
@@ -143,7 +148,7 @@
       this.appendDummyInput()
           .appendField("Buzzer")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
-          .appendField("Porta")
+          .appendField("conectado na porta")
           .appendField(new Blockly.FieldNumber(0), "Porta");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -156,41 +161,41 @@
   Blockly.Blocks['digitalwrite_buzzer'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Acionar Buzzer")
+          .appendField("Fazer o Buzzer")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(60);
-   this.setTooltip("Aciona um valor HIGH ou LOW para o Buzzer");
+   this.setTooltip("Aciona um valor HIGH (lidado) ou LOW (desligado) para o Buzzer");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
     }
   };
   
-  Blockly.Blocks['digitalwrite'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Acionar Pino")
-          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
-          .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(60);
-   this.setTooltip("Aciona um valor HIGH ou LOW para o pino");
-   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
-    }
-  };
+  // Blockly.Blocks['digitalwrite'] = {
+  //   init: function() {
+  //     this.appendDummyInput()
+  //         .appendField("Acionar Pino")
+  //         .appendField(new Blockly.FieldTextInput("Nome"), "nome")
+  //         .appendField(new Blockly.FieldDropdown([["Ligar","HIGH"], ["Desligar","LOW"]]), "modo");
+  //     this.setPreviousStatement(true, null);
+  //     this.setNextStatement(true, null);
+  //     this.setColour(60);
+  //  this.setTooltip("Aciona um valor HIGH ou LOW para o pino");
+  //  this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/digitalwrite/");
+  //   }
+  // };
   
   Blockly.Blocks['pinmode_buzzer'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Configuração do Buzzer")
+          .appendField("Configurar o buzzer")
           .appendField(new Blockly.FieldTextInput("Nome"), "nome")
-          .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
+          // .appendField(new Blockly.FieldDropdown([["Saída","OUTPUT"], ["Entrada","INPUT"]]), "mode");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(60);
-   this.setTooltip("Configura o Buzzer para funcionar como uma entrada ou saída");
+   this.setTooltip("Configura o Buzzer para funcionar como uma saída");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/digital-io/pinMode/");
     }
   };
@@ -198,12 +203,12 @@
   Blockly.Blocks['delay'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Delay")
-          .appendField(new Blockly.FieldNumber(200), "Delay");
+          .appendField("Pausar o programa")
+          .appendField(new Blockly.FieldNumber(2000), "Delay");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(0);
-   this.setTooltip("Pausa o programa por certo tempo em milissegundos");
+   this.setTooltip("Pausa o programa por certo tempo em milissegundos. 1000ms = 1s");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/time/delay/");
     }
   };
@@ -211,11 +216,11 @@
   Blockly.Blocks['Biblioteca_Motor'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Incluir biblioteca Motor");
+          .appendField("Incluir biblioteca do Servo");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("Inclui a biblioteca do servomotor");
+   this.setTooltip("Inclui a biblioteca do servo para o funcionamento do motor");
    this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
@@ -228,7 +233,7 @@
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("Declara o servomotor");
+   this.setTooltip("Declara o motor que irá utilizar a biblioteca do Servo");
    this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
@@ -236,8 +241,9 @@
   Blockly.Blocks['motor_attach'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Porta do Motor")
+          .appendField("Motor")
           .appendField(new Blockly.FieldTextInput("Nome"), "NAME")
+          .appendField("conectado na porta")
           .appendField(new Blockly.FieldNumber(0), "Porta");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -250,13 +256,15 @@
   Blockly.Blocks['motor_write'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Ângulo para mover o Motor")
-          .appendField(new Blockly.FieldTextInput("Nome"), "NAME")
-          .appendField(new Blockly.FieldNumber(0), "valor");
+          .appendField("Movimentar o motor")
+          .appendField(new Blockly.FieldTextInput("Nome"), "NAME")          
+          .appendField("em")
+          .appendField(new Blockly.FieldNumber(0), "valor")
+          .appendField("graus");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
-   this.setTooltip("Colocar o valor, em graus, que o motor irá mexer");
+   this.setTooltip("Colocar o valor, entre 0 e 180º graus, que o motor irá mexer");
    this.setHelpUrl("https://docs.arduino.cc/libraries/servo/");
     }
   };
@@ -276,11 +284,11 @@
   Blockly.Blocks['software'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("SerialSoftware")
+          .appendField("SoftwareSerial")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME")
-          .appendField("Receber dados")
+          .appendField("Recebe dados de")
           .appendField(new Blockly.FieldNumber(0), "rxPin")
-          .appendField("Transmitir dados")
+          .appendField("Transmite dados de")
           .appendField(new Blockly.FieldNumber(0), "txPin");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -293,11 +301,11 @@
   Blockly.Blocks['byte'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Byte")
+          .appendField("Declara uma variável byte")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(135);
+      this.setColour(900);
    this.setTooltip("Declara uma varível como um byte");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/en/variables/data-types/byte/");
     }
@@ -306,13 +314,13 @@
   Blockly.Blocks['int'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Int")
+          .appendField("Declarar uma variável inteira")
           .appendField(new Blockly.FieldTextInput("nome"), "NAME")
           .appendField("=")
           .appendField(new Blockly.FieldNumber(0), "int");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(135);
+      this.setColour(900);
    this.setTooltip("Declara uma variável inteira");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/vari%C3%A1veis/data-types/int/");
     }
@@ -326,7 +334,7 @@
           .appendField(new Blockly.FieldNumber(9600), "begin");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(135);
+      this.setColour(0);
    this.setTooltip("Coloca a velocidade para uma variável");
    this.setHelpUrl("https://docs.arduino.cc/learn/built-in-libraries/software-serial/#begin");
     }
@@ -350,51 +358,67 @@
       this.appendStatementInput("IF")
           .setCheck(null)
           .appendField("Se")
-          .appendField(new Blockly.FieldTextInput("condição"), "NAME");
+          .appendField(new Blockly.FieldTextInput("condição"), "NAME")
+          .appendField("acontecer");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(0);
+      this.setColour(135);
    this.setTooltip("Verifica se é válido a condição e executa o comando a seguir");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/control-structure/if/");
     }
   };
 
+  Blockly.Blocks['else'] = {
+    init: function() {
+      this.appendStatementInput("IF")
+          .setCheck(null)
+          .appendField("Senão acontecer")
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(135);
+   this.setTooltip("Se a condição não é válida, então executa o comando a seguir");
+   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/control-structure/if/");
+    }
+  };
+
+
   
   Blockly.Blocks['analogwrite'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Acionar onda PWM em")
-          .appendField(new Blockly.FieldTextInput("pino"), "nome")          
+          .appendField("Acionar onda PWM no componente ")
+          .appendField(new Blockly.FieldTextInput("pino"), "nome")             
+          .appendField("com")       
           .appendField(new Blockly.FieldTextInput("valor"), "valor")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
-   this.setTooltip("Aciona uma onda PWM em um pino");
+   this.setTooltip("Aciona uma onda PWM em um componente");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/analog-io/analogWrite/");
     }
   };
   
-  Blockly.Blocks['map'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("map")
-          .appendField(new Blockly.FieldTextInput("valor"), "valor")
-          .appendField(new Blockly.FieldTextInput("deMenor"), "deMenor")
-          .appendField(new Blockly.FieldTextInput("deMaior"), " deMaior")
-          .appendField(new Blockly.FieldTextInput("paraMenor"), "paraMenor")
-          .appendField(new Blockly.FieldTextInput("paraMaior"), "paraMaior");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(255);
-   this.setTooltip("Remapeia um número de um intervalo para outro");
-   this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/math/map/");
-    }
-  };
+  // Blockly.Blocks['map'] = {
+  //   init: function() {
+  //     this.appendDummyInput()
+  //         .appendField("map")
+  //         .appendField(new Blockly.FieldTextInput("valor"), "valor")
+  //         .appendField(new Blockly.FieldTextInput("deMenor"), "deMenor")
+  //         .appendField(new Blockly.FieldTextInput("deMaior"), " deMaior")
+  //         .appendField(new Blockly.FieldTextInput("paraMenor"), "paraMenor")
+  //         .appendField(new Blockly.FieldTextInput("paraMaior"), "paraMaior");
+  //     this.setPreviousStatement(true, null);
+  //     this.setNextStatement(true, null);
+  //     this.setColour(255);
+  //  this.setTooltip("Remapeia um número de um intervalo para outro");
+  //  this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/fun%C3%A7%C3%B5es/math/map/");
+  //   }
+  // };
   
   Blockly.Blocks['serialprint'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Escrever no serial: ")
+          .appendField("Escrever no tela: ")
           .appendField(new Blockly.FieldTextInput("input"), "text");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -407,9 +431,9 @@
   Blockly.Blocks['serialprintln'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Escrever no serial:")
+          .appendField("Escrever no tela:")
           .appendField(new Blockly.FieldTextInput("input"), "text")
-          .appendField("e pular linha")
+          .appendField("e pula linha")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(255);
@@ -436,12 +460,13 @@
   Blockly.Blocks['atribuicao'] = {
     init: function() {
       this.appendDummyInput()
+          .appendField("Atribuir a uma ")
           .appendField(new Blockly.FieldTextInput("variavel"), "NAME")
-          .appendField("=")
-          .appendField(new Blockly.FieldTextInput("input"), "text");
+          .appendField("um")
+          .appendField(new Blockly.FieldTextInput("texto"), "text");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(200);
+      this.setColour(900);
    this.setTooltip("Atribuição de algum valor a váriavel");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/arithmetic-operators/assignment/");
     }
@@ -451,7 +476,7 @@
   Blockly.Blocks['quadrado'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Fazer um quadrado")
+          .appendField("Andar no formato de um quadrado")
           // .appendField(new Blockly.FieldNumber(0), "valor")
       this.setColour(230);
    this.setTooltip("Esse bloco cria um circuito completo para que o arabeko anda no formato de um quadrado");
@@ -462,7 +487,7 @@
   Blockly.Blocks['circulo'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Fazer um circulo ")
+          .appendField("Andar no formato de um círculo")
           // .appendField(new Blockly.FieldNumber(0), "valor")
       this.setColour(230);
    this.setTooltip("Esse bloco cria um circuito completo para que o arabeko anda no formato de um círculo");

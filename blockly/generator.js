@@ -18,22 +18,24 @@ Blockly.Arduino['loop'] = function(block) {
 Blockly.Arduino['funcao'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'void');  
   var text_name = block.getFieldValue('nome');
-  var code = "void "+ text_name+"(){\n" +statements_name+ "\n}\n";
+  var text_arg = block.getFieldValue('argumento');
+  var code = "void "+ text_name+"("+text_arg+"){\n" +statements_name+ "\n}\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
 
 Blockly.Arduino['chamada'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'void');  
-  var text_name = block.getFieldValue('nome');
-  var code = text_name+"("+statements_name+");\n";
+  var text_name = block.getFieldValue('nome');  
+  var text_arg = block.getFieldValue('argumento');
+  var code = text_name+"("+text_arg+");\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
 
 Blockly.Arduino['texto'] = function(block) {
   var text_name = block.getFieldValue('nome');
-  var code = text_name+"  ";
+  var code = "//"+text_name+"\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
@@ -48,8 +50,8 @@ Blockly.Arduino['led'] = function(block) {
 
 Blockly.Arduino['pinmode_led'] = function(block, C) {
   var text_nome = block.getFieldValue('nome');
-  var dropdown_modo = block.getFieldValue('mode');
-  var code = "pinMode(led"+text_nome+","+dropdown_modo+");\n";
+  // var dropdown_modo = block.getFieldValue('mode');
+  var code = "pinMode(led"+text_nome+", OUTPUT);\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
@@ -99,7 +101,7 @@ Blockly.Arduino['buzzer'] = function(block) {
 Blockly.Arduino['pinmode_buzzer'] = function(block) {
   var text_nome = block.getFieldValue('nome');
   var dropdown_modo = block.getFieldValue('mode');
-  var code = "pinMode(buzzer"+text_nome+","+dropdown_modo+");\n";
+  var code = "pinMode(buzzer"+text_nome+", OUTPUT);\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
@@ -202,6 +204,14 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
+
+  Blockly.Arduino['else'] = function(block) {
+    var text_name = block.getFieldValue('NAME');
+    var statements_name = Blockly.Arduino.statementToCode(block, 'IF');  
+    var code = "else {\n "+statements_name+"\n}\n";
+    code += Blockly.Arduino.blockToCode(block.getNextBlock());
+    return code;
+  };
   
   Blockly.Arduino['serialprint'] = function(block) {
     var text_text = block.getFieldValue('text');  
@@ -218,16 +228,16 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
     return code;
   };
 
-  Blockly.Arduino['map'] = function(block) {
-    var text_valor = block.getFieldValue('valor');
-    var text_demenor = block.getFieldValue('deMenor');
-    var text_demaior = block.getFieldValue('deMaior');
-    var text_paramenor = block.getFieldValue('paraMenor');
-    var text_paramaior = block.getFieldValue('paraMaior');  
-    var code = "map(("+text_valor+"), "+text_demenor+", "+text_demaior+", "+text_paramenor+", "+text_paramaior+");\n";
-    code += Blockly.Arduino.blockToCode(block.getNextBlock());
-    return code;
-  };
+  // Blockly.Arduino['map'] = function(block) {
+  //   var text_valor = block.getFieldValue('valor');
+  //   var text_demenor = block.getFieldValue('deMenor');
+  //   var text_demaior = block.getFieldValue('deMaior');
+  //   var text_paramenor = block.getFieldValue('paraMenor');
+  //   var text_paramaior = block.getFieldValue('paraMaior');  
+  //   var code = "map(("+text_valor+"), "+text_demenor+", "+text_demaior+", "+text_paramenor+", "+text_paramaior+");\n";
+  //   code += Blockly.Arduino.blockToCode(block.getNextBlock());
+  //   return code;
+  // };
 
   Blockly.Arduino['serialprintln'] = function(block) {
     var text_text = block.getFieldValue('text');  
