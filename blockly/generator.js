@@ -254,36 +254,24 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
 
   Blockly.Arduino['quadrado'] = function(block) {
     var number_valor = block.getFieldValue('valor');
-    var code = '...\n';
+    var code = "// Define os pinos conectados aos motores esquerdo e direito\n int direcao_e = 4, velocidade_e = 3; //motor esquerdo\n int direcao_d = 7, velocidade_d = 6; //motor direito\n int velocidade = 100;  // Velocidade dos motores (0 a 255)\n\n void setup() {\n   pinMode(direcao_e, OUTPUT);\n   pinMode(velocidade_e, OUTPUT);\n   pinMode(direcao_d, OUTPUT);\n   pinMode(velocidade_d, OUTPUT);\n   Serial.begin(9600);\n}\n void loop(){\n   // Comando para andar para frente\n   digitalWrite(direcao_e, HIGH); // Motor esquerdo para frente\n   analogWrite(velocidade_e, map(velocidade, 0, 255, 255, 0)); // Define a velocidade do motor esquerdo\n   digitalWrite(direcao_d, HIGH ); // Motor direito para frente\n   analogWrite(velocidade_d, map(velocidade, 0,255, 255, 0)); // Define a velocidade do motor direito\n   delay(2000);\n\n   analogWrite(velocidade_e, 0);\n   analogWrite(velocidade_d, 0);\n   delay(900);\n\n   // Comando para girar para a direita (um motor gira para frente, o outro para trás)\n   digitalWrite(direcao_e, HIGH);  // Motor esquerdo para trás\n   analogWrite(velocidade_e, map(velocidade, 0, 255, 255, 0)); // Ajusta a rotação invertida\n   digitalWrite(direcao_d, LOW); // Motor direito para frente\n   analogWrite(velocidade_d, 0); // Mantém a velocidade normal\n   delay(1000);\n\n   analogWrite(velocidade_e, 0);\n   analogWrite(velocidade_d, 0);\n   delay(900);\n}";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
 
   Blockly.Arduino['circulo'] = function(block) {
     var number_valor = block.getFieldValue('valor');
-    var code = '...\n';
-    code += Blockly.Arduino.blockToCode(block.getNextBlock());
-    return code;
-  };
-
-  Blockly.Arduino['triangulo'] = function(block) {
-    var number_valor = block.getFieldValue('valor');
-    var code = '...\n';
+    var code = "// Define os pinos conectados aos motores esquerdo e direito\n int direcao_e = 4, velocidade_e = 3; //motor esquerdo\n int direcao_d = 7, velocidade_d = 6; //motor direito\n int velocidade = 100;  // Velocidade dos motores (0 a 255)\n\n void setup() {\n   pinMode(direcao_e, OUTPUT);\n   pinMode(velocidade_e, OUTPUT);\n   pinMode(direcao_d, OUTPUT);\n   pinMode(velocidade_d, OUTPUT);\n   Serial.begin(9600);\n}\n void loop(){\n   // Comando para andar para frente\n   digitalWrite(direcao_e, HIGH); // Motor esquerdo para frente\n   analogWrite(velocidade_e, map(velocidade, 0, 255, 255, 0)); // Define a velocidade do motor esquerdo\n   digitalWrite(direcao_d, HIGH ); // Motor direito para frente\n   analogWrite(velocidade_d, map(velocidade, 0,255, 255, 0)); // Define a velocidade do motor direito\n   delay(2000);\n\n   analogWrite(velocidade_e, 0);\n   analogWrite(velocidade_d, 0);\n   delay(900);\n\n   // Comando para girar para a direita (um motor gira para frente, o outro para trás)\n   digitalWrite(direcao_e, HIGH);  // Motor esquerdo para trás\n   analogWrite(velocidade_e, map(velocidade, 0, 255, 255, 0)); // Ajusta a rotação invertida\n   digitalWrite(direcao_d, LOW); // Motor direito para frente\n   analogWrite(velocidade_d, 0); // Mantém a velocidade normal\n   delay(1000);\n\n}";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
   
   Blockly.Arduino['reto'] = function(block) {
     var number_valor = block.getFieldValue('valor');
-    var code = '...\n';
+    var code = "// Define os pinos conectados aos motores esquerdo e direito\n int direcao_e = 4, velocidade_e = 3; //motor esquerdo\n int direcao_d = 7, velocidade_d = 6; //motor direito\n int velocidade = 100;  // Velocidade dos motores (0 a 255)\n\n void setup() {\n   pinMode(direcao_e, OUTPUT);\n   pinMode(velocidade_e, OUTPUT);\n   pinMode(direcao_d, OUTPUT);\n   pinMode(velocidade_d, OUTPUT);\n   Serial.begin(9600);\n}\n void loop(){\n   // Comando para andar para frente\n   digitalWrite(direcao_e, HIGH); // Motor esquerdo para frente\n   analogWrite(velocidade_e, map(velocidade, 0, 255, 255, 0)); // Define a velocidade do motor esquerdo\n   digitalWrite(direcao_d, HIGH ); // Motor direito para frente\n   analogWrite(velocidade_d, map(velocidade, 0,255, 255, 0)); // Define a velocidade do motor direito\n   delay(2000);\n}";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
 
-  Blockly.Arduino['atras'] = function(block) {
-    var number_valor = block.getFieldValue('valor');
-    var code = '...\n';
-    code += Blockly.Arduino.blockToCode(block.getNextBlock());
-    return code;
-  };
+
 

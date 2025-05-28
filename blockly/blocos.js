@@ -18,7 +18,8 @@
       this.appendStatementInput("Void_loop")
           .setCheck(null)
           .appendField("Ciclo");
-      this.setPreviousStatement(true, null);
+      this.setPreviousStatement(true, null);      
+      this.setNextStatement(true, null);
       this.setColour(0);
    this.setTooltip("Código que roda continuamente");
    this.setHelpUrl("https://docs.arduino.cc/language-reference/pt/estruturas/sketch/loop/");
@@ -451,9 +452,9 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Fazer um quadrado")
-          .appendField(new Blockly.FieldNumber(0), "valor")
+          // .appendField(new Blockly.FieldNumber(0), "valor")
       this.setColour(230);
-   this.setTooltip("Esse bloco faz com que o carrinho ande em quadrado");
+   this.setTooltip("Esse bloco cria um circuito completo para que o arabeko anda no formato de um quadrado");
    this.setHelpUrl("");
     }
   };
@@ -462,42 +463,42 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Fazer um circulo ")
-          .appendField(new Blockly.FieldNumber(0), "valor")
+          // .appendField(new Blockly.FieldNumber(0), "valor")
       this.setColour(230);
-   this.setTooltip("Esse bloco faz com que o carrinho ande em círculo");
+   this.setTooltip("Esse bloco cria um circuito completo para que o arabeko anda no formato de um círculo");
    this.setHelpUrl("");
     }
   };
 
-  Blockly.Blocks['triangulo'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Fazer um triângulo")
-          .appendField(new Blockly.FieldNumber(0), "valor")
-      this.setColour(230);
-   this.setTooltip("Esse bloco faz com que o carrinho ande em triângulo");
-   this.setHelpUrl("");
-    }
-  };
+  // Blockly.Blocks['triangulo'] = {
+  //   init: function() {
+  //     this.appendDummyInput()
+  //         .appendField("Fazer um triângulo")
+  //         .appendField(new Blockly.FieldNumber(0), "valor")
+  //     this.setColour(230);
+  //  this.setTooltip("Esse bloco faz com que o carrinho ande em triângulo");
+  //  this.setHelpUrl("");
+  //   }
+  // };
 
   Blockly.Blocks['reto'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Andar somente para frente")
-          .appendField(new Blockly.FieldNumber(0), "valor")
+          // .appendField(new Blockly.FieldNumber(0), "valor")
       this.setColour(230);
-   this.setTooltip("Esse bloco faz com que o carrinho ande somente para frente");
+   this.setTooltip("Esse bloco cria um circuito completo para que o arabeko ande somente para frente");
    this.setHelpUrl("");
     }
   };
 
-  Blockly.Blocks['atras'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Andar somente para trás")
-          .appendField(new Blockly.FieldNumber(0), "valor")
-      this.setColour(230);
-   this.setTooltip("Esse bloco faz com que o carrinho ande somente para trás");
-   this.setHelpUrl("");
-    }
-  };
+  // Blockly.Blocks['atras'] = {
+  //   init: function() {
+  //     this.appendDummyInput()
+  //         .appendField("Andar somente para trás")
+  //         .appendField(new Blockly.FieldNumber(0), "valor")
+  //     this.setColour(230);
+  //  this.setTooltip("Esse bloco faz com que o carrinho ande somente para trás");
+  //  this.setHelpUrl("");
+  //   }
+  // };
