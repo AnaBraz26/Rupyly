@@ -1,8 +1,9 @@
 ## Trabalho de conclusão de curso
-<p class="allign-center">
+<p align="center">
 <img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 <p align="center">
 <img loading="lazy" src="https://custom-icon-badges.demolab.com/badge/Visual%20Studio%20Code-0078d7.svg?logo=vsc&logoColor=white"/>
 <img loading="lazy" src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&logo=Canva&logoColor=white"/>
