@@ -136,7 +136,7 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
 
   Blockly.Arduino['motor_attach'] = function(block) {
     var text_name = block.getFieldValue('NAME');
-    var number_porta = block.getFieldValue('porta');  
+    var number_porta = block.getFieldValue('Porta');  
     var code = "motor"+text_name+".attach("+number_porta+");\n";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;

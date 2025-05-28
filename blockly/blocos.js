@@ -252,7 +252,7 @@
       this.appendDummyInput()
           .appendField("Ângulo para mover o Motor")
           .appendField(new Blockly.FieldTextInput("Nome"), "NAME")
-          .appendField(new Blockly.FieldNumber(0), "Ângulo");
+          .appendField(new Blockly.FieldNumber(0), "valor");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(135);
