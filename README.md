@@ -1,8 +1,9 @@
 ## Trabalho de conclusão de curso
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center">
+<p class="allign-center">
 <img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+<p align="center">
 <img loading="lazy" src="https://custom-icon-badges.demolab.com/badge/Visual%20Studio%20Code-0078d7.svg?logo=vsc&logoColor=white"/>
 <img loading="lazy" src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&logo=Canva&logoColor=white"/>
 <img loading="lazy" src="https://img.shields.io/badge/Notion-000?logo=notion&logoColor=fff"/>
@@ -21,7 +22,7 @@
 <img loading="lazy" src="https://img.shields.io/badge/Scratch-4D97FF?logo=scratch&logoColor=fff"/>
 <img loading="lazy" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff"/>
 </p>
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Rupyly - Programação em Blocos Educacional
 Rupyly é um software de programação em blocos criado especialmente para o grupo de pesquisa Ereko da Universidade de Brasília. 
