@@ -1,26 +1,65 @@
-#include <Servo.h>
-int buzzerb1 = 4;
-int led1 = 2;
-int led2 = 3;
-Servo motorNome;
+#include <SoftwareSerial.h>
+SoftwareSerial hc06(10,11);
+byte estado;
+int direcao_e = 4;
+int velocidade_e = 3;
+int direcao_d = 7;
+int velocidade_d = 6;
+int velocidade = 100;
 void setup(){
-  pinMode(led1,OUTPUT);
-  pinMode(led2,OUTPUT);
-  pinMode(buzzerb1,OUTPUT);
-  motorNome.attach(13);
-  motorNome.write(0);
+  hc06.begin(9600);
+  Serial.begin(9600);
+  pinMode(2,OUTPUT);
 
 }
 void loop(){
-  digitalWrite(led1,HIGH);
-  digitalWrite(led2,HIGH);
-  digitalWrite(buzzerb1,HIGH);
-  motorNome.write(90);
-  delay(500);
-  digitalWrite(led1,LOW);
-  digitalWrite(led2,LOW);
-  motorNome.write(0);
-  digitalWrite(buzzerb1,HIGH);
-  delay(500);
+  if(hc06.available()){
+     estado = hc06.read();
+    Serial.print(estado);
+    Serial.print(' ');
+
+  }
+  Serial.println(estado);
+  if(estado == 'p'){
+     digitalWrite(2,HIGH);
+    digitalWrite(direcao_e,LOW);
+    analogWrite(velocidade_e, 0);
+    digitalWrite(direcao_d,LOW);
+    analogWrite(velocidade_d, 0);
+
+  }
+  if(estado == 'c'){
+     digitalWrite(2,LOW);
+    digitalWrite(direcao_e,HIGH);
+    analogWrite(velocidade_e, velocidade);
+    digitalWrite(direcao_d,HIGH);
+    analogWrite(velocidade_d, velocidade);
+
+  }
+  if(estado == 'b'){
+     digitalWrite(2,LOW);
+    digitalWrite(direcao_e,HIGH);
+    analogWrite(velocidade_e, velocidade);
+    digitalWrite(direcao_d,LOW);
+    analogWrite(velocidade_d, velocidade);
+
+  }
+  if(estado == 'd'){
+     digitalWrite(2,LOW);
+    digitalWrite(direcao_e,HIGH);
+    analogWrite(velocidade_e, velocidade);
+    digitalWrite(direcao_d,LOW);
+    analogWrite(velocidade_d, 0);
+
+  }
+  if(estado == 'e'){
+     digitalWrite(2,LOW);
+    digitalWrite(direcao_e,LOW);
+    analogWrite(velocidade_e, 0);
+    digitalWrite(direcao_d,HIGH);
+    analogWrite(velocidade_d, velocidade);
+
+  }
+  delay(50);
 
 }

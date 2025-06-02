@@ -3,14 +3,14 @@
 
 Blockly.Arduino['setup'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'Void_setup');
-  var code = "void setup(){\n" +statements_name+ "\n}\n";
+  var code = "void setup(){\n" +statements_name+ "}\n\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
 
 Blockly.Arduino['loop'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'Void_loop');
-  var code = "void loop(){\n" + statements_name +"\n}\n";
+  var code = "void loop(){\n" + statements_name +"}\n\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
@@ -19,7 +19,7 @@ Blockly.Arduino['funcao'] = function(block) {
   var statements_name = Blockly.Arduino.statementToCode(block, 'void');  
   var text_name = block.getFieldValue('nome');
   var text_arg = block.getFieldValue('argumento');
-  var code = "void "+ text_name+"("+text_arg+"){\n" +statements_name+ "\n}\n";
+  var code = "void "+ text_name+"("+text_arg+"){\n"+statements_name+ "}\n";
   code += Blockly.Arduino.blockToCode(block.getNextBlock());
   return code;
 };
@@ -200,7 +200,7 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
   Blockly.Arduino['if'] = function(block) {
     var text_name = block.getFieldValue('NAME');
     var statements_name = Blockly.Arduino.statementToCode(block, 'IF');  
-    var code = "if("+text_name+"){\n "+statements_name+"\n}\n";
+    var code = "if("+text_name+"){\n"+statements_name+"}\n";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
@@ -208,7 +208,7 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
   Blockly.Arduino['else'] = function(block) {
     var text_name = block.getFieldValue('NAME');
     var statements_name = Blockly.Arduino.statementToCode(block, 'IF');  
-    var code = "else {\n "+statements_name+"\n}\n";
+    var code = "else {\n"+statements_name+"}\n";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
@@ -257,7 +257,7 @@ Blockly.Arduino['Biblioteca_Motor'] = function(block) {
   Blockly.Arduino['atribuicao'] = function(block) {
     var text_name = block.getFieldValue('NAME');
     var text_text = block.getFieldValue('text');  
-    var code = text_name+" = "+text_text+"\n";
+    var code = text_name+" = "+text_text+";\n";
     code += Blockly.Arduino.blockToCode(block.getNextBlock());
     return code;
   };
