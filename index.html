@@ -166,7 +166,7 @@
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper">      
           <div class="left-buttons">
-            <button href="assets/Rupyly_Primeiros_Passos.pdf" download class="btn waves-effect waves-light">
+            <button id="baixarPDF" class="btn waves-effect waves-light">
               Primeiras explicações
             </button>
         
@@ -541,6 +541,16 @@
 
       Blockly.svgResize(workspace);
     }
+
+    document.getElementById('baixarPDF').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.href = 'assets/Rupyly_Primeiros_Passos.pdf'; // Caminho do arquivo
+        link.download = 'Rupyly_Primeiros_Passos.pdf';    // Nome do arquivo
+        link.style.display = 'none';                      // Esconde o link
+        document.body.appendChild(link);                  // Adiciona ao DOM
+        link.click();                                     // Simula clique
+        document.body.removeChild(link);                  // Remove depois
+     });
 
 
   </script>
