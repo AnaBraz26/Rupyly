@@ -36,16 +36,12 @@ De um lado possui a área destinada aos blocos, onde o usuário pode fazer a jun
 Assim que pronto, o usuário poderá fazer o download do seu código ou apenas conectar o arduino ao computador e enviar direto do software para o arduino.
 
 
-## O que falta fazer
-Apesar de estar em fases final o software precisa de melhoras sendo elas:
+## Adições para próximas versões
+A Segunda versão já está disponível, no entanto ainda há melhorias que podems er feitas:
  * Criar blocos de operações Lógicas e Aritméticas 
- * Arrumar as cores dos blocos
  * Transformar o software em app para baixar nos computadores
- * PDF das primeiras impressões
- * Ver o melhor nome que se encaixa para as bibliotecas
  * Imagem nos blocos (opcional)
  * Função de tocar música no bloco (opcional)
- * Fórmulário de impressões dos usuários
 
 ## ✔️ Técnicas e tecnologias utilizadas
 
