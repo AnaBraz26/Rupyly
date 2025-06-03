@@ -23,13 +23,15 @@ function detectarPorta(callback) {
       if (colunas.length > 0 && colunas[0].startsWith("/dev") || colunas[0].startsWith("COM")) {
         porta = colunas[0];
         console.log(`🔌 Porta detectada automaticamente: ${porta}`);
-        callback();
+        if (typeof callback === "function") {
+          callback();
+        }
         return;
       }
     }
 
     console.error("⚠️ Nenhuma placa encontrada. Conecte uma placa e tente novamente.");
-    setInterval(detectarPorta, 5000); 
+    setTimeout(() => detectarPorta(callback), 5000);
   });
 }
 
