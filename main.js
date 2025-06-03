@@ -21,7 +21,6 @@ function createWindow() {
   });
 }
 
-// Aqui, você adiciona o código para rodar o local-client.js
 function runLocalClient() {
   const child = exec("node local-client.js");
 

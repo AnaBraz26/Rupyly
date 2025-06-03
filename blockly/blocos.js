@@ -74,7 +74,7 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Led")
-          .appendField(new Blockly.FieldTextInput("nome"), "nome")
+          .appendField(new Blockly.FieldTextInput("Nome"), "nome")
           .appendField("conectado na porta")
           .appendField(new Blockly.FieldNumber(0), "Porta");
       this.setPreviousStatement(true, null);

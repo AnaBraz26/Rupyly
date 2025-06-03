@@ -29,7 +29,7 @@ function detectarPorta(callback) {
     }
 
     console.error("⚠️ Nenhuma placa encontrada. Conecte uma placa e tente novamente.");
-    setInterval(detectarPorta, 10000); 
+    setInterval(detectarPorta, 5000); 
   });
 }
 
@@ -79,7 +79,7 @@ async function buscarEEnviarCodigo() {
 
 function iniciarVerificacao() {
   buscarEEnviarCodigo(); // Executa imediatamente
-  setInterval(buscarEEnviarCodigo, 10000); // Depois a cada 10s se mudar o código
+  setInterval(buscarEEnviarCodigo, 5000); // Depois a cada 10s se mudar o código
 }
 
 // Iniciar: detectar a porta primeiro
