@@ -1,4 +1,4 @@
-// server-render.js (roda no Render)
+-// server-render.js (roda no Render)
 const express = require("express");
 const cors = require("cors");
 
