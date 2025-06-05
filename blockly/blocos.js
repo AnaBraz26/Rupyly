@@ -476,8 +476,17 @@
   Blockly.Blocks['quadrado'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Andar no formato de um quadrado")
-          // .appendField(new Blockly.FieldNumber(0), "valor")
+          .appendField("Andar no formato de um quadrado com")
+      this.appendDummyInput()
+          .appendField("Motor esquerdo conectado na porta")
+          .appendField(new Blockly.FieldNumber(0), "mtesq")
+          .appendField("e a velocidade conectada na porta")          
+          .appendField(new Blockly.FieldNumber(0), "velesq")      
+      this.appendDummyInput()
+          .appendField("Motor  conectado na porta")
+          .appendField(new Blockly.FieldNumber(0), "mtdir")
+          .appendField("e a velocidade conectada na porta")          
+          .appendField(new Blockly.FieldNumber(0), "veldir")
       this.setColour(230);
    this.setTooltip("Esse bloco cria um circuito completo para que o arabeko anda no formato de um quadrado");
    this.setHelpUrl("");
@@ -488,7 +497,16 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Andar no formato de um círculo")
-          // .appendField(new Blockly.FieldNumber(0), "valor")
+      this.appendDummyInput()
+          .appendField("Motor esquedo conectado na porta")
+          .appendField(new Blockly.FieldNumber(0), "mtesq")
+          .appendField("e a velocidade conectada na porta")          
+          .appendField(new Blockly.FieldNumber(0), "velesq")      
+      this.appendDummyInput()
+          .appendField("Motor direito conectado na porta")
+          .appendField(new Blockly.FieldNumber(0), "mtdir")
+          .appendField("e a velocidade conectada na porta")          
+          .appendField(new Blockly.FieldNumber(0), "veldir")
       this.setColour(230);
    this.setTooltip("Esse bloco cria um circuito completo para que o arabeko anda no formato de um círculo");
    this.setHelpUrl("");
