@@ -528,6 +528,16 @@
     init: function() {
       this.appendDummyInput()
           .appendField("Andar somente para frente")
+      this.appendDummyInput()
+          .appendField("Motor esquedo conectado na porta")
+          .appendField(new Blockly.FieldNumber(0), "mtesq")
+          .appendField("e a velocidade conectada na porta")          
+          .appendField(new Blockly.FieldNumber(0), "velesq")      
+      this.appendDummyInput()
+          .appendField("Motor direito conectado na porta")
+          .appendField(new Blockly.FieldNumber(0), "mtdir")
+          .appendField("e a velocidade conectada na porta")          
+          .appendField(new Blockly.FieldNumber(0), "veldir")
           // .appendField(new Blockly.FieldNumber(0), "valor")
       this.setColour(230);
    this.setTooltip("Esse bloco cria um circuito completo para que o arabeko ande somente para frente");
