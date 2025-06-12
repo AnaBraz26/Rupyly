@@ -499,71 +499,71 @@
       //   }
       // });
 
-      document.getElementById("sendCode").addEventListener("click", async () => {
-        const code = document.getElementById("codigogerado").innerText;
-        const statusEl = document.getElementById("statusUpload");
+document.getElementById("sendCode").addEventListener("click", async () => {
+  const code = document.getElementById("codigogerado").innerText;
+  const statusEl = document.getElementById("statusUpload");
 
-        if (!code) {
-          alert("Nenhum código gerado!");
-          return;
-        }
+  if (!code) {
+    alert("Nenhum código gerado!");
+    return;
+  }
 
-        function mostrarStatus(texto, cor) {
-          statusEl.innerText = texto;
-          statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
-          statusEl.style.color = "white";
-          statusEl.style.padding = "10px";
-          statusEl.style.marginTop = "10px";
-          statusEl.style.borderRadius = "5px";
-          statusEl.style.display = "block";
+  function mostrarStatus(texto, cor) {
+    statusEl.innerText = texto;
+    statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
+    statusEl.style.color = "white";
+    statusEl.style.padding = "10px";
+    statusEl.style.marginTop = "10px";
+    statusEl.style.borderRadius = "5px";
+    statusEl.style.display = "block";
 
-          setTimeout(() => {
-            statusEl.style.display = "none";
-          }, 5000);
-        }
+    setTimeout(() => {
+      statusEl.style.display = "none";
+    }, 5000);
+  }
 
+  try {
+    const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    });
+
+    const text = await response.text();
+
+    if (!response.ok) {
+      mostrarStatus("❌ Falha ao salvar código:\n" + text, "red");
+      return;
+    }
+
+    mostrarStatus("⏳ Código salvo no servidor, aguardando upload...", "green");
+
+    // Função para consultar status do upload
+    async function consultarStatusUpload(maxTentativas = 20, intervaloMs = 500) {
+      for (let i = 0; i < maxTentativas; i++) {
         try {
-          const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code }),
-          });
+          const statusResp = await fetch("https://ereko-blockly-back.onrender.com/status-upload");
+          const statusJson = await statusResp.json();
 
-          const text = await response.text();
-
-          if (!response.ok) {
-            mostrarStatus("❌ Falha ao salvar código:\n" + text, "red");
+          if (statusJson.timestamp) {
+            mostrarStatus(statusJson.mensagem, statusJson.sucesso ? "green" : "red");
             return;
           }
-
-          mostrarStatus("⏳ Código salvo no servidor, aguardando upload...", "green");
-
-          // Função para consultar status do upload
-          async function consultarStatusUpload(maxTentativas = 20, intervaloMs = 500) {
-            for (let i = 0; i < maxTentativas; i++) {
-              try {
-                const statusResp = await fetch("https://ereko-blockly-back.onrender.com/status-upload");
-                const statusJson = await statusResp.json();
-
-                if (statusJson.timestamp) {
-                  mostrarStatus(statusJson.mensagem, statusJson.sucesso ? "green" : "red");
-                  return;
-                }
-              } catch (err) {
-                // Ignora erro e tenta novamente
-              }
-
-              await new Promise((r) => setTimeout(r, intervaloMs));
-            }
-            mostrarStatus("❌ Tempo esgotado para obter status do upload.", "red");
-          }
-
-          consultarStatusUpload();
-
         } catch (err) {
-          mostrarStatus("❌ Erro de rede ou servidor: " + err.message, "red");
+          // Ignora erro e tenta novamente
         }
-      });
+
+        await new Promise((r) => setTimeout(r, intervaloMs));
+      }
+      mostrarStatus("❌ Tempo esgotado para obter status do upload.", "red");
+    }
+
+    consultarStatusUpload();
+
+  } catch (err) {
+    mostrarStatus("❌ Erro de rede ou servidor: " + err.message, "red");
+  }
+});
 
 
     window.addEventListener('resize', () => Blockly.svgResize(workspace));

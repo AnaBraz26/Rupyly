@@ -61,7 +61,6 @@ async function buscarEEnviarCodigo() {
     console.log("🛠️ Compilando...");
     exec(`arduino-cli compile --fqbn ${fqbn} ${dir}`, (err, stdout, stderr) => {
       if (err) {
-        //const erro = "❌ Erro na compilação:\n" + stderr;
         const erro = "❌ Erro na compilação:\n" + stderr;
         console.error(erro);
         enviarStatusParaFrontend(erro, false);
