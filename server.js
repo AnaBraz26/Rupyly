@@ -1,4 +1,4 @@
--// server-render.js (roda no Render)
+// server-render.js (roda no Render)
 const express = require("express");
 const cors = require("cors");
 
@@ -18,6 +18,29 @@ app.post("/salvar-codigo", (req, res) => {
 app.get("/codigo", (req, res) => {
   if (!ultimoCodigo) return res.status(404).send("Nenhum código salvo.");
   res.send({ fileName: "sketch.ino", code: ultimoCodigo });
+});
+
+let statusUpload = {
+  sucesso: null,
+  mensagem: "",
+  timestamp: null
+};
+
+// rota para receber o status do upload
+app.post("/status-upload", (req, res) => {
+  const { sucesso, mensagem } = req.body;
+  statusUpload = {
+    sucesso,
+    mensagem,
+    timestamp: new Date().toISOString(),
+  };
+  console.log("📥 Status do upload recebido:", statusUpload);
+  res.send("Status recebido.");
+});
+
+// rota para consultar o status atual
+app.get("/status-upload", (req, res) => {
+  res.json(statusUpload);
 });
 
 app.listen(3000, () => {

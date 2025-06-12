@@ -61,17 +61,23 @@ async function buscarEEnviarCodigo() {
     console.log("🛠️ Compilando...");
     exec(`arduino-cli compile --fqbn ${fqbn} ${dir}`, (err, stdout, stderr) => {
       if (err) {
-        console.error("❌ Erro na compilação:\n", stderr);
+        const erro = "❌ Erro na compilação:\n" + stderr;
+        console.error(erro);
+        enviarStatusParaFrontend(erro, false);
         return;
       }
 
       console.log("✅ Compilado! Iniciando upload...");
       exec(`arduino-cli upload -p ${porta} --fqbn ${fqbn} ${dir}`, (err2, stdout2, stderr2) => {
         if (err2) {
-          console.error("❌ Erro no upload:\n", stderr2);
+          const erroUpload = "❌ Erro no upload:\n" + stderr2;
+          console.error(erroUpload);
+          enviarStatusParaFrontend(erroUpload, false);
           return;
         }
-        console.log("🚀 Upload feito com sucesso!\n", stdout2);
+        const sucesso = "🚀 Upload feito com sucesso!\n" + stdout2;
+        console.log(sucesso);
+        enviarStatusParaFrontend(sucesso, true);
       });
     });
   } catch (err) {
@@ -79,9 +85,18 @@ async function buscarEEnviarCodigo() {
   }
 }
 
+function enviarStatusParaFrontend(texto, sucesso) {
+  axios.post("https://ereko-blockly-back.onrender.com/status-upload", {
+    sucesso,
+    mensagem: texto
+  }).catch((err) => {
+    console.error("⚠️ Erro ao enviar status para frontend:", err.message);
+  });
+}
+
 function iniciarVerificacao() {
   buscarEEnviarCodigo(); // Executa imediatamente
-  setInterval(buscarEEnviarCodigo, 5000); // Depois a cada 10s se mudar o código
+  setInterval(buscarEEnviarCodigo, 3000); // Depois a cada 10s se mudar o código
 }
 
 // Iniciar: detectar a porta primeiro

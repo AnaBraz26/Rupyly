@@ -184,6 +184,7 @@
       </div>
     </nav>
        
+    <div id="statusUpload" style="text-align: center; font-weight: bold; padding: 10px 0;"></div>
 
     <div id="resizable-container">
       <!-- Painel dos blocos -->
@@ -542,6 +543,40 @@
         link.click();                                     // Simula clique
         document.body.removeChild(link);                  // Remove depois
      });
+
+     async function verificarStatusUpload() {
+      try {
+        const res = await fetch("https://ereko-blockly-back.onrender.com/status-upload");
+        const data = await res.json();
+
+        const el = document.getElementById("statusUpload");
+
+        if (!data.timestamp) {
+          el.textContent = "⏳ Nenhum upload realizado ainda.";
+          el.style.color = "gray";
+          el.style.backgroundColor = "#f0f0f0";
+          return;
+        }
+
+        if (data.sucesso) {
+          el.textContent = "Upload feito com sucesso!";
+          el.style.color = "white";
+          el.style.backgroundColor = "#4caf50"; // verde Materialize
+        } else {
+          el.textContent = "Erro no upload: " + data.mensagem;
+          el.style.color = "white";
+          el.style.backgroundColor = "#e53935"; // vermelho Materialize
+        }
+      } catch (err) {
+        const el = document.getElementById("statusUpload");
+        el.textContent = "Erro ao buscar status: " + err.message;
+        el.style.color = "white";
+        el.style.backgroundColor = "#f44336";
+      }
+    }
+
+    setInterval(verificarStatusUpload, 3000);
+    verificarStatusUpload();
 
 
   </script>
