@@ -12,7 +12,7 @@ app.post("/salvar-codigo", (req, res) => {
   const { code } = req.body;
   ultimoCodigo = code;
   console.log("✅ Código recebido!");
-  res.send("Código salvo com sucesso.");
+  //res.send("Código salvo com sucesso.");
 });
 
 app.get("/codigo", (req, res) => {
