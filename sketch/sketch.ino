@@ -1,5 +1,3 @@
-void setup(){
-}
+pinMode(ledx, OUTPUT);
 
-
-pinMode(led4, OUTPUT);
+motorNome.write(0);

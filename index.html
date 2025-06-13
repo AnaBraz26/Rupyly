@@ -489,7 +489,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
           return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
         })
         .filter(linha => linha.trim() !== '') // remove linhas vazias
-        .join(' ');
+        .join('\n');
 
 
       // Melhora a formatação visual do erro
@@ -511,6 +511,11 @@ document.getElementById("sendCode").addEventListener("click", async () => {
       setTimeout(() => {
         statusEl.style.display = "none";
       }, 10000); // some após 10 segundos
+    }
+    else{
+      setTimeout(() =>{
+        statusEl.style.display = "none";
+      }, 30000);
     }
   }
 
