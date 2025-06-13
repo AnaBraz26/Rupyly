@@ -1,6 +1,8 @@
 void setup(){
+  pinMode(buzzerNome, OUTPUT);
 }
 
 void loop(){
-  pinMode(buzzerNome, OUTPUT);
+  pinMode(ledç, OUTPUT);
+  digitalWrite(ledl,HIGH);
 }

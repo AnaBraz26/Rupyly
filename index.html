@@ -480,15 +480,15 @@ document.getElementById("sendCode").addEventListener("click", async () => {
 
   function mostrarStatus(texto, cor) {
     if (cor === "red") {
-      // Aqui assumimos que texto já tem múltiplas linhas
-      texto = texto
-        .split('\n')
-        .map(linha => {
-          // Remove caminho absoluto, mantém só "sketch.ino:linha:coluna: mensagem"
-          return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
-        })
-        .filter(linha => linha.trim() !== '') // remove linhas vazias
-        .join('\n'); // manter as quebras de linha
+      // // Aqui assumimos que texto já tem múltiplas linhas
+      // texto = texto
+      //   .split('\n')
+      //   .map(linha => {
+      //     // Remove caminho absoluto, mantém só "sketch.ino:linha:coluna: mensagem"
+      //     return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
+      //   })
+      //   .filter(linha => linha.trim() !== '') // remove linhas vazias
+      //   .join('\n'); // manter as quebras de linha
 
       // Substitui 'error:' para visual mais limpo
       texto = texto.replace(/error:/g, '❌ Erro:');
