@@ -480,20 +480,19 @@ document.getElementById("sendCode").addEventListener("click", async () => {
 
   function mostrarStatus(texto, cor) {
     if (cor === "red") {
+      // Aqui assumimos que texto já tem múltiplas linhas
       texto = texto
         .split('\n')
         .map(linha => {
-          // Limpa só linhas com .ino para não remover mensagens do servidor
-          if (linha.includes('.ino:')) {
-            return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
-          }
-          return linha;
+          // Remove caminho absoluto, mantém só "sketch.ino:linha:coluna: mensagem"
+          return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
         })
-        .filter(linha => linha.trim() !== '')
-        .join('\n');
+        .filter(linha => linha.trim() !== '') // remove linhas vazias
+        .join('\n'); // manter as quebras de linha
 
+      // Substitui 'error:' para visual mais limpo
       texto = texto.replace(/error:/g, '❌ Erro:');
-   }
+    }
 
     statusEl.textContent = texto;
     statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
@@ -502,12 +501,12 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     statusEl.style.marginTop = "10px";
     statusEl.style.borderRadius = "5px";
     statusEl.style.display = "block";
-    statusEl.style.whiteSpace = "pre-wrap";
+    //statusEl.style.whiteSpace = "pre-wrap";
 
     if (cor === "green") {
       setTimeout(() => {
         statusEl.style.display = "none";
-      }, 15000);
+      }, 25000);
     } 
     else if (cor === "red") {
       setTimeout(() => {
@@ -516,54 +515,49 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     } 
   }
 
- try {
-  const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ code }),
-  });
+  try {
+    const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    });
 
-  const text = await response.text();
+    const text = await response.text();
 
-  if (!response.ok) {
-    mostrarStatus("❌ Falha ao salvar código:\n" + text, "red");
-    return;
-  }
-
-  mostrarStatus("⏳ Código salvo no servidor, aguardando upload...", "green");
-  const momentoEnvio = Date.now();
-
-  async function consultarStatusUpload(maxTentativas = 20, intervaloMs = 500) {
-    for (let i = 0; i < maxTentativas; i++) {
-      try {
-        const statusResp = await fetch("https://ereko-blockly-back.onrender.com/status-upload");
-        const statusJson = await statusResp.json();
-
-        if (statusJson.timestamp && new Date(statusJson.timestamp).getTime() >= momentoEnvio) {
-          console.log("📥 Status recebido do servidor:", statusJson);
-
-          // Se o backend retornar detalhes da compilação, exiba todos
-          const mensagem = statusJson.mensagem || "Sem mensagem";
-          mostrarStatus(mensagem, statusJson.sucesso ? "green" : "red");
-          return;
-        }
-      } catch (err) {
-        console.warn("Erro ao consultar status:", err);
-        // Aqui você pode mostrar algo breve se quiser:
-        // mostrarStatus("⚠️ Falha temporária ao consultar status", "red");
-      }
-
-      await new Promise((r) => setTimeout(r, intervaloMs));
+    if (!response.ok) {
+      mostrarStatus("❌ Falha ao salvar código:\n" + text, "red");
+      return;
     }
-    mostrarStatus("❌ Tempo esgotado para obter status do upload.", "red");
+
+    mostrarStatus("⏳ Código salvo no servidor, aguardando upload...", "green");
+    const momentoEnvio = Date.now();
+
+    // Função para consultar status do upload
+    async function consultarStatusUpload(maxTentativas = 20, intervaloMs = 500) {
+      for (let i = 0; i < maxTentativas; i++) {
+        try {
+          const statusResp = await fetch("https://ereko-blockly-back.onrender.com/status-upload");
+          const statusJson = await statusResp.json();
+
+          if (statusJson.timestamp && new Date(statusJson.timestamp).getTime() >= momentoEnvio) {
+            console.log("📥 Status recebido do servidor:", statusJson);
+            mostrarStatus(statusJson.mensagem, statusJson.sucesso ? "green" : "red");
+            return;
+          }
+        } catch (err) {
+          // Ignora erro e tenta novamente
+        }
+
+        await new Promise((r) => setTimeout(r, intervaloMs));
+      }
+      mostrarStatus("❌ Tempo esgotado para obter status do upload.", "red");
+    }
+
+    consultarStatusUpload();
+
+  } catch (err) {
+    mostrarStatus("❌ Erro de rede ou servidor: " + err.message, "red");
   }
-
-  consultarStatusUpload();
-
-} catch (err) {
-  mostrarStatus("❌ Erro de rede ou servidor: " + err.message, "red");
-}
-
 });
 
 
