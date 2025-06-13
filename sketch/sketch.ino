@@ -1,1 +1,1 @@
-pinMode(buzzerNome, OUTPUT);
+pinMode(ledNome, OUTPUT);
