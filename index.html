@@ -481,21 +481,18 @@ document.getElementById("sendCode").addEventListener("click", async () => {
   function mostrarStatus(texto, cor) {
     
     if (cor === "red") {
-      // Remove apenas o caminho absoluto, mantendo "sketch.ino:linha:coluna"
-      texto = texto
-        .split('\n')
-        .map(linha => {
-          // Regex para remover caminho até o nome do arquivo .ino, mantendo arquivo + linha + coluna + mensagem
-          return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
-        })
-        .filter(linha => linha.trim() !== '') // remove linhas vazias
-        .join('\n');
+    // Remove caminho absoluto, mantém só "sketch.ino:linha:coluna: mensagem"
+    texto = texto
+      .split('\n')
+      .map(linha => {
+        return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
+      })
+      .filter(linha => linha.trim() !== '') // Remove linhas vazias
+      .join('\n'); // Mantém as quebras de linha para mostrar todos erros
 
-
-      // Melhora a formatação visual do erro
-      texto = texto.replace(/error:/g, ' ');
-      //texto = texto.replace(/exit status/g, '\n🔚 exit status');
-    }
+    // Formatação visual do erro
+    texto = texto.replace(/error:/g, '❌ Erro:');
+  }
 
     statusEl.textContent = texto;
     statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
@@ -513,9 +510,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
       }, 10000); // some após 10 segundos
     }
     else{
-      setTimeout(() =>{
-        statusEl.style.display = "none";
-      }, 30000);
+
     }
   }
 

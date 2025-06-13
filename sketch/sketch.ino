@@ -1,3 +1,5 @@
-pinMode(ledx, OUTPUT);
+pinMode(buzzerNome, OUTPUT);
 
-motorNome.write(0);
+digitalWrite(buzzerNome,HIGH);
+
+digitalWrite(ledNome,HIGH);
