@@ -479,6 +479,13 @@ document.getElementById("sendCode").addEventListener("click", async () => {
   }
 
   function mostrarStatus(texto, cor) {
+   
+    if (cor === "red") {
+      texto = texto.replace(/\//g, '\n/');
+      texto = texto.replace(/error:/g, '\n❌ Erro:');
+      texto = texto.replace(/exit status/g, '\n🔚 exit status');
+    }
+
     statusEl.textContent = texto;
     statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
     statusEl.style.color = "white";
@@ -486,13 +493,13 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     statusEl.style.marginTop = "10px";
     statusEl.style.borderRadius = "5px";
     statusEl.style.display = "block";
-    //statusEl.style.whiteSpace = "pre-wrap";
+    statusEl.style.whiteSpace = "pre-wrap";
 
     // Só esconde automaticamente se for sucesso (verde)
-    if (cor == "green") {
+    if (cor === "green") {
       setTimeout(() => {
         statusEl.style.display = "none";
-      }, 5000); // some após 5 segundos
+      }, 10000); // some após 10 segundos
     }
   }
 
