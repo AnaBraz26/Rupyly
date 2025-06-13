@@ -480,62 +480,23 @@ document.getElementById("sendCode").addEventListener("click", async () => {
 
   function mostrarStatus(texto, cor) {
     
-  //   if (cor === "red") {
-  //   // Remove caminhos de arquivos (como /home/ana/...)
-  //   texto = texto
-  //     .split('\n')
-  //     .filter(linha => !linha.includes('.ino:')) // ignora linhas que indicam o local do erro
-  //     .join('\n');
+    if (cor === "red") {
+      // Remove apenas o caminho absoluto, mantendo "sketch.ino:linha:coluna"
+      texto = texto
+        .split('\n')
+        .map(linha => {
+          // Regex para remover caminho até o nome do arquivo .ino, mantendo arquivo + linha + coluna + mensagem
+          return linha.replace(/.*\/([^\/]+\.ino:\d+:\d+:)/, '$1');
+        })
+        .join('\n');
 
-  //   // Melhora a formatação visual do erro
-  //   texto = texto.replace(/error:/g, '\n❌ Erro:');
-  //   texto = texto.replace(/exit status/g, '\n🔚 exit status');
-  // }
 
-  //   statusEl.textContent = texto;
-  //   statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
-  //   statusEl.style.color = "white";
-  //   statusEl.style.padding = "10px";
-  //   statusEl.style.marginTop = "10px";
-  //   statusEl.style.borderRadius = "5px";
-  //   statusEl.style.display = "block";
-  //   statusEl.style.whiteSpace = "pre-wrap";
-
-  //   // Só esconde automaticamente se for sucesso (verde)
-  //   if (cor === "green") {
-  //     setTimeout(() => {
-  //       statusEl.style.display = "none";
-  //     }, 10000); // some após 10 segundos
-  //   }
-  // }
-
-  function mostrarStatus(texto, cor) {
-  const statusEl = document.getElementById("statusUpload");
-
-  if (cor === "red") {
-      // Remove linhas com caminhos do arquivo (.ino:)
-      const linhas = texto.split('\n').filter(linha => !linha.includes('.ino:'));
-
-      // Monta HTML colorido
-      let html = '';
-      linhas.forEach(linha => {
-        if (linha.toLowerCase().includes('error:')) {
-          html += `<div style="color: #ff5555; font-weight: bold;">❌ ${linha.trim()}</div>`;
-        } else if (linha.toLowerCase().includes('warning:')) {
-          html += `<div style="color: orange;">⚠️ ${linha.trim()}</div>`;
-        } else if (linha.toLowerCase().includes('exit status')) {
-          html += `<div style="color: #bbb;">🔚 ${linha.trim()}</div>`;
-        } else {
-          html += `<div style="color: white;">${linha.trim()}</div>`;
-        }
-      });
-
-      statusEl.innerHTML = html;
-    } else {
-      // Para mensagens verdes (sucesso), texto simples
-      statusEl.textContent = texto;
+      // Melhora a formatação visual do erro
+      texto = texto.replace(/error:/g, '\n❌ Erro:');
+      texto = texto.replace(/exit status/g, '\n🔚 exit status');
     }
 
+    statusEl.textContent = texto;
     statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
     statusEl.style.color = "white";
     statusEl.style.padding = "10px";
@@ -544,13 +505,14 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     statusEl.style.display = "block";
     statusEl.style.whiteSpace = "pre-wrap";
 
-    // Só some automaticamente se for sucesso (verde)
+    // Só esconde automaticamente se for sucesso (verde)
     if (cor === "green") {
       setTimeout(() => {
         statusEl.style.display = "none";
-      }, 10000);
+      }, 10000); // some após 10 segundos
     }
   }
+
 
   try {
     const response = await fetch("https://ereko-blockly-back.onrender.com/salvar-codigo", {
