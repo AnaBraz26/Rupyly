@@ -489,7 +489,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     //statusEl.style.whiteSpace = "pre-wrap";
 
     // Só esconde automaticamente se for sucesso (verde)
-    if (cor === "green") {
+    if (cor == "green") {
       setTimeout(() => {
         statusEl.style.display = "none";
       }, 5000); // some após 5 segundos
