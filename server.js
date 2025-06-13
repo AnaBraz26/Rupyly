@@ -37,18 +37,11 @@ let statusUpload = {
 
 // rota para receber o status do upload
 app.post("/status-upload", (req, res) => {
-  // const { sucesso, mensagem } = req.body;
-  // statusUpload = {
-  //   sucesso,
-  //   mensagem,
-  //   timestamp: new Date().toISOString(),
-  // };
-  const { mensagem, sucesso } = req.body;
-
-  ultimoStatusUpload = {
-    timestamp: new Date(),
-    mensagem: mensagem || "Sem mensagem",
-    sucesso: !!sucesso
+  const { sucesso, mensagem } = req.body;
+  statusUpload = {
+    sucesso,
+    mensagem,
+    timestamp: new Date().toISOString(),
   };
   console.log("📥 Status do upload recebido:", statusUpload);
   res.send("Status recebido.");

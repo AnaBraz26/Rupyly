@@ -1,7 +1,5 @@
 void setup(){
-  pinMode(buzzerNome, OUTPUT);
 }
 
-void loop(){
-  motork.attach(0);
-}
+pinMode(ledNome, OUTPUT);
+digitalWrite(buzzerNome,HIGH);

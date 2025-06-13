@@ -481,16 +481,16 @@ document.getElementById("sendCode").addEventListener("click", async () => {
   function mostrarStatus(texto, cor) {
     if (cor === "red") {
       texto = texto
-        // .split('\n')
-        // .map(linha => {
-        //   // Limpa só linhas com .ino para não remover mensagens do servidor
-        //   if (linha.includes('.ino:')) {
-        //     return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
-        //   }
-        //   return linha;
-        // })
-        // .filter(linha => linha.trim() !== '')
-        // .join('\n');
+        .split('\n')
+        .map(linha => {
+          // Limpa só linhas com .ino para não remover mensagens do servidor
+          if (linha.includes('.ino:')) {
+            return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
+          }
+          return linha;
+        })
+        .filter(linha => linha.trim() !== '')
+        .join('\n');
 
       texto = texto.replace(/error:/g, '❌ Erro:');
    }
