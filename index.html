@@ -480,19 +480,20 @@ document.getElementById("sendCode").addEventListener("click", async () => {
 
   function mostrarStatus(texto, cor) {
     if (cor === "red") {
-      // Aqui assumimos que texto já tem múltiplas linhas
       texto = texto
         .split('\n')
         .map(linha => {
-          // Remove caminho absoluto, mantém só "sketch.ino:linha:coluna: mensagem"
-          return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
+          // Limpa só linhas com .ino para não remover mensagens do servidor
+          if (linha.includes('.ino:')) {
+            return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
+          }
+          return linha;
         })
-        .filter(linha => linha.trim() !== '') // remove linhas vazias
-        .join('\n'); // manter as quebras de linha
+        .filter(linha => linha.trim() !== '')
+        .join('\n');
 
-      // Substitui 'error:' para visual mais limpo
       texto = texto.replace(/error:/g, '❌ Erro:');
-    }
+   }
 
     statusEl.textContent = texto;
     statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
@@ -501,12 +502,12 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     statusEl.style.marginTop = "10px";
     statusEl.style.borderRadius = "5px";
     statusEl.style.display = "block";
-    //statusEl.style.whiteSpace = "pre-wrap";
+    statusEl.style.whiteSpace = "pre-wrap";
 
     if (cor === "green") {
       setTimeout(() => {
         statusEl.style.display = "none";
-      }, 20000);
+      }, 15000);
     } 
     else if (cor === "red") {
       setTimeout(() => {
@@ -532,7 +533,6 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     mostrarStatus("⏳ Código salvo no servidor, aguardando upload...", "green");
     const momentoEnvio = Date.now();
 
-    // Função para consultar status do upload
     async function consultarStatusUpload(maxTentativas = 20, intervaloMs = 500) {
       for (let i = 0; i < maxTentativas; i++) {
         try {
@@ -541,11 +541,16 @@ document.getElementById("sendCode").addEventListener("click", async () => {
 
           if (statusJson.timestamp && new Date(statusJson.timestamp).getTime() >= momentoEnvio) {
             console.log("📥 Status recebido do servidor:", statusJson);
-            mostrarStatus(statusJson.mensagem, statusJson.sucesso ? "green" : "red");
+
+            // Se o backend retornar detalhes da compilação, exiba todos
+            const mensagem = statusJson.mensagem || "Sem mensagem";
+            mostrarStatus(mensagem, statusJson.sucesso ? "green" : "red");
             return;
           }
         } catch (err) {
-          // Ignora erro e tenta novamente
+          console.warn("Erro ao consultar status:", err);
+          // Aqui você pode mostrar algo breve se quiser:
+          // mostrarStatus("⚠️ Falha temporária ao consultar status", "red");
         }
 
         await new Promise((r) => setTimeout(r, intervaloMs));
@@ -558,6 +563,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
   } catch (err) {
     mostrarStatus("❌ Erro de rede ou servidor: " + err.message, "red");
   }
+
 });
 
 

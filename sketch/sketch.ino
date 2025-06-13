@@ -1,3 +1,7 @@
-pinMode(buzzer., OUTPUT);
+void setup(){
+  pinMode(ledNome, OUTPUT);
+}
 
-motorNome.attach(0);
+void loop(){
+  pinMode(buzzerNome, OUTPUT);
+}
