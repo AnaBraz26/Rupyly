@@ -11,9 +11,18 @@ let ultimoCodigo = ""; // variável que guarda o último código enviado
 app.post("/salvar-codigo", (req, res) => {
   const { code } = req.body;
   ultimoCodigo = code;
+
+  // 🔁 Limpa o status antigo para garantir que a próxima consulta espere um novo
+  statusUpload = {
+    sucesso: null,
+    mensagem: "",
+    timestamp: null,
+  };
+
   console.log("✅ Código recebido!");
   res.send("Código salvo com sucesso.");
 });
+
 
 app.get("/codigo", (req, res) => {
   if (!ultimoCodigo) return res.status(404).send("Nenhum código salvo.");

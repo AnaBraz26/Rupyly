@@ -512,6 +512,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     }
 
     mostrarStatus("⏳ Código salvo no servidor, aguardando upload...", "green");
+    const momentoEnvio = Date.now();
 
     // Função para consultar status do upload
     async function consultarStatusUpload(maxTentativas = 20, intervaloMs = 500) {
@@ -520,7 +521,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
           const statusResp = await fetch("https://ereko-blockly-back.onrender.com/status-upload");
           const statusJson = await statusResp.json();
 
-          if (statusJson.timestamp) {
+          if (statusJson.timestamp && new Date(statusJson.timestamp).getTime() >= momentoEnvio) {
             console.log("📥 Status recebido do servidor:", statusJson);
             mostrarStatus(statusJson.mensagem, statusJson.sucesso ? "green" : "red");
             return;
