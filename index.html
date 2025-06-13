@@ -486,14 +486,15 @@ document.getElementById("sendCode").addEventListener("click", async () => {
         .split('\n')
         .map(linha => {
           // Regex para remover caminho até o nome do arquivo .ino, mantendo arquivo + linha + coluna + mensagem
-          return linha.replace(/.*\/([^\/]+\.ino:\d+:\d+:)/, '$1');
+          return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
         })
-        .join('\n');
+        .filter(linha => linha.trim() !== '') // remove linhas vazias
+        .join(' ');
 
 
       // Melhora a formatação visual do erro
-      texto = texto.replace(/error:/g, '\n❌ Erro:');
-      texto = texto.replace(/exit status/g, '\n🔚 exit status');
+      texto = texto.replace(/error:/g, ' ');
+      //texto = texto.replace(/exit status/g, '\n🔚 exit status');
     }
 
     statusEl.textContent = texto;
