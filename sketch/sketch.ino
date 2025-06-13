@@ -1,7 +1,7 @@
 void setup(){
-  pinMode(ledNome, OUTPUT);
+  pinMode(buzzerNome, OUTPUT);
 }
 
 void loop(){
-  pinMode(buzzerNome, OUTPUT);
+  motork.attach(0);
 }

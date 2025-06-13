@@ -481,16 +481,16 @@ document.getElementById("sendCode").addEventListener("click", async () => {
   function mostrarStatus(texto, cor) {
     if (cor === "red") {
       texto = texto
-        .split('\n')
-        .map(linha => {
-          // Limpa só linhas com .ino para não remover mensagens do servidor
-          if (linha.includes('.ino:')) {
-            return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
-          }
-          return linha;
-        })
-        .filter(linha => linha.trim() !== '')
-        .join('\n');
+        // .split('\n')
+        // .map(linha => {
+        //   // Limpa só linhas com .ino para não remover mensagens do servidor
+        //   if (linha.includes('.ino:')) {
+        //     return linha.replace(/.*\.ino:\d+:\d+:\s*/, '');
+        //   }
+        //   return linha;
+        // })
+        // .filter(linha => linha.trim() !== '')
+        // .join('\n');
 
       texto = texto.replace(/error:/g, '❌ Erro:');
    }
@@ -549,8 +549,7 @@ document.getElementById("sendCode").addEventListener("click", async () => {
           }
         } catch (err) {
           console.warn("Erro ao consultar status:", err);
-          // Aqui você pode mostrar algo breve se quiser:
-          // mostrarStatus("⚠️ Falha temporária ao consultar status", "red");
+          mostrarStatus("⚠️ Falha temporária ao consultar status", "red");
         }
 
         await new Promise((r) => setTimeout(r, intervaloMs));
