@@ -501,17 +501,18 @@ document.getElementById("sendCode").addEventListener("click", async () => {
     statusEl.style.marginTop = "10px";
     statusEl.style.borderRadius = "5px";
     statusEl.style.display = "block";
-    statusEl.style.whiteSpace = "pre-wrap";
+    //statusEl.style.whiteSpace = "pre-wrap";
 
     if (cor === "green") {
       setTimeout(() => {
         statusEl.style.display = "none";
-      }, 10000);
+      }, 20000);
     } 
-    else{
-      
-    }
-    // Para vermelho, NÃO faz nada para manter fixo
+    else if (cor === "red") {
+      setTimeout(() => {
+        statusEl.style.display = "none";
+      }, 50000);
+    } 
   }
 
   try {
