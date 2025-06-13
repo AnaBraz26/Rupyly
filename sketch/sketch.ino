@@ -1,5 +1,7 @@
 void setup(){
 }
 
-pinMode(ledNome, OUTPUT);
-digitalWrite(buzzerNome,HIGH);
+void loop(){
+  digitalWrite(ledNome,HIGH);
+  motorNome.write(0);
+}
