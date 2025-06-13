@@ -20,7 +20,7 @@ function createWindow() {
     mainWindow = null;
   });
 }
-
+node 
 function runLocalClient() {
   const child = exec("node local-client.js");
 
