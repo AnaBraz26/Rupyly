@@ -70,7 +70,7 @@ async function buscarEEnviarCodigo() {
       console.log("✅ Compilado! Iniciando upload...");
       exec(`arduino-cli upload -p ${porta} --fqbn ${fqbn} ${dir}`, (err2, stdout2, stderr2) => {
         if (err2) {
-          const erroUpload = "❌ Erro no upload:\n" + stderr2;
+          const erroUpload = "❌ Erro no upload:\n" + stderr2.replace(/[\x00-\x1F\x7F]/g, "");
           console.error(erroUpload);
           enviarStatusParaFrontend(erroUpload, false);
           return;
@@ -96,7 +96,7 @@ function enviarStatusParaFrontend(texto, sucesso) {
 
 function iniciarVerificacao() {
   buscarEEnviarCodigo(); // Executa imediatamente
-  setInterval(buscarEEnviarCodigo, 3000); // Depois a cada 10s se mudar o código
+  setInterval(buscarEEnviarCodigo, 3000); 
 }
 
 // Iniciar: detectar a porta primeiro
