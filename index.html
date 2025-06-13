@@ -479,12 +479,18 @@ document.getElementById("sendCode").addEventListener("click", async () => {
   }
 
   function mostrarStatus(texto, cor) {
-   
+    
     if (cor === "red") {
-      texto = texto.replace(/\//g, '\n/');
-      texto = texto.replace(/error:/g, '\n❌ Erro:');
-      texto = texto.replace(/exit status/g, '\n🔚 exit status');
-    }
+    // Remove caminhos de arquivos (como /home/ana/...)
+    texto = texto
+      .split('\n')
+      .filter(linha => !linha.includes('.ino:')) // ignora linhas que indicam o local do erro
+      .join('\n');
+
+    // Melhora a formatação visual do erro
+    texto = texto.replace(/error:/g, '\n❌ Erro:');
+    texto = texto.replace(/exit status/g, '\n🔚 exit status');
+  }
 
     statusEl.textContent = texto;
     statusEl.style.backgroundColor = cor === "green" ? "#4caf50" : "#e53935";
